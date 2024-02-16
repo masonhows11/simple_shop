@@ -6,11 +6,15 @@
 
     <title>Laravel</title>
     <!-- Styles -->
-    <style>
-    </style>
+    @include('layouts.include.header_styles')
 </head>
 <body>
+@include('layouts.include.header')
 
+
+
+@include('layouts.include.footer')
+@include('layouts.include.footer_scripts')
 </body>
 </html>
 

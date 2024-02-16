@@ -149,16 +149,20 @@ select {
     vertical-align: middle;
 }
 // custom Fonts
-// @import "font.css";
+ @import "font.css";
 // bootstrap rtl
-//@import "~bootstrap/dist/css/bootstrap.rtl.min.css";
+@import "~bootstrap/dist/css/bootstrap.rtl.min.css";
 // sweetAlert 2
 
 // font-awesome
-// @import "~@fortawesome/fontawesome-free/scss/fontawesome";
-// @import "~@fortawesome/fontawesome-free/scss/regular";
-// @import "~@fortawesome/fontawesome-free/scss/solid";
-// @import "~@fortawesome/fontawesome-free/scss/brands";
+ @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+ @import "~@fortawesome/fontawesome-free/scss/regular";
+ @import "~@fortawesome/fontawesome-free/scss/solid";
+ @import "~@fortawesome/fontawesome-free/scss/brands";
 // custom style
+
+body{
+    font-family:"vazir-fa-med",sans-serif;
+}
 
 

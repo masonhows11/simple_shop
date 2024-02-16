@@ -8,7 +8,7 @@ import axios from 'axios';
 window.axios = axios;
 
 import Popper from '@popperjs/core/dist/umd/popper'
-//import Bundle from 'bootstrap/dist/js/bootstrap.bundle.min'
+import Bundle from 'bootstrap/dist/js/bootstrap.bundle.min'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min'
 
 

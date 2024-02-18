@@ -9,12 +9,18 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{ route('home') }}">{{ __('messages.home_page') }}</a>
                 </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
+                    </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login.form') }}">{{__('messages.login')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register.form') }}">{{ __('messages.register_user') }}</a>
                 </li>
+                @endauth
             </ul>
         </div>
     </div>

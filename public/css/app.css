@@ -10577,7 +10577,19 @@ readers do not read off random characters that represent icons */
   content: "\f3f6";
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
   font-family: "vazir-fa-med", sans-serif;
+}
+
+.footer-wrapper {
+  height: auto;
+  margin-top: auto;
 }
 

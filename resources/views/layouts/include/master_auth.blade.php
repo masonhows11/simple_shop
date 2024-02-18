@@ -10,6 +10,7 @@
     @include('layouts.include.header_styles')
 </head>
 <body>
+@include('layouts.include.header')
 <main>
     @yield('main_content')
 </main>
@@ -18,5 +19,4 @@
 @include('layouts.alert.alert')
 @stack('front_custom_scripts')
 </body>
-
 </html>

@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('front/image/icon.png') }}">
     <title>@yield('page_title')</title>
-    @include( 'front.layouts.header_styles')
+    @include('layouts.include.header_styles')
 </head>
 <body>
-@yield('main_content')
-@include('front.layouts.footer_scripts')
-@include('front.layouts.alert.alert')
+<main>
+    @yield('main_content')
+</main>
+@include('layouts.include.footer')
+@include('layouts.include.footer_scripts')
+@include('layouts.alert.alert')
 @stack('front_custom_scripts')
 </body>
 

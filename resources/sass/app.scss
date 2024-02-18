@@ -160,9 +160,19 @@ select {
  @import "~@fortawesome/fontawesome-free/scss/solid";
  @import "~@fortawesome/fontawesome-free/scss/brands";
 // custom style
-
+html {
+    height: 100%;
+}
 body{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
     font-family:"vazir-fa-med",sans-serif;
 }
 
 
+// footer style
+.footer-wrapper {
+    height: auto;
+    margin-top: auto;
+}

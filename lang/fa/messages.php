@@ -2,8 +2,8 @@
 
 
 return [
-    'site_name' => 'گرافیک شاپ',
-    'site_name_english' => 'grapicshop.ir',
+    'site_name' => 'آنلاین شاپ',
+    'site_name_english' => 'onlineshop.ir',
     'good_shopping_online_store' => 'فروشگاه اینترنتی گرافیک شاپ',
     'home_page' => 'صفحه اصلی سایت',
     'admin_dashboard' => 'پنل مدیریت',

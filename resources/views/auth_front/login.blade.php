@@ -5,20 +5,26 @@
 @section('main_content')
     <div class="container login-section">
 
-        <div class="alert-section mt-2">
-            @include('layouts.alert.alert')
-        </div>
+
 
         <div class="row d-flex  justify-content-center mb-5 mt-2">
 
             <div class="col-xl-5 col-lg-5 col-md-5 px-4">
                 <div class="row d-flex flex-column">
 
-                    <div class="col-xl-10 col-lg-10 my-3 col-md-10  border border-2 login-form-title rounded-3 py-4">
+                    <div class="alert-section mt-2">
+                        @include('layouts.alert.alert')
+                    </div>
+
+                    <h3 class="h3 text-center mt-4 ">
+                        <a href="{{ route('home') }}" class="text-danger text-decoration-none">  {{ __('messages.site_name') }}</a>
+                    </h3>
+
+                    <div class="col mt-4  border border-2 login-form-title rounded-3 py-4">
                         <h3 class="text-center">ورود</h3>
                     </div>
 
-                    <div class="col-xl-10 col-lg-10 col-md-10 border border-2  rounded-3 py-4 px-4 login-form">
+                    <div class="col mt-4 border border-2  rounded-3 py-4 px-4 login-form">
                         <form action="{{ route('login') }}" method="post">
                             @csrf
 

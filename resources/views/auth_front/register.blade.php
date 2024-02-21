@@ -14,10 +14,20 @@
 
             <div class="col-xl-5 col-lg-6 col-md-6 px-4">
                 <div class="row d-flex flex-column">
-                    <div class="col-xl-10 col-lg-10 my-3 col-md-10  border border-2 register-form-title rounded-3 py-4">
+
+                    <div class="alert-section mt-2">
+                        @include('layouts.alert.alert')
+                    </div>
+
+                    <h3 class="h3 text-center mt-4 ">
+                        <a href="{{ route('home') }}" class="text-danger text-decoration-none">  {{ __('messages.site_name') }}</a>
+                    </h3>
+
+                    <div class="col mt-4  border border-2 register-form-title rounded-3 py-4">
                         <h3 class="text-center">ثبت نام</h3>
                     </div>
-                    <div class="col-xl-10 col-lg-10  col-md-10  border border-2  rounded-3 py-4 px-4 register-form">
+
+                    <div class="col mt-4 border border-2  rounded-3 py-4 px-4 register-form">
                         <form action="{{ route('register') }}" method="post">
                             @csrf
 
@@ -73,7 +83,7 @@
 
 
 
-                            
+
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-success w-100 rounded-3">عضویت</button>
                             </div>

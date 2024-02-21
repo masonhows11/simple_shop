@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col mt-4 border border-2  rounded-3 py-4 px-4 register-form">
-                        <form action="{{ route('register') }}" method="post">
+                        <form action="{{ route('auth.register') }}" method="post">
                             @csrf
 
                             <div class="mb-3 mt-3">

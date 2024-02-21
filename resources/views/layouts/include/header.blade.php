@@ -15,10 +15,10 @@
                     </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login.form') }}">{{__('messages.login')}}</a>
+                    <a class="nav-link" href="{{ route('auth.login.form') }}">{{__('messages.login')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register.form') }}">{{ __('messages.register_user') }}</a>
+                    <a class="nav-link" href="{{ route('auth.register.form') }}">{{ __('messages.register_user') }}</a>
                 </li>
                 @endauth
             </ul>

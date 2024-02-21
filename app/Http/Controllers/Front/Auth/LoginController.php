@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginUserRequest;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -15,9 +16,9 @@ class LoginController extends Controller
     }
 
 
-    public function login()
+    public function login(LoginUserRequest $request)
     {
-
+       dd($request);
     }
 
 

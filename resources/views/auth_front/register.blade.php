@@ -42,7 +42,7 @@
 
                             <div class="mb-3 mt-3">
                                 <label for="email" class="form-label">ایمیل</label>
-                                <input type="email" class="@error('email') is_invalid @enderror form-control" id="email"  name="email" value="{{ old('email') }}">
+                                <input type="email" class="@error('email') is-invalid @enderror form-control" id="email"  name="email" value="{{ old('email') }}">
                             </div>
 
                             {{--  @error('email')
@@ -53,7 +53,7 @@
 
                             <div class="mb-3 mt-3">
                                 <label for="mobile" class="form-label">موبایل</label>
-                                <input type="text" class="@error('mobile') is_invalid @enderror form-control" id="email"  name="email" value="{{ old('mobile') }}">
+                                <input type="text" class="@error('mobile') is-invalid @enderror form-control" id="mobile"  name="mobile" value="{{ old('mobile') }}">
                             </div>
 
                             {{--  @error('mobile')

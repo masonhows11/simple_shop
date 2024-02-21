@@ -34,9 +34,9 @@
                                        name="email">
                             </div>
 
-                            @error('email')
+                           {{-- @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror--}}
 
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">رمز عبور</label>
@@ -44,14 +44,18 @@
                                        id="pwd" name="password">
                             </div>
 
-                            @error('password')
+                           {{-- @error('password')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror--}}
 
                             <div class="form-check mb-3">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="checkbox" name="remember"> منو فراموش نکن !
                                 </label>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="#" class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
                             </div>
 
                             <div class="mb-3">

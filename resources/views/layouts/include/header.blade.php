@@ -13,6 +13,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{ \Illuminate\Support\Facades\Auth::user()->name  }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('log.out') }}">{{ __('messages.log_out') }}</a>
+                    </li>
                 @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('auth.login.form') }}">{{__('messages.login')}}</a>

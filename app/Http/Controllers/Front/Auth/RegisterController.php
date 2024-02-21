@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class RegisterController extends Controller
 {
@@ -22,20 +25,29 @@ class RegisterController extends Controller
         return view('auth_front.register');
     }
 
-    protected  function create(array  $data)
+    protected function create($data)
     {
-        User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
-            'password' => $data['password']
+            'password' => Hash::make($data['password']),
         ]);
     }
 
 
     public function register(RegisterUserRequest $request)
     {
-        dd($request);
-        $this->create((array)$request);
+
+        try {
+            $newUser = $this->create($request);
+            Auth::login($newUser);
+            session()->flash('success',__('messages.your_registration_was_successful'));
+            return redirect()->route('home');
+        }catch (\Exception $ex){
+            session()->flash('success',__('messages.An_error_occurred'));
+            return redirect()->route('home');
+        }
+
     }
 }

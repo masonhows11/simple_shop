@@ -28,7 +28,7 @@ Route::get('/', [HomeController::class,'home'])->name('home');
 Route::prefix('auth')->name('auth.')->group(function (){
 
     Route::get('/login',[LoginController::class,'loginForm'])->name('login.form');
-    Route::post('/login',[LoginController::class,'login'])->name('login');
+    Route::post('/login',[LoginController::class,'login'])->name('login')->middleware('throttle:auth-login-limiter');
 
     Route::get('/register',[RegisterController::class,'registerForm'])->name('register.form');
     Route::post('/register',[RegisterController::class,'register'])->name('register');

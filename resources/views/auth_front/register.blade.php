@@ -24,26 +24,36 @@
                                 <label for="name" class="form-label">نام کاربری</label>
                                 <input type="text" class="@error('name') is-invalid @enderror form-control" id="name" name="name" value="{{ old('name') }}">
                             </div>
-                            @error('name')
+                           {{-- @error('name')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror--}}
 
                             <div class="mb-3 mt-3">
                                 <label for="email" class="form-label">ایمیل</label>
                                 <input type="email" class="@error('email') is_invalid @enderror form-control" id="email"  name="email" value="{{ old('email') }}">
                             </div>
-                            @error('email')
+                           {{-- @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror--}}
+
+
+
+                            <div class="mb-3 mt-3">
+                                <label for="mobile" class="form-label">موبایل</label>
+                                <input type="text" class="@error('mobile') is_invalid @enderror form-control" id="email"  name="email" value="{{ old('mobile') }}">
+                            </div>
+                          {{--  @error('mobile')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror--}}
 
                             <div class="mb-3 mt-3">
                                 <label for="pwd" class="form-label">رمز عبور</label>
                                 <input type="password" class="@error('password') is-invalid @enderror form-control"
                                        id="pwd"  name="password">
                             </div>
-                            @error('password')
+                          {{--  @error('password')
                             <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror--}}
 
                             <div class="mb-3 mt-3">
                                 <label for="pwd-confirm" class="form-label">تکرار رمز عبور</label>

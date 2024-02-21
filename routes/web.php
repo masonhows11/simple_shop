@@ -42,7 +42,7 @@ Route::prefix('auth')->name('auth.')->group(function (){
     Route::get('/email/verify', function () {
         return view('auth.verify-email');
     })->middleware('auth')->name('verification.notice');
-    
+
     //// The Email Verification Handler
     Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
         $request->fulfill();

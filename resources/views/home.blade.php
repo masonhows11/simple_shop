@@ -10,6 +10,7 @@
 </head>
 <body>
 @include('layouts.include.header')
+@include('layouts.alert.alert_unverified')
 @yield('main_content')
 @include('layouts.include.footer')
 @include('layouts.include.footer_scripts')

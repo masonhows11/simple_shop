@@ -1,13 +1,10 @@
-<script>
-    @if( session()->has('error') )
-    Swal.fire({
-        icon: 'warning',
-        title: '{{ session()->get('error') }}'
-    })
-    @elseif( session()->has('success'))
-    Swal.fire({
-        icon: 'success',
-        title: '{{ session()->get('success') }}'
-    })
-    @endif
-</script>
+@if( session()->has('error') )
+        <div class="alert alert-danger">
+            {{  session('error') }}
+        </div>
+@elseif( session()->has('success'))
+    <div class="alert alert-danger">
+        {{  session('success') }}
+    </div>
+@endif
+

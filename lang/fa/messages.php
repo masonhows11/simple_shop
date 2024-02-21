@@ -333,6 +333,7 @@ return [
     'log_out' => 'خروج',
     'your_registration_was_successful' => 'ثبت نام شما با موفقیت انجام شد',
     'your_login_was_successful' => 'ورود شما با موفقیت انجام شد',
+    'your_login_information_is_not_valid' => 'اطلاعات ورود شما معتبر نمی باشند',
     'already_registered' => 'قبلا ثبت‌ نام کرده‌اید؟',
     'register_in_good_shop' => 'ثبت نام در گرافیک شاپ',
     'recover_password' => 'بازیابی رزم عبور',
@@ -566,6 +567,7 @@ return [
     'retrieve_products' => 'بازیابی محصولات',
     'no_price'  => 'بدون قیمت',
     'payment_was_not_made' => 'پرداخت انجام نشد',
+    'throttle' => 'تعداد تلاش های ناموفق زیاد بود . لطفا بعد از :seconds ثانیه ی دیگر تلاش کنید .',
 
 
 ];

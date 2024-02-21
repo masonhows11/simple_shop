@@ -16,7 +16,7 @@
 </main>
 @include('layouts.include.footer')
 @include('layouts.include.footer_scripts')
-@include('layouts.alert.alert')
+{{--@include('layouts.alert.alert')--}}
 @stack('front_custom_scripts')
 </body>
 </html>

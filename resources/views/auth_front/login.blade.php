@@ -12,7 +12,7 @@
             <div class="col-xl-5 col-lg-5 col-md-5 px-4">
                 <div class="row d-flex flex-column">
 
-                    <div class="alert-section mt-2">
+                    <div class="alert-section mt-2 text-center">
                         @include('layouts.alert.alert')
                     </div>
 

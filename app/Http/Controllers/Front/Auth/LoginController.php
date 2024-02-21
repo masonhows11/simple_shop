@@ -29,11 +29,11 @@ class LoginController extends Controller
 
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->filled('remember'))) {
                 $request->session()->regenerate();
-
-                return redirect()->intended('/');
-            }
-            session()->flash('success', __('messages.your_login_was_successful'));
-            return redirect()->route('home');
+                session()->flash('success', __('messages.your_login_was_successful'));
+                return redirect()->route('home');
+            }else
+                session()->flash('error', __('messages.your_login_information_is_not_valid'));
+                 return redirect()->back();
         } catch (\Exception $ex) {
 
             session()->flash('success', __('messages.An_error_occurred'));

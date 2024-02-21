@@ -29,12 +29,13 @@ class LoginController extends Controller
 
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->filled('remember'))) {
                 $request->session()->regenerate();
-                return redirect()->intended('home');
+
+                return redirect()->intended('/');
             }
             session()->flash('success', __('messages.your_login_was_successful'));
             return redirect()->route('home');
         } catch (\Exception $ex) {
-            return $ex->getMessage();
+
             session()->flash('success', __('messages.An_error_occurred'));
             return redirect()->route('home');
         }
@@ -47,7 +48,6 @@ class LoginController extends Controller
         Auth::logout();
         $user->token = null;
         $user->token_guid = null;
-        $user->password = null;
         $user->auth_type = 1;
         $user->mobile_verified_at = null;
         $user->email_verified_at = null;

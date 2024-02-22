@@ -3,6 +3,7 @@
 use App\Http\Controllers\Front\Auth\LoginController;
 use App\Http\Controllers\Front\Auth\ProfileController;
 use App\Http\Controllers\Front\Auth\RegisterController;
+use App\Http\Controllers\Front\Auth\ValidateEmailController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -40,9 +41,7 @@ Route::prefix('auth')->name('auth.')->group(function (){
 /////// for verified user email ///////
 
 //// The Email Verification Notice
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify',[ValidateEmailController::class,'emailVerificationNotice'])->middleware('auth')->name('verification.notice');
 
 //// The Email Verification Handler
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {

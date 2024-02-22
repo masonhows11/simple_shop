@@ -44,10 +44,9 @@ class ValidateEmailController extends Controller
     public function resendEmailVerification(Request $request)
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            session()->flash('user_unverified', false);
             return redirect()->route('home');
         }
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent!');
+        return back()->with('message',__('messages.verification_email_has_sent'));
     }
 }

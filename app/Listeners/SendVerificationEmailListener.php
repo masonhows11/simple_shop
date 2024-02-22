@@ -6,8 +6,13 @@ use App\Events\UserRegisteredEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendVerificationEmailListener
+class SendVerificationEmailListener // implements ShouldQueue
 {
+
+    // if use implements ShouldQueue
+    // send email using queue in background process
+    // for run queue
+    // we must run php artisan queue:work  --tries=3 as default command queue
     /**
      * Create the event listener.
      */

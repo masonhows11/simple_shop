@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Auth;
 
+use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
@@ -41,15 +42,18 @@ class RegisterController extends Controller
 
         try {
             $newUser = $this->create($request);
+            Auth::login($newUser);
 
+            //// send verification email using event & listener
+            event(new UserRegisteredEvent($newUser));
 
-             Auth::login($newUser);
-             Auth::user()->sendEmailVerificationNotification();
-             return  redirect()->route('verification.notice');
+            return redirect()->route('verification.notice');
+
+            // Auth::user()->sendEmailVerificationNotification();
             //  session()->flash('success',__('messages.your_registration_was_successful'));
             //  return redirect()->route('home');
-        }catch (\Exception $ex){
-            session()->flash('success',__('messages.An_error_occurred'));
+        } catch (\Exception $ex) {
+            session()->flash('success', __('messages.An_error_occurred'));
             return redirect()->route('home');
         }
 

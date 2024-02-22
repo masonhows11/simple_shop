@@ -10,7 +10,9 @@ use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class VerificationEmail extends Mailable
 {
@@ -54,7 +56,9 @@ class VerificationEmail extends Mailable
 
     protected function generateUrl()
     {
-        return URL::temporarySignedRoute('verification.verify', now()->addMinutes(2), ['email' => $this->user->email]);
+        //return URL::temporarySignedRoute('verification.verify', now()->addMinutes(2), ['email' => $this->user->email]);
+
+        return URL::route('verification.verify','email/verify/'.$this->user->id.'/'.Hash::make(Str::random(30)));
     }
 
     /**

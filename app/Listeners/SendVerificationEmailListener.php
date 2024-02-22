@@ -22,7 +22,6 @@ class SendVerificationEmailListener
      */
     public function handle(UserRegisteredEvent $event): void
     {
-        //
-        dd($event);
+        $event->user->sendEmailVerificationNotification();
     }
 }

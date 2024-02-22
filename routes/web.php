@@ -45,18 +45,12 @@ Route::get('/email/verify',[ValidateEmailController::class,'emailVerificationNot
     ->middleware('auth')->name('verification.notice');
 
 //// The Email Verification Handler
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}',[ValidateEmailController::class,'verifyEmailVerification'])
+    ->middleware(['auth', 'signed'])->name('verification.verify');
 
 //// Resending the Verification Email
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::post('/email/verification-notification',[ValidateEmailController::class,'resendEmailVerification'])
+    ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
 

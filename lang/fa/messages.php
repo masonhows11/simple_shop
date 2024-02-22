@@ -40,7 +40,7 @@ return [
     'not_confirmed' => 'تایید نشده',
     'confirm_status' => 'وضعیت تایید',
     'published' => 'منتشر شده',
-    'publish_date'=> 'تاریخ انتشار',
+    'publish_date' => 'تاریخ انتشار',
     'unpublished' => 'منتشر نشده',
     'active' => 'فعال',
     'deactivate' => 'غیر فعال',
@@ -210,7 +210,7 @@ return [
     'new_amazing_sales_list' => 'افزودن کالا به لیست شگفت انگیز',
 
     'coupon_code' => 'کد تخفیف',
-     'coupon_discount_amount' => 'میزان کد تخفیف :',
+    'coupon_discount_amount' => 'میزان کد تخفیف :',
     'coupon_type' => 'نوع تخصیص کوپن',
     'coupon_amount' => 'مقدار تخفیف',
     'coupon_amount_type' => 'نوع تخفیف',
@@ -223,8 +223,6 @@ return [
     'numeric_type' => 'عددی',
     'private_coupon' => 'کوپن خصوصی',
     'public_coupon' => 'کوپن عمومی',
-
-
 
 
     'orders_new' => 'سفارشات جدید',
@@ -242,7 +240,6 @@ return [
     'order_sent' => 'ارسال شده',
     'order_delivered' => 'تحویل داده شده',
     'order_returned' => 'مرجوع شده',
-
 
 
     'order_final_amount' => 'مجموع مبلغ سفارش',
@@ -269,10 +266,10 @@ return [
     'print' => 'چاپ',
     'details' => 'جزئیات',
 
-    'display_factor'  => 'مشاهده فاکتور',
+    'display_factor' => 'مشاهده فاکتور',
     'change_shipment_status' => 'تغییر وضعیت ارسال',
     'change_order_status' => 'تغییر وضعیت سفارش',
-    'cancel_order'  => 'لغو سفارش',
+    'cancel_order' => 'لغو سفارش',
 
     'delivery_management' => 'مدیریت ارسال کالا',
     'delivery_types' => 'روش های ارسال کالا',
@@ -290,7 +287,7 @@ return [
     'full_name' => 'نام و نام خانوادگی',
     'recipient_first_name' => 'نام گیرنده',
     'recipient_last_name' => 'نام خانوادگی  گیرنده',
-    'recipient_mobile'=> 'شماره موبایل گیرنده',
+    'recipient_mobile' => 'شماره موبایل گیرنده',
     'province' => 'استان',
     'city' => 'شهر',
     'post_code' => 'کد پستی',
@@ -498,7 +495,7 @@ return [
     'price_from' => 'قیمت از',
     'price_to' => 'قیمت تا',
     'product_price' => 'قیمت',
-    'rate_average'  => 'امتیاز :',
+    'rate_average' => 'امتیاز :',
     'you_give_the_first_rating_for_this_product' => 'شما برای این محصول اولین امتیاز را بدید',
     'your_score_has_been_successfully_registered' => 'امتیاز شما با موفقیت ثبت شد',
     'the_number_of_users_who_rated_this_product' => 'تعداد کاربرانی که به این محصول امتیاز دادن :',
@@ -529,7 +526,7 @@ return [
     'attachment_file_list' => 'لیست فایل های ضمیمه',
     'new_attachment_file' => 'فایل جدید',
     'file_path' => 'فایل',
-    'file_type'  => 'نوع فایل',
+    'file_type' => 'نوع فایل',
     'file_size' => 'حجم فایل',
     'email_notice' => 'عنوان ایمیل',
     'KB' => 'KB',
@@ -549,7 +546,7 @@ return [
     'cheapest' => 'ارزان ترین',
     'most_expensive' => 'گرانترین',
     'most_visited' => 'پربازدید ترین',
-    'bestselling' =>  'پر فروش ترین',
+    'bestselling' => 'پر فروش ترین',
 
     'free_products' => 'رایگان',
     'cash_products' => 'نقدی',
@@ -565,10 +562,11 @@ return [
     'remove_file_failed' => 'فایل مورد نظر حذف نشد',
     'there_is_no_file_for_download' => 'فایل برای دانلود وجود ندارد',
     'retrieve_products' => 'بازیابی محصولات',
-    'no_price'  => 'بدون قیمت',
+    'no_price' => 'بدون قیمت',
     'payment_was_not_made' => 'پرداخت انجام نشد',
     'throttle' => 'تعداد تلاش های ناموفق زیاد بود . لطفا بعد از :seconds ثانیه ی دیگر تلاش کنید .',
     'user_unverified' => 'ایمیل حساب کاربری شما تایید نشده،برای استفاده از امکانات سایت ایمیل خود را تایید کنید.',
+    'your_email_has_verified' => 'ایمیل شما با موفقیت تایید شد',
     'verification_email_has_sent' => 'لینک فعال سازی حساب کاربری به ایمیل شما ارسال شد.',
     'resend_verification_email' => 'در صورت دریافت نکردن  ایمیل فعال سازی اینجا کلیک کنید.',
 

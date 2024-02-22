@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class ValidateEmailController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('signed')->only('verifyEmailVerification');
+        $this->middleware('throttle:6,1')->only('verifyEmailVerification', 'resendEmailVerification');
+    }
 
 
     public function emailVerificationNotice()
@@ -20,18 +26,28 @@ class ValidateEmailController extends Controller
     }
 
 
-    public function verifyEmailVerification(EmailVerificationRequest $request)
+    public function verifyEmailVerification(Request $request)
     {
-        $request->fulfill();
 
-        return redirect('/');
+        if($request->user()->hasVerifiedEmail()){
+            return redirect()->route('home');
+        }
+        $request->user()->markEmailAsVerified();
+        session()->flash('success',__('messages.your_email_has_verified'));
+        session()->forget('user_unverified');
+        return redirect()->route('home');
+
+
     }
 
 
     public function resendEmailVerification(Request $request)
     {
+        if (Auth::user()->hasVerifiedEmail()) {
+            session()->flash('user_unverified', false);
+            return redirect()->route('home');
+        }
         $request->user()->sendEmailVerificationNotification();
-
         return back()->with('message', 'Verification link sent!');
     }
 }

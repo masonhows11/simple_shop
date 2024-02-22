@@ -41,17 +41,18 @@ Route::prefix('auth')->name('auth.')->group(function (){
 /////// for verified user email ///////
 
 //// The Email Verification Notice
-Route::get('/email/verify',[ValidateEmailController::class,'emailVerificationNotice'])
+Route::get('/email/verify/notice',[ValidateEmailController::class,'emailVerificationNotice'])
     ->middleware('auth')->name('verification.notice');
 
 //// The Email Verification Handler
-Route::get('/email/verify/{id}/{hash}',[ValidateEmailController::class,'verifyEmailVerification'])
-    ->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify',[ValidateEmailController::class,'verifyEmailVerification'])
+    ->middleware(['auth','signed'])->name('verification.verify');
 
 //// Resending the Verification Email
-Route::post('/email/verification-notification',[ValidateEmailController::class,'resendEmailVerification'])
-    ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
+//Route::post('/email/verification-notification',[ValidateEmailController::class,'resendEmailVerification'])
+//    ->middleware(['auth','throttle:6,1'])->name('verification.send');
+Route::get('/email/verification-notification',[ValidateEmailController::class,'resendEmailVerification'])
+    ->middleware(['auth','throttle:6,1'])->name('verification.send');
 
 
 // logged in route

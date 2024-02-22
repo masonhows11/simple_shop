@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark-subtle bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">{{ __('messages.site_name') }}</a>
+        <a class="navbar-brand" href="{{ route('home') }}">{{ __('messages.site_name') }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,7 +14,7 @@
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ \Illuminate\Support\Facades\Auth::user()->name  }}</a>
+                        <a class="nav-link" href="{{ route('profile') }}">{{ \Illuminate\Support\Facades\Auth::user()->name  }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('log.out') }}">{{ __('messages.log_out') }}</a>

@@ -7,12 +7,12 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('front/image/icon.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('page_title')</title>
-    @include('front.layouts.header_styles')
+    @include('layouts.include.header_styles')
 </head>
 <body>
-@include('front.layouts.include.header')
-@include('front.layouts.include.header_responsive')
-@include('front.layouts.include.nav')
+@include('layouts.include.header')
+@include('layouts.include.header_responsive')
+@include('layouts.include.nav')
 <main>
     @yield('main_content')
 </main>

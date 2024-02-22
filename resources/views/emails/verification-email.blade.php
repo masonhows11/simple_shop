@@ -3,7 +3,7 @@
 
 Dear User : {{ $user }}
 
-<x-mail::button :url="'{{ $link }}'">
+<x-mail::button :url="$link">
 Verify your email
 </x-mail::button>
 

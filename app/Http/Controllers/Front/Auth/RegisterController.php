@@ -46,7 +46,7 @@ class RegisterController extends Controller
              Auth::login($newUser);
              Auth::user()->sendEmailVerificationNotification();
              return  redirect()->route('verification.notice');
-             //  session()->flash('success',__('messages.your_registration_was_successful'));
+            //  session()->flash('success',__('messages.your_registration_was_successful'));
             //  return redirect()->route('home');
         }catch (\Exception $ex){
             session()->flash('success',__('messages.An_error_occurred'));

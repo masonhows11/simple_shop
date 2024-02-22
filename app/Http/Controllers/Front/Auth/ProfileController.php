@@ -10,6 +10,6 @@ class ProfileController extends Controller
     //
     public function profile()
     {
-        return "profile view";
+        return view('front_user.profile.profile');
     }
 }

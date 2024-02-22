@@ -44,16 +44,15 @@ class LoginController extends Controller
 
     public function logOut(Request $request)
     {
-        $user = User::find($request->user()->id);
-        Auth::logout();
+        $user = User::find(Auth::id());
         $user->token = null;
         $user->token_guid = null;
         $user->auth_type = 1;
         $user->mobile_verified_at = null;
-        $user->email_verified_at = null;
         $user->remember_token = null;
         $user->activate = 0;
         $user->save();
+        Auth::logout();
         $request->session()->invalidate();
         return redirect()->route('home');
     }

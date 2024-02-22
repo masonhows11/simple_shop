@@ -41,7 +41,8 @@ Route::prefix('auth')->name('auth.')->group(function (){
 /////// for verified user email ///////
 
 //// The Email Verification Notice
-Route::get('/email/verify',[ValidateEmailController::class,'emailVerificationNotice'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify',[ValidateEmailController::class,'emailVerificationNotice'])
+    ->middleware('auth')->name('verification.notice');
 
 //// The Email Verification Handler
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {

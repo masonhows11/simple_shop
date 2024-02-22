@@ -6,15 +6,17 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class VerificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private  $user;
+    private $user;
 
     /**
      * Create a new message instance.
@@ -42,7 +44,17 @@ class VerificationEmail extends Mailable
     {
         return new Content(
             markdown: 'emails.verification-email',
+                with: [
+                'user' => $this->user->name,
+                'link' => $this->generateUrl(),
+                ],
         );
+    }
+
+
+    protected function generateUrl()
+    {
+        return URL::temporarySignedRoute('verification.verify', now()->addMinutes(2), ['email' => $this->user->email]);
     }
 
     /**
@@ -50,8 +62,8 @@ class VerificationEmail extends Mailable
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments(): array
-    {
-        return [];
-    }
+     /*  public function attachments(): array
+      {
+          return [];
+      }*/
 }

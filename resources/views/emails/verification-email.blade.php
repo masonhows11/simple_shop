@@ -1,10 +1,10 @@
 <x-mail::message>
-# Introduction
+# Verify your email
 
-The body of your message.
+Dear User : {{ $user }}
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="'{{ $link }}'">
+Verify your email
 </x-mail::button>
 
 Thanks,<br>

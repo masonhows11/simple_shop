@@ -8,6 +8,7 @@ use App\Services\Permission\Traits\HasPermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -65,6 +66,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification(){
 
-        SendEmail::dispatch($this,new VerificationEmail());
+        Mail::to($this)->send(new VerificationEmail($this));
     }
 }

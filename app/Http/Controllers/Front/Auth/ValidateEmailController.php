@@ -13,9 +13,10 @@ class ValidateEmailController extends Controller
 
     public function emailVerificationNotice()
     {
-        $user = Auth::user();
+         Auth::user()->sendEmailVerificationNotification();
 
-        return view('auth_front.verify.verify_email_notice');
+
+       // return view('auth_front.verify.verify_email_notice');
 
     }
 

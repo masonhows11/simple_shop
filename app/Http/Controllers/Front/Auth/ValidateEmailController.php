@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,9 @@ class ValidateEmailController extends Controller
 
     public function verifyEmailVerification(Request $request)
     {
+        if(Auth::user()->email !== $request->query('email')){
+            throw new AuthorizationException;
+        }
 
         if($request->user()->hasVerifiedEmail()){
             return redirect()->route('home');

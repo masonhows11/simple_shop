@@ -49,8 +49,6 @@ Route::get('/email/verify',[ValidateEmailController::class,'verifyEmailVerificat
     ->middleware(['auth','signed'])->name('verification.verify');
 
 //// Resending the Verification Email
-//Route::post('/email/verification-notification',[ValidateEmailController::class,'resendEmailVerification'])
-//    ->middleware(['auth','throttle:6,1'])->name('verification.send');
 Route::get('/email/verification-notification',[ValidateEmailController::class,'resendEmailVerification'])
     ->middleware(['auth','throttle:6,1'])->name('verification.send');
 
@@ -60,5 +58,8 @@ Route::group(['middleware'=>'web'],function (){
 
     Route::get('/profile',[ProfileController::class,'profile'])->name('profile')->middleware(['verified']);
     Route::get('/log-out',[LoginController::class,'logOut'])->name('log.out');
+
+
+
 
 });

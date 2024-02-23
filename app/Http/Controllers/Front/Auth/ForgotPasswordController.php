@@ -50,7 +50,7 @@ class ForgotPasswordController extends Controller
 
     public function resetPassword(NewPasswordRequest $request)
     {
-    
+        dd($request->all());
     }
 
 

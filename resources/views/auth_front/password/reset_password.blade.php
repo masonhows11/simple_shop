@@ -11,7 +11,7 @@
             <div class="col-xl-5 col-lg-5 col-md-5 px-4">
                 <div class="row d-flex flex-column">
 
-                    <div class="alert-section mt-2 text-center">
+                   <div class="alert-section mt-2 text-center">
                         @include('layouts.alert.alert')
                     </div>
 
@@ -20,7 +20,7 @@
                     </h3>
 
                     <div class="col mt-4  border border-2 login-form-title rounded-3 py-4">
-                        <h3 class="text-center">{{ __('messages.recover_password_form') }}</h3>
+                        <h3 class="text-center">{{ __('messages.reset_password') }}</h3>
                     </div>
 
                     <div class="col mt-4 border border-2  rounded-3 py-4 px-4 login-form">
@@ -42,9 +42,7 @@
 
                             <div class="mb-3 mt-3">
                                 <label for="pwd-confirm" class="form-label">تکرار رمز عبور</label>
-                                <input type="password" class="@error('password') is-invalid @enderror form-control"
-                                       id="pwd-confirm"
-                                       name="password_confirmation">
+                                <input type="password" class="@error('password') is-invalid @enderror form-control" id="pwd-confirm" name="password_confirmation">
                             </div>
 
                             <div class="mb-3 mt-3">

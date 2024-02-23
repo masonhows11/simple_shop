@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -39,9 +40,21 @@ class ForgotPasswordController extends Controller
 
     public function showResetPasswordForm(Request $request)
     {
-
-        return view('auth_front.password.reset_password');
+        return view('auth_front.password.reset_password')
+            ->with(['email' => $request->email ,
+                    'token' => $request->token]);
     }
+
+
+
+
+    public function resetPassword(NewPasswordRequest $request)
+    {
+    
+    }
+
+
+
 
 
 }

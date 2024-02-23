@@ -24,11 +24,14 @@
                     </div>
 
                     <div class="col mt-4 border border-2  rounded-3 py-4 px-4 login-form">
-                        <form action="{{ route('auth.send.forgot.password.link') }}" method="post">
+                        <form action="{{ route('auth.password.reset') }}" method="post">
                             @csrf
+
+                            <input type="hidden"  id="token" name="token" value="{{ $token }}" >
+
                             <div class="mb-3 mt-3">
                                 <label for="email" class="form-label">ایمیل</label>
-                                <input type="email" class="@error('email') is-invalid @enderror form-control" id="email" name="email" value="" >
+                                <input type="email" class="@error('email') is-invalid @enderror form-control" id="email" readonly name="email" value="{{ $email }}" >
                             </div>
 
                             <div class="mb-3 mt-3">
@@ -50,7 +53,7 @@
 
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-success rounded-3 w-100">{{ __('messages.send_recover_password_link') }}</button>
+                                <button type="submit" class="btn btn-success rounded-3 w-100">{{ __('messages.reset_password') }}</button>
                             </div>
                         </form>
                     </div>

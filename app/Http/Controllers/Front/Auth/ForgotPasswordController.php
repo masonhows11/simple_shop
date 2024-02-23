@@ -69,8 +69,8 @@ class ForgotPasswordController extends Controller
 
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('auth.login.form')
-                ->with('success',__('messages.reset_password_updated_successfully'))
-            : back()->withErrors('error',__('messages.An_error_occurred'));
+                ->with('success',__('messages.reset_password_successfully'))
+            : back()->withErrors('error',__('messages.reset_password_failed'));
     }
 
 

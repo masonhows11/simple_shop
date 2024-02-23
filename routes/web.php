@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\Auth\ForgotPasswordController;
 use App\Http\Controllers\Front\Auth\LoginController;
 use App\Http\Controllers\Front\Auth\ProfileController;
 use App\Http\Controllers\Front\Auth\RegisterController;
@@ -36,6 +37,9 @@ Route::prefix('auth')->name('auth.')->group(function (){
     Route::get('/register',[RegisterController::class,'registerForm'])->name('register.form');
     Route::post('/register',[RegisterController::class,'register'])->name('register');
 
+    Route::get('/forgot-password',[ForgotPasswordController::class,'forgotPasswordForm'])->name('forgot.password.form');
+    Route::post('/forgot-password',[ForgotPasswordController::class,'sendRecoverPasswordLink'])->name('send.recover.password.link');
+
 });
 
 /////// for verified user email ///////
@@ -54,12 +58,9 @@ Route::get('/email/verification-notification',[ValidateEmailController::class,'r
 
 
 // logged in route
-Route::group(['middleware'=>'web'],function (){
+Route::prefix('profile')->middleware(['auth','web'])->group(function (){
 
     Route::get('/profile',[ProfileController::class,'profile'])->name('profile')->middleware(['verified']);
     Route::get('/log-out',[LoginController::class,'logOut'])->name('log.out');
-
-
-
 
 });

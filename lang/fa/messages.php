@@ -569,6 +569,9 @@ return [
     'your_email_has_verified' => 'ایمیل شما با موفقیت تایید شد',
     'verification_email_has_sent' => 'لینک فعال سازی حساب کاربری به ایمیل شما ارسال شد.',
     'resend_verification_email' => 'در صورت دریافت نکردن  ایمیل فعال سازی اینجا کلیک کنید.',
+    'recover_password_form' => 'بازیابی رمز عبور',
+    'send_recover_password_link' => 'ارسال لینک بازیابی',
+
 
 
 ];

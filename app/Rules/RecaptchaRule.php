@@ -3,7 +3,8 @@
 namespace App\Rules;
 
 use Closure;
-use http\Client;
+
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class RecaptchaRule implements ValidationRule
@@ -29,8 +30,10 @@ class RecaptchaRule implements ValidationRule
                 'response' => $value,
             ]
         ]);
-
-        dd(json_decode($response->getBody()));
+        if($value != json_decode($response->getBody())->success )
+        {
+            $fail(__('messages.recaptcha_not_valid'));
+        }
     }
 
 }

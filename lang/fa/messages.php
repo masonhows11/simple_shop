@@ -575,6 +575,7 @@ return [
     'reset_password' => 'تغییر رمز عبور',
     'reset_password_successfully' => 'رمز عبور با موفقیت بروز رسانی شد',
     'reset_password_failed' => 'رمز عبور با موفقیت بروز رسانی شد',
+    'recaptcha_not_valid' => 'من ربات نیستم معتبر نمی باشد',
 
 
 

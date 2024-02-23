@@ -27,7 +27,7 @@ class LoginController extends Controller
     {
         try {
 
-            dd($request);
+
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->filled('remember'))) {
                 $request->session()->regenerate();
                 session()->flash('success', __('messages.your_login_was_successful'));

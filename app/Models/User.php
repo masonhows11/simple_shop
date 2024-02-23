@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Mail\ResetPasswordEmail;
 use App\Mail\VerificationEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Services\Permission\Traits\HasPermission;
@@ -63,14 +64,15 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-
-    public function sendEmailVerificationNotification(){
+    public function sendEmailVerificationNotification()
+    {
 
         Mail::to($this)->send(new VerificationEmail($this));
     }
 
 
-    public function sendPasswordResetNotification($token){
-
+    public function sendPasswordResetNotification($token)
+    {
+        Mail::to($this)->send(new ResetPasswordEmail($this,$token));
     }
 }

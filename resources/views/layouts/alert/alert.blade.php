@@ -3,7 +3,7 @@
             {{  session('error') }}
         </div>
 @elseif( session()->has('success'))
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
         {{  session('success') }}
     </div>
 @endif

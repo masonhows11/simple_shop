@@ -571,6 +571,7 @@ return [
     'resend_verification_email' => 'در صورت دریافت نکردن  ایمیل فعال سازی اینجا کلیک کنید.',
     'recover_password_form' => 'بازیابی رمز عبور',
     'send_recover_password_link' => 'ارسال لینک بازیابی',
+    'reset_link_password_sent_successfully' => 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد',
 
 
 

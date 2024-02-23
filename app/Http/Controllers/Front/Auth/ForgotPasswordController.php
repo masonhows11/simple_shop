@@ -28,14 +28,17 @@ class ForgotPasswordController extends Controller
 
         $result = Password::broker()->sendResetLink($request->only('email'));
         if ($result == Password::RESET_LINK_SENT) {
-            return redirect()->back('resetLinkSent', true);
+            session()->flash('success',__('messages.reset_link_password_sent_successfully'));
+            return redirect()->back();
         }
-        return redirect()->back('resetLinkFailed', true);
+        session()->flash('error',__('messages.An_error_occurred'));
+        return redirect()->back();
 
     }
 
 
-    public function showResetPasswordForm(){
+    public function showResetPasswordForm()
+    {
 
     }
 

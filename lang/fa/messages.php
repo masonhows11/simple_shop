@@ -573,6 +573,7 @@ return [
     'send_recover_password_link' => 'ارسال لینک بازیابی',
     'reset_link_password_sent_successfully' => 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد',
     'reset_password' => 'تغییر رمز عبور',
+    'reset_password_updated_successfully' => 'رمز عبور با موفقیت بروز رسانی شد',
 
 
 

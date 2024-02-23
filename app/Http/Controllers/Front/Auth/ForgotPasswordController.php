@@ -66,10 +66,12 @@ class ForgotPasswordController extends Controller
                // event(new PasswordReset($user));
             }
         );
+        dd($status);
 
         return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('auth.login.form')
+                ->with('success',__('messages.reset_password_updated_successfully'))
+            : back()->withErrors(['error' => [__($status)]]);
     }
 
 

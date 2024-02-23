@@ -22,7 +22,8 @@ class NewPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => ['required','email','min:3','max:125','exists:users'],
+            'password' => ['required','string','min:3','max:125','confirmed'],
         ];
     }
 }

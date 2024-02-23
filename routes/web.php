@@ -37,8 +37,8 @@ Route::prefix('auth')->name('auth.')->group(function (){
     Route::get('/register',[RegisterController::class,'registerForm'])->name('register.form');
     Route::post('/register',[RegisterController::class,'register'])->name('register');
 
-    Route::get('/forgot-password',[ForgotPasswordController::class,'forgotPasswordForm'])->name('forgot.password.form');
-    Route::post('/forgot-password',[ForgotPasswordController::class,'sendRecoverPasswordLink'])->name('send.recover.password.link');
+    Route::get('/forgot-password',[ForgotPasswordController::class,'resetPasswordForm'])->name('reset.password.form');
+    Route::post('/forgot-password',[ForgotPasswordController::class,'sendResetPassword'])->name('send.reset.password.link');
 
 });
 

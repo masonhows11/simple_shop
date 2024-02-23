@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <a href="{{ route('auth.forgot.password.form') }}" class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
+                                <a href="{{ route('auth.reset.password.form') }}" class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
                             </div>
 
                             <div class="mb-3">

@@ -18,7 +18,14 @@ trait HasPermission
     //// assign permissions to user
     public function givePermissionsTo(...$permissions)
     {
+
+        $permissions = $this->getAllPermissions($permissions);
         dd($permissions);
+    }
+
+
+    protected function getAllPermissions(array  $permissions){
+        return  Permission::whereIn('name',array_values($permissions))->get();
     }
 
 }

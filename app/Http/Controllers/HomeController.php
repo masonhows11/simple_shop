@@ -10,6 +10,7 @@ class HomeController extends Controller
 
     public function home()
     {
+        auth()->user()->givePermissionsTo('delete_post','delete_user');
         return view('home');
     }
 }

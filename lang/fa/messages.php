@@ -323,6 +323,7 @@ return [
     'no_new_messages' => 'پیام جدیدی وجود ندارد ',
 
     'login_user' => 'ورود کاربر',
+    'login_by_google' => 'ورود با گوگل',
     'register_user' => 'ثبت نام کاربر',
     'remember_me' => ' مرا به خاطر داشته باش',
     'register' => 'ثبت نام',

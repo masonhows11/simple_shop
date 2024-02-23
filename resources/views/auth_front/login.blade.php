@@ -68,7 +68,7 @@
 
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-success rounded-3 w-100">{{ __('messages.login') }}</button>
-                                <a href="#"  class="btn btn-primary mt-2 rounded-3 w-100">{{ __('messages.login_by_google') }}</a>
+                                <a href="{{ route('auth.login.social','google') }}"  class="btn btn-primary mt-2 rounded-3 w-100">{{ __('messages.login_by_google') }}</a>
                             </div>
 
                         </form>

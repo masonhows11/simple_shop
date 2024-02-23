@@ -58,6 +58,10 @@
                                 <a href="{{ route('auth.forgot.password.form') }}" class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
                             </div>
 
+
+                            <div class="mb-3">
+                                @include('auth_front.recaptcha')
+                            </div>
                             <div class="mb-3">
                                 @include('layouts.alert.validate_error')
                             </div>

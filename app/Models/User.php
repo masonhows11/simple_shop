@@ -68,4 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
         Mail::to($this)->send(new VerificationEmail($this));
     }
+
+
+    public function sendPasswordResetNotification($token){
+
+    }
 }

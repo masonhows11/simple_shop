@@ -20,12 +20,15 @@ trait HasPermission
     {
 
         $permissions = $this->getAllPermissions($permissions);
-        dd($permissions);
+        if ($permissions->isEmpty()) return $this;
+        $this->permissions()->syncWithoutDetaching($permissions);
+        return $this;
     }
 
 
-    protected function getAllPermissions(array  $permissions){
-        return  Permission::whereIn('name',array_values($permissions))->get();
+    protected function getAllPermissions(array $permissions)
+    {
+        return Permission::whereIn('name', array_values($permissions))->get();
     }
 
 }

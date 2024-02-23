@@ -37,9 +37,9 @@ class ForgotPasswordController extends Controller
     }
 
 
-    public function showResetPasswordForm()
+    public function showResetPasswordForm(Request $request)
     {
-
+        dd($request);
     }
 
 

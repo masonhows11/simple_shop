@@ -19,6 +19,10 @@ class SocialController extends Controller
 
     public function loginSocialCallback($driver)
     {
-        dd($driver);
+        // when user click on google account
+        // the redirect to our web uri
+        // then get user info from google
+        $user = Socialite::driver($driver)->user();
+        dd($user);
     }
 }

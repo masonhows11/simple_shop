@@ -5,8 +5,6 @@
 @section('main_content')
     <div class="container login-section">
 
-
-
         <div class="row d-flex  justify-content-center mb-5 mt-2">
 
             <div class="col-xl-5 col-lg-5 col-md-5 px-4">
@@ -17,7 +15,8 @@
                     </div>
 
                     <h3 class="h3 text-center mt-4 ">
-                        <a href="{{ route('home') }}" class="text-danger text-decoration-none">  {{ __('messages.site_name') }}</a>
+                        <a href="{{ route('home') }}"
+                           class="text-danger text-decoration-none">  {{ __('messages.site_name') }}</a>
                     </h3>
 
                     <div class="col mt-4  border border-2 login-form-title rounded-3 py-4">
@@ -34,9 +33,9 @@
                                        name="email">
                             </div>
 
-                           {{-- @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror--}}
+                            {{-- @error('email')
+                             <div class="alert alert-danger">{{ $message }}</div>
+                             @enderror--}}
 
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">رمز عبور</label>
@@ -44,9 +43,9 @@
                                        id="pwd" name="password">
                             </div>
 
-                           {{-- @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror--}}
+                            {{-- @error('password')
+                             <div class="alert alert-danger">{{ $message }}</div>
+                             @enderror--}}
 
                             <div class="form-check mb-3">
                                 <label class="form-check-label">
@@ -55,7 +54,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <a href="{{ route('auth.forgot.password.form') }}" class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
+                                <a href="{{ route('auth.forgot.password.form') }}"
+                                   class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
                             </div>
 
 
@@ -81,3 +81,6 @@
 
     </div>
 @endsection
+@push('front_custom_scripts')
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+@endpush

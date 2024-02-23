@@ -253,6 +253,7 @@ return [
         'demo_url' => 'تصویر محصول',
         'source_url' => 'فایل اصلی',
         'role' => 'نقش',
+        'g-recaptcha-response' => 'فیلد من ربات نیستم',
 
 
     ],

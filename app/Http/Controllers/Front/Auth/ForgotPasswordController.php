@@ -39,7 +39,8 @@ class ForgotPasswordController extends Controller
 
     public function showResetPasswordForm(Request $request)
     {
-        dd($request);
+
+        return view('auth_front.password.reset_password');
     }
 
 

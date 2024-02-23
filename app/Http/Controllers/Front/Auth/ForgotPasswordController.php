@@ -32,6 +32,10 @@ class ForgotPasswordController extends Controller
         }
         return redirect()->back('resetLinkFailed', true);
 
+    }
+
+
+    public function showResetPasswordForm(){
 
     }
 

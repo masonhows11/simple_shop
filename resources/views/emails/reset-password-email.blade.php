@@ -1,10 +1,10 @@
 <x-mail::message>
-# Introduction
+# Reset Password
 
-The body of your message.
+ Dear User : {{ $user }}
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$link">
+    click here for reset your password
 </x-mail::button>
 
 Thanks,<br>

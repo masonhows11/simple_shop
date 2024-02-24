@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Mail\ResetPasswordEmail;
 use App\Mail\VerificationEmail;
+use App\Services\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Services\Permission\Traits\HasPermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasPermission;
+    use HasApiTokens, HasFactory, Notifiable, HasPermission,HasRoles;
 
     /**
      * The attributes that are mass assignable.

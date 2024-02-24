@@ -7,11 +7,11 @@
         <table class="table">
             <thead role="rowgroup">
             <tr role="row" class="title-row">
-                <th>شناسه</th>
-                <th>نام و نام خانوادگی</th>
-                <th>ایمیل</th>
-                <th>سطح کاربری</th>
-                <th>عملیات</th>
+                <th>{{ __('messages.id') }}</th>
+                <th>{{ __('messages.name') }}</th>
+                <th>{{ __('messages.email') }}</th>
+                <th>{{ __('messages.roles') }}</th>
+                <th>{{__('messages.operation')}}</th>
             </tr>
             </thead>
             <tbody>

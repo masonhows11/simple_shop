@@ -11,23 +11,27 @@
         <span class="profile__name">کاربر : بدون نام</span>    </div>
 
     <ul>
-        <li class="item-li i-dashboard is-active"><a href="#">پیشخوان</a></li>
-        <li class="item-li i-courses "><a href="#">دوره ها</a></li>
-        <li class="item-li i-users"><a href="#"> کاربران</a></li>
-        <li class="item-li i-categories"><a href="#">دسته بندی ها</a></li>
-        <li class="item-li i-slideshow"><a href="#">اسلایدشو</a></li>
-        <li class="item-li i-banners"><a href="#">بنر ها</a></li>
-        <li class="item-li i-articles"><a href="#">مقالات</a></li>
-        <li class="item-li i-ads"><a href="#">تبلیغات</a></li>
-        <li class="item-li i-comments"><a href="#"> نظرات</a></li>
-        <li class="item-li i-tickets"><a href="#"> تیکت ها</a></li>
-        <li class="item-li i-discounts"><a href="#">تخفیف ها</a></li>
-        <li class="item-li i-transactions"><a href="#">تراکنش ها</a></li>
-        <li class="item-li i-checkouts"><a href="#">تسویه حساب ها</a></li>
-        <li class="item-li i-checkout__request "><a href="#">درخواست تسویه </a></li>
-        <li class="item-li i-my__purchases"><a href="3">خرید های من</a></li>
-        <li class="item-li i-notification__management"><a href="#">مدیریت اطلاع رسانی</a>
-        </li>
-        <li class="item-li i-user__inforamtion"><a href="#">اطلاعات کاربری</a></li>
+        <li class="item-li i-dashboard is-active"><a href="{{ route('admin.index') }}">پیشخوان</a></li>
+        <li class="item-li i-courses "><a href="#">{{ __('messages.site_name') }}</a></li>
+        <li class="item-li i-users"><a href="{{ route('admin.users.index') }}">{{__('messages.users')}}</a></li>
+        <li class="item-li i-users"><a href="#">{{ __('messages.manage_perms') }}</a></li>
+        <li class="item-li i-users"><a href="#">{{ __('messages.manage_roles') }}</a></li>
+        <li class="item-li i-users"><a href="#">{{ __('messages.perms_assignment') }}</a></li>
+        <li class="item-li i-users"><a href="#">{{ __('messages.roles_assignment') }}</a></li>
+
+{{--        <li class="item-li i-categories"><a href="#">دسته بندی ها</a></li>--}}
+{{--        <li class="item-li i-slideshow"><a href="#">اسلایدشو</a></li>--}}
+{{--        <li class="item-li i-banners"><a href="#">بنر ها</a></li>--}}
+{{--        <li class="item-li i-articles"><a href="#">مقالات</a></li>--}}
+{{--        <li class="item-li i-ads"><a href="#">تبلیغات</a></li>--}}
+{{--        <li class="item-li i-comments"><a href="#"> نظرات</a></li>--}}
+{{--        <li class="item-li i-tickets"><a href="#"> تیکت ها</a></li>--}}
+{{--        <li class="item-li i-discounts"><a href="#">تخفیف ها</a></li>--}}
+{{--        <li class="item-li i-transactions"><a href="#">تراکنش ها</a></li>--}}
+{{--        <li class="item-li i-checkouts"><a href="#">تسویه حساب ها</a></li>--}}
+{{--        <li class="item-li i-checkout__request "><a href="#">درخواست تسویه </a></li>--}}
+{{--        <li class="item-li i-my__purchases"><a href="3">خرید های من</a></li>--}}
+{{--        <li class="item-li i-notification__management"><a href="#">مدیریت اطلاع رسانی</a></li>--}}
+{{--        <li class="item-li i-user__inforamtion"><a href="#">اطلاعات کاربری</a></li>--}}
     </ul>
 </div>

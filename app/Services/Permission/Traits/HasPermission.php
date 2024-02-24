@@ -5,6 +5,7 @@ namespace App\Services\Permission\Traits;
 
 
 use App\Models\Permission;
+use Illuminate\Support\Arr;
 
 trait HasPermission
 {
@@ -18,7 +19,7 @@ trait HasPermission
     // get all permissions
     protected function getAllPermissions(array $permissions)
     {
-        return Permission::whereIn('name', array_values($permissions))->get();
+        return Permission::whereIn('name', Arr::flatten($permissions))->get();
     }
 
     //// assign permissions to user

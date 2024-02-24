@@ -5,6 +5,7 @@ namespace App\Services\Permission\Traits;
 
 
 use App\Models\Role;
+use Illuminate\Support\Arr;
 
 trait HasRoles
 {
@@ -17,7 +18,7 @@ trait HasRoles
     // get all roles
     protected function getAllRoles(array $roles)
     {
-        return Role::whereIn('name', array_values($roles))->get();
+        return Role::whereIn('name', Arr::flatten($roles))->get();
     }
 
 

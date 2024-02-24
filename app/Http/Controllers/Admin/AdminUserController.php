@@ -21,6 +21,19 @@ class AdminUserController extends Controller
     {
         $perms = Permission::all();
         $roles = Role::all();
-        return view('admin.user_edit',['users' => $user ,'perms' => $perms , 'roles' => $roles]);
+        $user->load('roles','permissions');
+        return view('admin.user_edit',['user' => $user ,'perms' => $perms , 'roles' => $roles]);
+    }
+
+
+    public function update(Request $request){
+       // dd($request);
+
+        $user = User::find($request->user);
+        $user->refreshPermissions($request->perms);
+        $user->refreshRoles($request->roles);
+
+        session()->flash('success',__('messages.The_update_was_completed_successfully'));
+        return redirect()->back();
     }
 }

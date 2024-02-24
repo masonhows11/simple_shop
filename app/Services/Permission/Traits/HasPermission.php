@@ -47,9 +47,14 @@ trait HasPermission
     }
 
     //// for check a user has a specific permission or not
-    public function hasPermission(string $permission)
-    {
+    //    public function hasPermission(string $permission)
+    //    {
+    //        return $this->permissions->contains('name',$permission);
+    //    }
 
+    public function hasPermission(Permission $permission)
+    {
+        return $this->permissions->contains($permission);
     }
 
 }

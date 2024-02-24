@@ -10,7 +10,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        auth()->user()->givePermissionsTo('add_product');
+
         return view('home');
     }
 }

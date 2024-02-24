@@ -1,9 +1,9 @@
-@extends('admin.include.master_front')
-@section('admin_title')
+@extends('admin.include.master_dash')
+@section('dash_page_title')
     {{ __('messages.users') }}
 @endsection
-@section('admin_main_content')
-    <div class="table__box">
+@section('dash_main_content')
+    <div class="container">
         <table class="table">
             <thead role="rowgroup">
             <tr role="row" class="title-row">
@@ -30,7 +30,7 @@
                     <a href="" class="item-confirm mlg-15" title="تایید"></a>
                     <a href="" class="item-reject mlg-15" title="رد"></a>
                     <a href="#" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
-                    <a href="#" class="item-edit " title="ویرایش"></a>
+                    <a href="{{ route('admin.user.edit',$user->id) }}" class="item-edit " title="ویرایش"></a>
                 </td>
             </tr>
             @empty

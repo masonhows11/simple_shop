@@ -35,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/users/index', [\App\Http\Controllers\Admin\AdminUserController::class, 'index'])->name('users.index');
 
+    Route::get('/user/edit/{user}', [\App\Http\Controllers\Admin\AdminUserController::class, 'edit'])->name('user.edit');
+
 });
 
 // auth routes

@@ -13,4 +13,11 @@ class AdminUserController extends Controller
         $users = User::with('roles')->get();
         return view('admin.users',['users' => $users]);
     }
+
+
+    public function edit(User $user)
+    {
+
+        return view('admin.user_edit',['users' => $user]);
+    }
 }

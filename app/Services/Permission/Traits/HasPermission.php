@@ -54,7 +54,20 @@ trait HasPermission
 
     public function hasPermission(Permission $permission)
     {
-        return $this->permissions->contains($permission);
+
+        return  $this->hasPermissionThrowRole($permission) || $this->permissions->contains($permission);
+    }
+
+    protected function hasPermissionThrowRole(Permission $permission)
+    {
+
+        // first get roles belongs to current permission
+        // then check belong role is equal to given role
+        foreach ($permission->roles as $role){
+            if($this->roles->contains($role)) return true;
+        }
+        return false;
+
     }
 
 }

@@ -1,26 +1,38 @@
-@extends('admin.include.master_front')
-@section('admin_title')
+@extends('admin.include.master_dash')
+@section('dash_page_title')
     {{ __('messages.edit_user') }}
 @endsection
-@section('admin_main_content')
-    <div class="row no-gutters bg-white margin-bottom-20">
-        <div class="col-12">
-            <p class="box__title">{{ __('messages.edit_user') }}</p>
+@section('dash_main_content')
+    <div class="container bg-white">
+        <div class="row">
+                <form class="my-4">
 
-            {{--<form action="" class="padding-30" method="post">
-                <input type="text" class="text" placeholder="نام و نام خانوادگی">
-                <input type="text" class="text" placeholder="ایمیل">
-                <input type="text" class="text" placeholder="شماره موبایل">
-                <input type="text" class="text" placeholder="آی پی">
-                <select name="" id="">
-                    <option value="0">سطح کاربری</option>
-                    <option value="1">کاربر عادی</option>
-                    <option value="2">مدرس</option>
-                    <option value="3">نویسنده</option>
-                    <option value="4">مدیر</option>
-                </select>
-                <button class="btn btn-brand">ایجاد کاربر</button>
-            </form>--}}
+                    <div class="my-4">
+                        <label for="role" class="form-label">{{ __('messages.roles_assignment') }}</label>
+                        <hr/>
+
+                        @foreach($roles as $role)
+                            <input class="form-check-input" type="checkbox" value="{{ $role->id }}" id="role">
+                            <label class="form-check-label me-2" for="role">
+                                {{ $role->persian_name }}
+                            </label>
+                        @endforeach
+                    </div>
+
+                    <div class="my-4">
+                        <label for="perm" class="form-label">{{ __('messages.perms_assignment') }}</label>
+                        <hr/>
+
+                        @foreach($perms as $perm)
+                            <input class="form-check-input" type="checkbox" value="{{ $perm->id }}" id="perm">
+                            <label class="form-check-label me-2" for="perm">
+                                {{ $perm->persian_name }}
+                            </label>
+                        @endforeach
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
+                </form>
 
         </div>
     </div>

@@ -3,43 +3,47 @@
     {{ __('messages.users') }}
 @endsection
 @section('dash_main_content')
-    <div class="container">
-        <table class="table">
-            <thead role="rowgroup">
-            <tr role="row" class="title-row">
-                <th>{{ __('messages.id') }}</th>
-                <th>{{ __('messages.name') }}</th>
-                <th>{{ __('messages.email') }}</th>
-                <th>{{ __('messages.roles') }}</th>
-                <th>{{__('messages.operation')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            @forelse( $users as $user)
-            <tr role="row" class="">
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    @foreach( $user->roles as $role)
-                        <span> {{ $role->name    }} </span>
-                    @endforeach
-                </td>
-                <td>
-                    <a href="" class="item-delete mlg-15" title="حذف"></a>
-                    <a href="" class="item-confirm mlg-15" title="تایید"></a>
-                    <a href="" class="item-reject mlg-15" title="رد"></a>
-                    <a href="#" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
-                    <a href="{{ route('admin.user.edit',$user->id) }}" class="item-edit " title="ویرایش"></a>
-                </td>
-            </tr>
-            @empty
-            <p>
-                {{__('messages.not_record_found')}}
-            </p>
+    <div class="container bg-white">
 
-            @endforelse
-            </tbody>
-        </table>
+        <div class="row">
+            <table class="table table-striped">
+                <thead >
+                <tr class="text-center">
+                    <th>{{ __('messages.id') }}</th>
+                    <th>{{ __('messages.name') }}</th>
+                    <th>{{ __('messages.email') }}</th>
+                    <th>{{ __('messages.roles') }}</th>
+                    <th>{{__('messages.operation')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse( $users as $user)
+                    <tr class="text-center">
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            @foreach( $user->roles as $role)
+                                <span> {{ $role->name    }} </span>
+                            @endforeach
+                        </td>
+                        <td>
+                            {{--  <a href="" class="" title="حذف"></a>
+                              <a href="" class="" title="تایید"></a>
+                              <a href="" class="" title="رد"></a>
+                              <a href="#" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>--}}
+                            <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-primary" title="ویرایش">{{ __('messages.edit_model') }}</a>
+                        </td>
+                    </tr>
+                @empty
+                    <p>
+                        {{__('messages.not_record_found')}}
+                    </p>
+
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+
     </div>
 @endsection

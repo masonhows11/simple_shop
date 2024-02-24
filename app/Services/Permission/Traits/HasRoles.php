@@ -29,18 +29,30 @@ trait HasRoles
         return $this;
     }
 
-    public function removePermissionsFrom(...$permissions)
+    public function removeRolesFrom(...$roles)
     {
-        $permissions = $this->getAllPermissions($permissions);
-        $this->permissions()->detach($permissions);
+        $roles = $this->getAllRoles($roles);
+        $this->roles()->detach($roles);
         return $this;
     }
 
-    public function refreshPermissions(...$permissions)
+    public function refreshRoles(...$permissions)
     {
-        $permissions = $this->getAllPermissions($permissions);
-        $this->permissions()->sync($permissions);
+        $roles = $this->getAllRoles($permissions);
+        $this->roles()->sync($roles);
         return $this;
     }
+
+    //// for check a user has a specific role or not
+    ///
+    public function hasRole(string $role)
+    {
+        return $this->roles->contains('name',$role);
+    }
+
+    //    public function hasRole(Role $role)
+    //    {
+    //        return $this->roles->contains($role);
+    //    }
 
 }

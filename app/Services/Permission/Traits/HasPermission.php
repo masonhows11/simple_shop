@@ -32,7 +32,7 @@ trait HasPermission
     }
 
     //// detach permission from user
-    public function removePermissionFrom(...$permissions)
+    public function removePermissionsFrom(...$permissions)
     {
         $permissions = $this->getAllPermissions($permissions);
         $this->permissions()->detach($permissions);
@@ -44,6 +44,12 @@ trait HasPermission
         $permissions = $this->getAllPermissions($permissions);
         $this->permissions()->sync($permissions);
         return $this;
+    }
+
+    //// for check a user has a specific permission or not
+    public function hasPermission(string $permission)
+    {
+
     }
 
 }

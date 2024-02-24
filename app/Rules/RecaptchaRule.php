@@ -30,7 +30,7 @@ class RecaptchaRule implements ValidationRule
                 'response' => $value,
             ]
         ]);
-        dd(json_decode($response->getBody()));
+        // dd(json_decode($response->getBody()));
         if($value != json_decode($response->getBody())->success )
         {
             $fail(__('messages.recaptcha_not_valid'));

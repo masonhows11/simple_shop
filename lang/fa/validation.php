@@ -254,7 +254,7 @@ return [
         'source_url' => 'فایل اصلی',
         'role' => 'نقش',
         'g-recaptcha-response' => 'فیلد من ربات نیستم',
-
+        'persian_name' => 'نام فارسی',
 
 
 

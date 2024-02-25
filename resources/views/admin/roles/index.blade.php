@@ -10,12 +10,12 @@
                 @csrf
                 <div class="mb-3 mt-3">
                     <label for="name" class="form-label">{{ __('messages.name') }}</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" name="name" class="form-control" id="name">
                 </div>
 
                 <div class="mb-3 mt-3">
                     <label for="persian_name" class="form-label">{{ __('messages.name_persian') }}</label>
-                    <input type="text" class="form-control" id="persian_name">
+                    <input type="text" name="persian_name" class="form-control" id="persian_name">
                 </div>
 
                 <div class="mb-3 mt-3">

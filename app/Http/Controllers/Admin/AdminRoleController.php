@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateRoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,10 @@ class AdminRoleController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CreateRoleRequest $request)
     {
         try {
-            $this->validate($request);
+            $this->validationForm($request);
             Role::create([
                 'name' => $request->name,
                 'persian_name' => $request->persian_name
@@ -27,17 +28,13 @@ class AdminRoleController extends Controller
             session()->flash('success', __('messages.New_record_saved_successfully'));
             return view('admin.roles.index', ['roles' => $roles]);
         } catch (\Exception $ex) {
+
+            return $ex->getMessage();
             abort(500);
         }
     }
 
-    public function validation($request)
-    {
-       return  $request->validate([
-            'name' => ['required', 'min:1', 'max:100', 'string'],
-            'persian_name ' => ['required', 'min:1', 'max:100', 'string'],
-        ]);
-    }
+
 
     public function edit(Request $request)
     {

@@ -7,6 +7,7 @@ use App\Http\Requests\CreateRoleRequest;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use function Illuminate\Routing\Controllers\only;
 
 class AdminRoleController extends Controller
 {
@@ -34,18 +35,33 @@ class AdminRoleController extends Controller
     }
 
 
-
-    public function edit(Role $role,Request $request)
+    public function edit(Role $role, Request $request)
     {
 
-        $permissions = Permission::all();
-        $role->load('permissions');
-        return view('admin.roles.edit',['role' => $role ,'perms' => $permissions]);
+        try {
+            $permissions = Permission::all();
+            $role->load('permissions');
+            return view('admin.roles.edit', ['role' => $role, 'perms' => $permissions]);
+        }catch (\Exception $ex){
+            return  view('errors_custom.model_not_found')->with(['error' => $ex->getMessage()]);
+        }
+
     }
 
-    public function update(Role $role,Request $request)
+    public function update(Role $role, CreateRoleRequest $request)
     {
-       dd($role);
+
+        try {
+            // update role
+            $role->update($request->only('name', 'persian_name'));
+            $role->refreshPermissions($request->perms);
+
+            session()->flash('success',__('messages.The_update_was_completed_successfully'));
+            return redirect()->back();
+        }catch (\Exception $ex){
+            return  view('errors_custom.model_store_error')->with(['error' => $ex->getMessage()]);
+        }
+
     }
 
 

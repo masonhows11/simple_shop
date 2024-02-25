@@ -43,9 +43,9 @@ class AdminRoleController extends Controller
         return view('admin.roles.edit',['role' => $role ,'perms' => $permissions]);
     }
 
-    public function update(Request $request)
+    public function update(Role $role,Request $request)
     {
-
+       dd($role);
     }
 
 

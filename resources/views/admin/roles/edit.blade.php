@@ -7,8 +7,11 @@
 
         <div class="row p-4">
 
-            <form action="{{ route('admin.roles.update') }}" method="post">
+            <form action="{{ route('admin.roles.update',$role->id) }}" method="post">
                 @csrf
+
+
+
                 <div class="mb-3 mt-3">
                     <label for="name" class="form-label">{{ __('messages.name') }}</label>
                     <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="name">
@@ -28,7 +31,6 @@
                 <div class="my-4">
                     <label for="perm" class="form-label">{{ __('messages.perms_assignment') }}</label>
                     <hr/>
-
                     @forelse($perms as $perm)
                         <input class="form-check-input" {{ $role->permissions->contains($perm) ? 'checked' : '' }} name="perms[]" type="checkbox" value="{{ $perm->name }}" id="{{'perm'.$perm->id }}">
                         <label class="form-check-label me-2" for="{{'perm'.$perm->id }}">
@@ -42,6 +44,7 @@
 
 
                 <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
+                <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary">{{ __('messages.return') }}</a>
             </form>
 
         </div>

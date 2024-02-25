@@ -13,4 +13,6 @@ class Role extends Model
     protected $fillable = [
         'name','persian_name'
     ];
+
+
 }

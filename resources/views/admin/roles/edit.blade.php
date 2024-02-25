@@ -5,21 +5,38 @@
 @section('dash_main_content')
     <div class="container bg-white">
 
-        <div class="row">
-            <form action="{{ route('admin.roles.store') }}" method="post">
+        <div class="row p-4">
+
+            <form action="{{ route('admin.roles.update') }}" method="post">
                 @csrf
                 <div class="mb-3 mt-3">
                     <label for="name" class="form-label">{{ __('messages.name') }}</label>
-                    <input type="text" name="name" class="form-control" id="name">
+                    <input type="text" name="name" value="{{ $role->name }}" class="form-control" id="name">
                 </div>
 
                 <div class="mb-3 mt-3">
                     <label for="persian_name" class="form-label">{{ __('messages.name_persian') }}</label>
-                    <input type="text" name="persian_name" class="form-control" id="persian_name">
+                    <input type="text" name="persian_name" value="{{ $role->persian_name }}" class="form-control" id="persian_name">
                 </div>
 
                 <div class="mb-3 mt-3">
                     @include('admin.include.alert.validate_error')
+                </div>
+
+
+
+                <div class="my-4">
+                    <label for="perm" class="form-label">{{ __('messages.perms_assignment') }}</label>
+                    <hr/>
+
+                    @forelse($perms as $perm)
+                        <input class="form-check-input" {{ $role->permissions->contains($perm) ? 'checked' : '' }} name="perms[]" type="checkbox" value="{{ $perm->name }}" id="{{'perm'.$perm->id }}">
+                        <label class="form-check-label me-2" for="{{'perm'.$perm->id }}">
+                            {{ $perm->persian_name }}
+                        </label>
+                    @empty
+                        <label for="role" class="form-label">{{ __('messages.not_record_found') }}</label>
+                    @endforelse
                 </div>
 
 
@@ -29,36 +46,7 @@
 
         </div>
 
-        <div class="row mt-4">
-            <table class="table table-striped">
-                <thead >
-                <tr class="text-center">
-                    <th>{{ __('messages.id') }}</th>
-                    <th>{{ __('messages.name') }}</th>
-                    <th>{{ __('messages.name_persian') }}</th>
-                    <th>{{__('messages.operation')}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                @forelse( $roles as $role)
-                    <tr class="text-center">
-                        <td>{{ $role->id }}</td>
-                        <td>{{ $role->name }}</td>
-                        <td>{{ $role->persian_name }}</td>
-                        <td>
-                            <a href="{{ route('admin.roles.delete',$role->id) }}" class="btn btn-danger" title="حذف">{{ __('messages.delete_model') }}</a>
-                            <a href="{{ route('admin.roles.edit',$role->id) }}" class="btn btn-primary" title="ویرایش">{{ __('messages.edit_model') }}</a>
-                        </td>
-                    </tr>
-                @empty
-                    <p>
-                        {{__('messages.not_record_found')}}
-                    </p>
 
-                @endforelse
-                </tbody>
-            </table>
-        </div>
 
     </div>
 @endsection

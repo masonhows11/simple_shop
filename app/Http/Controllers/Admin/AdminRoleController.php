@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRoleRequest;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,10 @@ class AdminRoleController extends Controller
 
     public function edit(Role $role,Request $request)
     {
-        dd($role);
-        return view('admin.roles.edit');
+
+        $permissions = Permission::all();
+        $role->load('permissions');
+        return view('admin.roles.edit',['role' => $role ,'perms' => $permissions]);
     }
 
     public function update(Request $request)

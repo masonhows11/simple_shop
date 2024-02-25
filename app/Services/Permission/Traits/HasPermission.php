@@ -13,7 +13,7 @@ trait HasPermission
     //// make many to many relation with user model
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class, 'permission_user');
+        return $this->belongsToMany(Permission::class);
     }
 
     // get all permissions

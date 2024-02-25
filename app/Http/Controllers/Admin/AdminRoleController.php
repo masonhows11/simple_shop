@@ -3,22 +3,36 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class AdminRoleController extends Controller
 {
     public function index()
     {
-        return view('admin.roles.index');
+        $roles = Role::all();
+        return view('admin.roles.index',['roles' => $roles]);
     }
 
 
-    public function store(){
+    public function store(Request $request)
+    {
+
+    }
+
+    public function edit(Request $request)
+    {
+
+    }
+
+    public function update(Request $request)
+    {
 
     }
 
 
-    public function destroy(){
+    public function destroy(Request $request)
+    {
 
     }
 }

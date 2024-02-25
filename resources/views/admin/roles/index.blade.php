@@ -17,16 +17,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse( $users as $user)
+                @forelse( $roles as $role)
                     <tr class="text-center">
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->persian_name }}</td>
+                        <td>{{ $role->id }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td>{{ $role->persian_name }}</td>
                         <td>
-                            {{--  <a href="" class="" title="حذف"></a>
-                              <a href="" class="" title="تایید"></a>
-                              <a href="" class="" title="رد"></a>
-                              <a href="#" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>--}}
+                            <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-danger" title="حذف">{{ __('messages.delete_model') }}</a>
                             <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-primary" title="ویرایش">{{ __('messages.edit_model') }}</a>
                         </td>
                     </tr>

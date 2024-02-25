@@ -16,6 +16,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{ \Illuminate\Support\Facades\Auth::user()->name  }}</a>
                     </li>
+
+                   {{--  @role('admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.index') }}">{{ __('messages.admin_dashboard') }}</a>
+                    </li>
+                    @endrole--}}
+
+                    {{-- if u want use @can directive u can define a gate --}}
+                    @can('show_panel')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.index') }}">{{ __('messages.admin_dashboard') }}</a>
+                    </li>
+                    @endcan
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('log.out') }}">{{ __('messages.log_out') }}</a>
                     </li>

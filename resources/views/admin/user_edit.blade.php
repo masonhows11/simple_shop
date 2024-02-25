@@ -39,6 +39,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">{{ __('messages.return') }}</a>
                 </form>
 
         </div>

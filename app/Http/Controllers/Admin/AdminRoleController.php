@@ -17,7 +17,8 @@ class AdminRoleController extends Controller
 
     public function store(Request $request)
     {
-
+        $roles = Role::all();
+        return view('admin.roles.index',['roles' => $roles]);
     }
 
     public function edit(Request $request)

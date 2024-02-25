@@ -1,11 +1,30 @@
 @extends('admin.include.master_dash')
 @section('dash_page_title')
-    {{ __('messages.users') }}
+    {{ __('messages.manage_roles') }}
 @endsection
 @section('dash_main_content')
     <div class="container bg-white">
 
         <div class="row">
+            <form action="" method="post">
+
+                <div class="mb-3 mt-3">
+                    <label for="name" class="form-label">{{ __('messages.name') }}</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="persian_name" class="form-label">{{ __('messages.name_persian') }}</label>
+                    <input type="text" class="form-control" id="persian_name">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>
+            </form>
+
+        </div>
+
+        <div class="row mt-4">
             <table class="table table-striped">
                 <thead >
                 <tr class="text-center">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Front\Auth\ProfileController;
 use App\Http\Controllers\Front\Auth\RegisterController;
 use App\Http\Controllers\Front\Auth\SocialController;
 use App\Http\Controllers\Front\Auth\ValidateEmailController;
+use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -93,3 +94,5 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
 
 });
+
+Route::get('/products',[ProductsController::class,'index'])->name('products');

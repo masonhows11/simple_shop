@@ -29,6 +29,10 @@
                         <a class="nav-link" href="{{ route('admin.index') }}">{{ __('messages.admin_dashboard') }}</a>
                     </li>
                     @endcan
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products') }}">{{ __('messages.products') }}</a>
+                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('log.out') }}">{{ __('messages.log_out') }}</a>

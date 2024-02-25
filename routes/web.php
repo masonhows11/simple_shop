@@ -39,13 +39,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/user/update', [\App\Http\Controllers\Admin\AdminUserController::class, 'update'])->name('user.update');
 
 
-    Route::get('/roles/index', [\App\Http\Controllers\Admin\AdminRoleController::class, 'index'])->name('role.index');
-    Route::post('/role/store', [\App\Http\Controllers\Admin\AdminRoleController::class, 'store'])->name('role.store');
+    Route::get('/roles/index', [\App\Http\Controllers\Admin\AdminRoleController::class, 'index'])->name('roles.index');
+    Route::post('/role/store', [\App\Http\Controllers\Admin\AdminRoleController::class, 'store'])->name('roles.store');
 
-    Route::get('/role/edit', [\App\Http\Controllers\Admin\AdminRoleController::class, 'edit'])->name('role.edit');
-    Route::post('/role/update', [\App\Http\Controllers\Admin\AdminRoleController::class, 'update'])->name('role.update');
+    Route::get('/role/edit', [\App\Http\Controllers\Admin\AdminRoleController::class, 'edit'])->name('roles.edit');
+    Route::post('/role/update', [\App\Http\Controllers\Admin\AdminRoleController::class, 'update'])->name('roles.update');
 
-    Route::get('/role/delete', [\App\Http\Controllers\Admin\AdminRoleController::class, 'destroy'])->name('role.delete');
+    Route::get('/role/delete', [\App\Http\Controllers\Admin\AdminRoleController::class, 'destroy'])->name('roles.delete');
 
 });
 

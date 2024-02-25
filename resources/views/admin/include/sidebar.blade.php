@@ -130,7 +130,7 @@
                         {{--@if( $user->hasRole('super_admin') )--}}
                         <div class="menu-item">
                             <a class="menu-link {{ $route === 'admin.roles.index' ? 'active' : '' }}"
-                               href="#">
+                               href="{{ route('admin.roles.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

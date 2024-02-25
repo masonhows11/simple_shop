@@ -11,8 +11,7 @@
                 <tr class="text-center">
                     <th>{{ __('messages.id') }}</th>
                     <th>{{ __('messages.name') }}</th>
-                    <th>{{ __('messages.email') }}</th>
-                    <th>{{ __('messages.roles') }}</th>
+                    <th>{{ __('messages.name_persian') }}</th>
                     <th>{{__('messages.operation')}}</th>
                 </tr>
                 </thead>
@@ -23,8 +22,8 @@
                         <td>{{ $role->name }}</td>
                         <td>{{ $role->persian_name }}</td>
                         <td>
-                            <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-danger" title="حذف">{{ __('messages.delete_model') }}</a>
-                            <a href="{{ route('admin.user.edit',$user->id) }}" class="btn btn-primary" title="ویرایش">{{ __('messages.edit_model') }}</a>
+                            <a href="{{ route('admin.roles.delete',$role->id) }}" class="btn btn-danger" title="حذف">{{ __('messages.delete_model') }}</a>
+                            <a href="{{ route('admin.roles.edit',$role->id) }}" class="btn btn-primary" title="ویرایش">{{ __('messages.edit_model') }}</a>
                         </td>
                     </tr>
                 @empty

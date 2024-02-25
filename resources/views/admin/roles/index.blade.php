@@ -6,8 +6,8 @@
     <div class="container bg-white">
 
         <div class="row">
-            <form action="" method="post">
-
+            <form action="{{ route('admin.roles.store') }}" method="post">
+                @csrf
                 <div class="mb-3 mt-3">
                     <label for="name" class="form-label">{{ __('messages.name') }}</label>
                     <input type="text" class="form-control" id="name">
@@ -17,6 +17,11 @@
                     <label for="persian_name" class="form-label">{{ __('messages.name_persian') }}</label>
                     <input type="text" class="form-control" id="persian_name">
                 </div>
+
+                <div class="mb-3 mt-3">
+                    @include('admin.include.alert.validate_error')
+                </div>
+
 
 
                 <button type="submit" class="btn btn-primary">{{ __('messages.save') }}</button>

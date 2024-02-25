@@ -25,7 +25,7 @@ class LoginUserRequest extends FormRequest
         return [
             'email' => ['required','email','min:3','max:125','exists:users'],
             'password' => ['required','string','min:3','max:125'],
-            'g-recaptcha-response' => ['required',new RecaptchaRule()]
+           // 'g-recaptcha-response' => ['required',new RecaptchaRule()]
         ];
     }
 }

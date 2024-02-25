@@ -29,7 +29,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::prefix('admin')->name('admin.')->middleware(['roleAccess:admin'])->group(function () {
+// middleware(['roleAccess:admin']) its important
+// with gate middleware(can:show_panel) its very important
+Route::prefix('admin')->name('admin.')->middleware('can:show_panel')->group(function () {
 
     Route::get('index', [AdminController::class, 'index'])->name('index');
 

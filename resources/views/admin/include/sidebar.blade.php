@@ -123,7 +123,7 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">کاربر جدید</span>
+                                <span class="menu-title">کاربر مدیر جدید</span>
                             </a>
                         </div>
 
@@ -159,6 +159,15 @@
                                 </a>
                             </div>
                         @endif--}}
+                        <div class="menu-item">
+                            <a class="menu-link {{ $route === 'admin.role.list.users' ? 'active' : '' }}"
+                               href="#">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __('messages.role_assignment') }}</span>
+                            </a>
+                        </div>
                         <div class="menu-item">
                             <a class="menu-link {{ $route === 'admin.perm.list.users' ? 'active' : '' }}"
                                href="#">

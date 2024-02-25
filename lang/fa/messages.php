@@ -31,10 +31,12 @@ return [
     'roles' => 'نقش ها',
     'manage_roles' => 'مدیریت نقش ها',
     'manage_perms' => 'مدیریت مجوز ها',
+
     'roles_assignment' => 'تخصیص نقش ها',
     'perms_assignment' => 'تخصیص مجوزها',
-    'role_assignment' => 'تخصیص نقش',
-    'perm_assignment' => 'تخصیص مجوز',
+
+    'role_assignment' => 'تخصیص نقش به کاربر',
+    'perm_assignment' => 'تخصیص مجوز به کاربر',
     'users_list' => 'لیست کاربران',
 
     'not_confirmed' => 'تایید نشده',

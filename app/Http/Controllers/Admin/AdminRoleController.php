@@ -19,26 +19,25 @@ class AdminRoleController extends Controller
     public function store(CreateRoleRequest $request)
     {
         try {
-            $this->validationForm($request);
+
             Role::create([
                 'name' => $request->name,
                 'persian_name' => $request->persian_name
             ]);
             $roles = Role::all();
             session()->flash('success', __('messages.New_record_saved_successfully'));
-            return view('admin.roles.index', ['roles' => $roles]);
+            return redirect()->route('admin.roles.index')->with(['roles' => $roles]);
         } catch (\Exception $ex) {
-
-            return $ex->getMessage();
             abort(500);
         }
     }
 
 
 
-    public function edit(Request $request)
+    public function edit(Role $role,Request $request)
     {
-
+        dd($role);
+        return view('admin.roles.edit');
     }
 
     public function update(Request $request)

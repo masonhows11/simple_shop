@@ -40,22 +40,26 @@ class SessionStorage implements StorageInterface, Countable
 
     public function exists($index)
     {
-
+        //// for check an item in session  like basket
+        return session()->has($this->basket . '.' . $index);
     }
 
     public function remove($index)
     {
-
+        //// for remove an item from session  like basket
+        return session()->forget($this->basket . '.' . $index);
     }
 
     public function clearAll()
     {
-
+         //// for remove all item from session  like basket
+        return session()->forget($this->basket);
     }
 
-    // for count the value of item
+
     public function count()
     {
-
+        //// for count the value of item
+        return count($this->all());
     }
 }

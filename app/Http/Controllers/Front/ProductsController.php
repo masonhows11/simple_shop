@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Services\Storage\Contracts\StorageInterface;
 use Illuminate\Http\Request;
+use function Symfony\Component\Mime\Header\all;
 
 class ProductsController extends Controller
 {
@@ -14,14 +15,20 @@ class ProductsController extends Controller
     {
 
         $sessionStorage = resolve(StorageInterface::class);
-        $sessionStorage->set('product',4);
-        $sessionStorage->set('product2',5);
-        $sessionStorage->set('product3',12);
-        dd($sessionStorage->all());
+        // for test
+        //        $sessionStorage->set('product', 2);
+        //        $sessionStorage->set('product2', 4);
+        //        $sessionStorage->set('product4', 6);
+        //        $sessionStorage->set('product5', 12);
+        //        $sessionStorage->set('product6', 13);
+        // dd($sessionStorage->count());
+        // $sessionStorage->clearAll();
+        // dump(session()->all());
+        // dd($sessionStorage->count());
         // dd($sessionStorage->get('product'));
 
 
         $products = Product::all();
-        return view('front.products.products',['products' => $products]);
+        return view('front.products.products', ['products' => $products]);
     }
 }

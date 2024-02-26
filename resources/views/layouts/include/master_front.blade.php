@@ -18,7 +18,7 @@
 </main>
 @include('layouts.include.footer')
 @include('layouts.alert.delete_confirm',['className'=> 'delete-item'])
-@include('layouts.alert.alert')
+{{--@include('layouts.alert.alert')--}}
 @stack('front_custom_scripts')
 </body>
 

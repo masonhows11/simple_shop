@@ -9,6 +9,9 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{ route('home') }}">{{ __('messages.home_page') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('products') }}">{{ __('messages.products') }}</a>
+                </li>
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
@@ -29,9 +32,7 @@
                         <a class="nav-link" href="{{ route('admin.index') }}">{{ __('messages.admin_dashboard') }}</a>
                     </li>
                     @endcan
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products') }}">{{ __('messages.products') }}</a>
-                    </li>
+
 
 
                     <li class="nav-item">

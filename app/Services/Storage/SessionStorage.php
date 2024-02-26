@@ -7,7 +7,7 @@ namespace App\Services\Storage;
 use App\Services\Storage\Contracts\StorageInterface;
 use Countable;
 
-class SessionStorage implements StorageInterface , Countable
+class SessionStorage implements StorageInterface, Countable
 {
 
     private $basket;
@@ -19,17 +19,23 @@ class SessionStorage implements StorageInterface , Countable
 
     public function get($index)
     {
-
+        //// get item store in session
+        return session()->get($this->basket . '.' . $index);
     }
 
     public function set($index, $value)
     {
-        return session()->put('items.id','4');
+        //// storage in session like array
+        /// items with id & value 4
+        /// items is array
+        // return session()->put('items.id','4');
+        return session()->put($this->basket . '.' . $index , $value);
     }
 
     public function all()
     {
-
+        //// get all item store in session name like basket
+        return session()->get($this->basket);
     }
 
     public function exists($index)

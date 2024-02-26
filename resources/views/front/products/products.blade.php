@@ -10,27 +10,22 @@
             <div class="col-md-6 mt-5">
                 @include('layouts.alert.alert')
             </div>
-            <div class="card-body">
-                <div class="row mb-5">
-                    @foreach($products as $product)
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
 
-                        <div class="col-md-4">
-
-                            <div class="card" style="width:18rem">
-
-                                <img src="{{ asset('default_image/no-image-icon-23494.png') }}" alt="product-image.{{ $product->id }}">
-                                <div class="card-body">
-                                    <h5 class="title">{{ $product->title }}</h5>
-                                    <p class="card-text">{{ substr($product->description,0,50) }}</p>
-                                    <a href="" class="btn btn-primary">{{ __('messages.add_to_cart') }}</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    @endforeach
+            @foreach($products as $product)
+            <div class="col">
+                <div class="card">
+                    <img src="{{ asset('default_image/no-image-icon-23494.png') }}" alt="product-image.{{ $product->id }}">
+                    <div class="card-body">
+                        <h5 class="title mt-2">{{ $product->title }}</h5>
+                        <p class="card-text mt-2">{{ Str::substr($product->description,0,60) . "..."  }}</p>
+                        <a href="" class="btn btn-primary mt-2">{{ __('messages.add_to_cart') }}</a>
+                    </div>
                 </div>
             </div>
+            @endforeach
+
         </div>
 
     </div>

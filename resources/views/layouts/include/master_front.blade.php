@@ -17,6 +17,7 @@
     @yield('main_content')
 </main>
 @include('layouts.include.footer')
+@include('layouts.include.footer_scripts')
 @include('layouts.alert.delete_confirm',['className'=> 'delete-item'])
 {{--@include('layouts.alert.alert')--}}
 @stack('front_custom_scripts')

@@ -27,7 +27,8 @@
                     <div class="card-body">
                         <h5 class="title mt-2">{{ $product->title }}</h5>
                         <p class="card-text mt-2">{{ Str::substr($product->description,0,60) . "..."  }}</p>
-                        <a href="" class="btn btn-primary mt-2">{{ __('messages.add_to_cart') }}</a>
+                        <p class="card-text mt-2">{{ number_format($product->price) }} {{ __('messages.toman') }}</p>
+                        <a href="{{ route('cart.add-to-cart',$product->id) }}" class="btn btn-primary mt-2">{{ __('messages.add_to_cart') }}</a>
                     </div>
                 </div>
             </div>

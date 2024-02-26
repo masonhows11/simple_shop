@@ -10,6 +10,7 @@ use App\Http\Controllers\Front\Auth\ValidateEmailController;
 use App\Http\Controllers\Front\BasketController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\HomeController;
+use App\Services\Storage\Contracts\StorageInterface;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -99,3 +100,8 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 });
 
 Route::get('/products',[ProductsController::class,'index'])->name('products');
+
+Route::get('basket/clear',function (){
+    // this clear session with bind method in appServiceProvider
+    resolve(StorageInterface::class)->clearAll();
+})->name('clear.basket');

@@ -19,8 +19,9 @@ class BasketController extends Controller
 
     public function add(Product $product)
     {
-        dd($product);
         $this->basket->addToBasket($product,1);
+        session()->flash('success',__('messages.the_product_has_been_added_to_the_cart'));
+        return redirect()->back();
     }
 
     public function cart(Request $request)

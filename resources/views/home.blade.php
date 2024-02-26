@@ -39,7 +39,7 @@
 </div>
 @include('layouts.include.footer')
 @include('layouts.include.footer_scripts')
-@include('layouts.alert.alert_swal')
+{{--@include('layouts.alert.alert_swal')--}}
 </body>
 </html>
 

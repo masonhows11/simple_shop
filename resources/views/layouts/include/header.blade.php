@@ -13,7 +13,7 @@
                     <a class="nav-link" href="{{ route('products') }}">{{ __('messages.products') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('') }}">{{ __('messages.products') }}</a>
+                    <a class="nav-link" href="{{ route('cart.check.out') }}">{{ __('messages.basket') }} </a>
                 </li>
                 @auth
                     <li class="nav-item">

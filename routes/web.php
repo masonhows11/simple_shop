@@ -7,6 +7,7 @@ use App\Http\Controllers\Front\Auth\ProfileController;
 use App\Http\Controllers\Front\Auth\RegisterController;
 use App\Http\Controllers\Front\Auth\SocialController;
 use App\Http\Controllers\Front\Auth\ValidateEmailController;
+use App\Http\Controllers\Front\BasketController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -92,7 +93,7 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['verified']);
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
-    Route::get('/cart/check-out',[])->name('cart.check.out');
+    Route::get('/cart/check-out',[BasketController::class,'cart'])->name('cart.check.out');
 
 });
 

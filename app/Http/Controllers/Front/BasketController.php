@@ -11,6 +11,6 @@ class BasketController extends Controller
 
     public function cart(Request $request)
     {
-        return view('');
+        return view('front.cart.cart');
     }
 }

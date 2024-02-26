@@ -579,6 +579,7 @@ return [
     'reset_password_successfully' => 'رمز عبور با موفقیت بروز رسانی شد',
     'reset_password_failed' => 'رمز عبور با موفقیت بروز رسانی شد',
     'recaptcha_not_valid' => 'من ربات نیستم معتبر نمی باشد',
+    'product_out_of_stock_as_u_requested' => 'محصول مورد نظر به تعداد درخواست شما موجود نمی باشد',
 
 
 

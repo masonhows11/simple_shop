@@ -28,6 +28,7 @@ class ProductsController extends Controller
         // dd($sessionStorage->get('product'));
 
 
+        dump(session()->all());
         $products = Product::all();
         return view('front.products.products', ['products' => $products]);
     }

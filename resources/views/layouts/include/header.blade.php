@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('products') }}">{{ __('messages.products') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('') }}">{{ __('messages.products') }}</a>
+                </li>
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>

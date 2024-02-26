@@ -92,6 +92,7 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['verified']);
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
+    Route::get('/cart/check-out',[])->name('cart.check.out');
 
 });
 

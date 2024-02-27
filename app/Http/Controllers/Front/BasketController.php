@@ -38,7 +38,12 @@ class BasketController extends Controller
     }
 
 
-    public function update(){
-
+    public function update(Request $request,Product $product)
+    {
+        // dd($product);
+        //// update the quantity product
+        $this->basket->update($product,$request->stock);
+        session()->flash('success',__('messages.The_update_was_completed_successfully'));
+        return redirect()->back();
     }
 }

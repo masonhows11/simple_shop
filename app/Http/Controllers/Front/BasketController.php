@@ -60,4 +60,11 @@ class BasketController extends Controller
         return view('front.payment.check_out')
             ->with(['info' => $info]);
     }
+
+    public function pay(Request $request)
+    {
+        dd($request);
+    }
+
+
 }

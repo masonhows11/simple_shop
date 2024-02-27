@@ -53,6 +53,7 @@ class BasketController extends Controller
 
     public function checkOutForm(Request $request)
     {
-        dd($request);
+
+        return view('front.payment.check_out');
     }
 }

@@ -11,6 +11,7 @@
                 @include('layouts.alert.alert')
             </div>
         </div>
+
         <div class="row d-flex justify-content-between ">
 
             @if($products->isEmpty())

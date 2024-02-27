@@ -51,18 +51,30 @@ class Basket
     }
 
 
-    public function all(){
+    public function all()
+    {
 
         $products = Product::find(array_keys($this->storage->all()));
-       foreach ($products as $product){
-           //// $this-> is refer to current session basket
-           ///  add attr name stock into product attr for show
-           /// quantity in basket for each product
-           $product->stock = $this->get($product)['quantity'];
-       }
+        foreach ($products as $product) {
+            //// $this-> is refer to current session basket
+            ///  add attr name stock into product attr for show
+            /// quantity in basket for each product
+            $product->stock = $this->get($product)['quantity'];
+        }
         return $products;
     }
 
+
+    public function subTotal()
+    {
+        $total = 0;
+        //// $this-> is refer to current session basket
+        foreach ($this->all() as $item) {
+            $total += $item->price * $item->stock;
+        }
+
+        return $total;
+    }
 
 
 }

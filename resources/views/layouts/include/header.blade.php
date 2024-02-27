@@ -17,7 +17,7 @@
 
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cart.check.out') }}">
+                        <a class="nav-link" href="{{ route('cart') }}">
                             {{ __('messages.basket') }}  <span class="badge text-bg-primary">{{ $basket->itemCount() }}</span>
                         </a>
                     </li>

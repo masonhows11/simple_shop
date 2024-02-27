@@ -15,6 +15,9 @@ class BasketController extends Controller
 
     public function __construct(Basket $basket)
     {
+        //// below line said only users can access checkOutForm method or route
+        /// that already logged in else they cannot access
+        $this->middleware('auth')->only(['checkOutForm']);
         $this->basket = $basket;
     }
 
@@ -45,5 +48,11 @@ class BasketController extends Controller
         $this->basket->update($product,$request->stock);
         session()->flash('success',__('messages.The_update_was_completed_successfully'));
         return redirect()->back();
+    }
+
+
+    public function checkOutForm(Request $request)
+    {
+        dd($request);
     }
 }

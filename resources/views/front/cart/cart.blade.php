@@ -60,10 +60,7 @@
                 <div class="col-lg-4 border-2 border-secondary   py-4">
                     @include('front.payment.summery')
                     <div class="mt-4">
-                        <form action="">
-                            <button class="btn btn-primary w-100 py-3"
-                                    type="submit">{{ __('messages.register_and_pay') }}</button>
-                        </form>
+                        <a href="{{ route('cart.check-out.form') }}" class="btn btn-primary w-100 py-3" >{{ __('messages.register_and_pay') }}</a>
                     </div>
                 </div>
             @endif

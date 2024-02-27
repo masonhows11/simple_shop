@@ -79,4 +79,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         Mail::to($this)->send(new ResetPasswordEmail($this,$token));
     }
+
+    public function addresses(){
+
+        return $this->hasMany(Address::class);
+    }
 }

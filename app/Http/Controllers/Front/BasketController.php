@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Front;
 use App\Exceptions\QuantityExceededException;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\User;
 use App\Services\Basket\Basket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -54,6 +56,8 @@ class BasketController extends Controller
     public function checkOutForm(Request $request)
     {
 
-        return view('front.payment.check_out');
+        $info = Auth::user()->addresses;
+        return view('front.payment.check_out')
+            ->with(['info' => $info]);
     }
 }

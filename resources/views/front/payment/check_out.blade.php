@@ -17,13 +17,15 @@
 
                 <div>
                     <div class="card">
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header py-4">
+                           {{ __('messages.user_info') }}
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
+                            @foreach($info as $item)
+                            <li class="list-group-item my-2"> {{ __('messages.recipient') . ' : ' . $item->recipient_first_name . '  ' . $item->recipient_last_name }}</li>
+                            <li class="list-group-item my-2">{{ __('messages.address') . ' : ' . $item->address_description }}</li>
+                            <li class="list-group-item my-2">{{ __('messages.mobile') . ' :  ' . $item->mobile }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -31,14 +33,17 @@
 
                 <div class="mt-5">
                     <div class="card" >
-                        <div class="card-header">
-                            Featured
+                        <div class="card-header py-4">
+                            {{ __('messages.payment_type') }}
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                        </ul>
+                        <form action="">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item my-2">{{ __('messages.online_pay') }}</li>
+                                <li class="list-group-item my-2">{{ __('messages.cash_pay') }}</li>
+                                <li class="list-group-item my-2">{{ __('messages.add_to_cart') }}</li>
+                            </ul>
+                        </form>
+
                     </div>
 
                 </div>

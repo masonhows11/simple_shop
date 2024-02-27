@@ -39,62 +39,76 @@
 
 
                         <div class="card">
+
                             <div class="card-header py-4">
                                 {{ __('messages.payment_type') }}
                             </div>
 
-                            <ul class="list-group list-group-flush">
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
 
-                                <li class="list-group-item my-2 ">
-                                    <div class="mt-2 form-check form-check-inline">
-                                        <input class="form-check-input" value="online" type="radio" id="online"
-                                               name="method">
-                                        <label class="form-check-label pt-1" for="online">
-                                            {{ __('messages.online_pay') }}
-                                        </label>
-                                        <p class="fs-6 fw-light mt-3">
-                                            پرداخت آنلاین سفارش از طریق درگاهای موجود
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <label for="gateway"></label>
-                                        <select class="form-select" name="gateway" id="gateway">
-                                            <option value="zarinpal">زرین پال</option>
-                                            <option value="idpay">ای دی پی</option>
-                                        </select>
-                                    </div>
-                                </li>
+                                    <li class="list-group-item my-2 ">
+                                        <div class="mt-2 form-check form-check-inline">
+                                            <input class="form-check-input" value="online" type="radio" id="online" name="method">
+                                            <label class="form-check-label pt-1" for="online">
+                                                {{ __('messages.online_pay') }}
+                                            </label>
+                                            <p class="fs-6 fw-light mt-3">
+                                                پرداخت آنلاین سفارش از طریق درگاهای موجود
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label for="gateway"></label>
+                                            <select class="form-select" name="gateway" id="gateway">
+                                                <option value="">{{__('messages.choose')}}</option>
+                                                <option value="zarinpal">زرین پال</option>
+                                                <option value="idpay">ای دی پی</option>
+                                            </select>
+                                        </div>
+                                    </li>
 
 
-                                <li class="list-group-item my-2">
-                                    <div class="mt-2 form-check form-check-inline">
-                                        <input class="form-check-input" value="cash" type="radio" id="cash"
-                                               name="method">
-                                        <label class="form-check-label pt-1" for="cash">
-                                            {{ __('messages.cash_pay') }}
-                                        </label>
-                                        <p class="fs-6 fw-light mt-3">
-                                            پرداخت درب منزل
-                                        </p>
-                                    </div>
-                                </li>
+                                    <li class="list-group-item my-2">
+                                        <div class="mt-2 form-check form-check-inline">
+                                            <input class="form-check-input" value="cash" type="radio" id="cash"
+                                                   name="method">
+                                            <label class="form-check-label pt-1" for="cash">
+                                                {{ __('messages.cash_pay') }}
+                                            </label>
+                                            <p class="fs-6 fw-light mt-3">
+                                                پرداخت درب منزل
+                                            </p>
+                                        </div>
+                                    </li>
 
-                                <li class="list-group-item my-2">
-                                    <div class="mt-2 form-check form-check-inline">
-                                        <input class="form-check-input" value="cart-to-cart" type="radio"
-                                               id="cart-to-cart" name="method">
-                                        <label class="form-check-label pt-1" for="cart-to-cart">
-                                            {{ __('messages.cart_to_cart') }}
-                                        </label>
-                                        <p class="fs-6 fw-light mt-3">
-                                            انتقال مبلغ سفارش به شماره کارت 5982-1015-0091-8541 و ارسال فیش انتقال
-                                        </p>
-                                    </div>
+                                    <li class="list-group-item my-2">
+                                        <div class="mt-2 form-check form-check-inline">
+                                            <input class="form-check-input" value="cart-to-cart" type="radio"
+                                                   id="cart-to-cart" name="method">
+                                            <label class="form-check-label pt-1" for="cart-to-cart">
+                                                {{ __('messages.cart_to_cart') }}
+                                            </label>
+                                            <p class="fs-6 fw-light mt-3">
+                                                انتقال مبلغ سفارش به شماره کارت 5982-1015-0091-8541 و ارسال فیش انتقال
+                                            </p>
+                                        </div>
+                                    </li>
 
-                                </li>
-                            </ul>
+                                    <li class="list-group-item my-2">
+                                        @include('layouts.alert.validate_error')
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+
+
+
 
                         </div>
+
+
 
 
                     </div>

@@ -34,15 +34,18 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ number_format($product->price) }} {{ __('messages.toman') }}</td>
                                 <td>
-
-                                    <form action="" method="post" class="form-inline">
+                                    <form action="" method="post" class="row d-flex justify-content-center">
                                         @csrf
-
-                                        <select name="stock" id="stock" class="form-select small">
-                                            @for($i = 0 ; $i <= $product->quantity ; $i++)
-                                                <option {{ $product->stock == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        <div class="col-auto">
+                                            <select name="stock" id="stock" class="form-select small">
+                                                @for($i = 0 ; $i <= $product->quantity ; $i++)
+                                                    <option {{ $product->stock == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary btn-sm">{{ __('messages.update') }}</button>
+                                        </div>
 
                                     </form>
 

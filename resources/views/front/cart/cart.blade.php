@@ -33,7 +33,20 @@
                             <tr class="text-center mt-4 py-2">
                                 <td>{{ $product->title }}</td>
                                 <td>{{ number_format($product->price) }} {{ __('messages.toman') }}</td>
-                                <td>{{ $product->stock }} </td>
+                                <td>
+
+                                    <form action="" method="post" class="form-inline">
+                                        @csrf
+
+                                        <select name="stock" id="stock" class="form-select small">
+                                            @for($i = 0 ; $i <= $product->quantity ; $i++)
+                                                <option {{ $product->stock == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+
+                                    </form>
+
+                                </td>
                             </tr>
 
                         @endforeach
@@ -42,10 +55,11 @@
                 </div>
 
                 <div class="col-lg-4 border-2 border-secondary   py-4">
-                   @include('front.payment.summery')
+                    @include('front.payment.summery')
                     <div class="mt-4">
                         <form action="">
-                            <button class="btn btn-primary w-100 py-3" type="submit">{{ __('messages.register_and_pay') }}</button>
+                            <button class="btn btn-primary w-100 py-3"
+                                    type="submit">{{ __('messages.register_and_pay') }}</button>
                         </form>
                     </div>
                 </div>

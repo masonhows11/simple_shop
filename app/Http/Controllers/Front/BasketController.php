@@ -33,6 +33,7 @@ class BasketController extends Controller
 
     public function cart(Request $request)
     {
-        return view('front.cart.cart');
+        $products = $this->basket->all();
+        return view('front.cart.cart',['products' => $products]);
     }
 }

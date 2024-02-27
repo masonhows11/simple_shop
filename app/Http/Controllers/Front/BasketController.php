@@ -17,9 +17,9 @@ class BasketController extends Controller
 
     public function __construct(Basket $basket)
     {
-        //// below line said only users can access checkOutForm method or route
+        //// below line said only users can access checkOutForm , pay methods or route
         /// that already logged in else they cannot access
-        $this->middleware('auth')->only(['checkOutForm']);
+        $this->middleware('auth')->only(['checkOutForm','pay']);
         $this->basket = $basket;
     }
 
@@ -63,7 +63,7 @@ class BasketController extends Controller
 
     public function pay(Request $request)
     {
-        dd($request);
+        dd($request->all());
     }
 
 

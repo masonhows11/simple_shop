@@ -105,7 +105,7 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
     Route::post('/cart/update/{product}',[BasketController::class,'update'])->name('cart.update');
     Route::get('/cart/checkout',[BasketController::class,'checkOutForm'])->name('cart.check-out.form');
 
-    Route::get('/cart/pay',[BasketController::class,'pay'])->name('cart.pay');
+    Route::post('/cart/pay',[BasketController::class,'pay'])->name('cart.pay');
 
 
 

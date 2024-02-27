@@ -11,37 +11,44 @@
             </div>
         </div>
 
-        <div class="row">
+        <form action="{{ route('cart.pay') }}" method="post">
+            @csrf
+            <div class="row">
 
-            <div class="col-lg-7 d-flex flex-column">
 
-                <div>
-                    <div class="card">
-                        <div class="card-header py-4">
-                           {{ __('messages.user_info') }}
+                <div class="col-lg-7 d-flex flex-column">
+
+
+                    <div>
+                        <div class="card">
+                            <div class="card-header py-4">
+                                {{ __('messages.user_info') }}
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                @foreach($info as $item)
+                                    <li class="list-group-item my-2"> {{ __('messages.recipient') . ' : ' . $item->recipient_first_name . '  ' . $item->recipient_last_name }}</li>
+                                    <li class="list-group-item my-2">{{ __('messages.address') . ' : ' . $item->address_description }}</li>
+                                    <li class="list-group-item my-2">{{ __('messages.mobile') . ' :  ' . $item->mobile }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            @foreach($info as $item)
-                            <li class="list-group-item my-2"> {{ __('messages.recipient') . ' : ' . $item->recipient_first_name . '  ' . $item->recipient_last_name }}</li>
-                            <li class="list-group-item my-2">{{ __('messages.address') . ' : ' . $item->address_description }}</li>
-                            <li class="list-group-item my-2">{{ __('messages.mobile') . ' :  ' . $item->mobile }}</li>
-                            @endforeach
-                        </ul>
                     </div>
-                </div>
 
 
-                <div class="mt-5">
-                    <div class="card" >
-                        <div class="card-header py-4">
-                            {{ __('messages.payment_type') }}
-                        </div>
-                        <form action="#" method="post">
+                    <div class="mt-5">
+
+
+                        <div class="card">
+                            <div class="card-header py-4">
+                                {{ __('messages.payment_type') }}
+                            </div>
+
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item my-2 ">
                                     <div class="mt-2 form-check form-check-inline">
-                                        <input class="form-check-input" value="online" type="radio" id="online" name="method">
+                                        <input class="form-check-input" value="online" type="radio" id="online"
+                                               name="method">
                                         <label class="form-check-label pt-1" for="online">
                                             {{ __('messages.online_pay') }}
                                         </label>
@@ -61,7 +68,8 @@
 
                                 <li class="list-group-item my-2">
                                     <div class="mt-2 form-check form-check-inline">
-                                        <input class="form-check-input" value="cash" type="radio" id="cash" name="method">
+                                        <input class="form-check-input" value="cash" type="radio" id="cash"
+                                               name="method">
                                         <label class="form-check-label pt-1" for="cash">
                                             {{ __('messages.cash_pay') }}
                                         </label>
@@ -73,7 +81,8 @@
 
                                 <li class="list-group-item my-2">
                                     <div class="mt-2 form-check form-check-inline">
-                                        <input class="form-check-input" value="cart-to-cart" type="radio" id="cart-to-cart" name="method">
+                                        <input class="form-check-input" value="cart-to-cart" type="radio"
+                                               id="cart-to-cart" name="method">
                                         <label class="form-check-label pt-1" for="cart-to-cart">
                                             {{ __('messages.cart_to_cart') }}
                                         </label>
@@ -84,24 +93,24 @@
 
                                 </li>
                             </ul>
-                        </form>
+
+                        </div>
+
 
                     </div>
 
                 </div>
 
-            </div>
-
-            <div class="col-lg-5">
-                @include('front.payment.summery')
-                <div class="mt-4">
-                    <a href="{{ route('cart.check-out.form') }}" class="btn btn-primary w-100 py-3" >{{ __('messages.register_and_pay') }}</a>
+                <div class="col-lg-5">
+                    @include('front.payment.summery')
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary w-100 py-3">{{ __('messages.register_and_pay') }}</button>
+                    </div>
                 </div>
+
+
             </div>
-
-
-
-        </div>
+        </form>
 
     </div>
 @endsection

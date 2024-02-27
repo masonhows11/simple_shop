@@ -94,10 +94,16 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['verified']);
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
-    Route::get('/cart/add-to-cart/{product}', [BasketController::class, 'add'])->name('cart.add-to-cart');
-    Route::get('/cart/check-out',[BasketController::class,'cart'])->name('cart.check.out');
 
 });
+
+Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
+
+    Route::get('/cart/add-to-cart/{product}', [BasketController::class, 'add'])->name('cart.add-to-cart');
+    Route::get('/cart/check-out',[BasketController::class,'cart'])->name('cart.check.out');
+    Route::post('/cart/update/{product}',[BasketController::class,'update'])->name('cart.update');
+});
+
 
 Route::get('/products',[ProductsController::class,'index'])->name('products');
 

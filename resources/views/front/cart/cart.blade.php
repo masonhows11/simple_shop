@@ -34,7 +34,7 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ number_format($product->price) }} {{ __('messages.toman') }}</td>
                                 <td>
-                                    <form action="" method="post" class="row d-flex justify-content-center">
+                                    <form action="{{ route('cart.update',$product->id) }}" method="post" class="row d-flex justify-content-center">
                                         @csrf
                                         <div class="col-auto">
                                             <select name="stock" id="stock" class="form-select small">

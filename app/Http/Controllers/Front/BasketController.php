@@ -36,4 +36,9 @@ class BasketController extends Controller
         $products = $this->basket->all();
         return view('front.cart.cart',['products' => $products]);
     }
+
+
+    public function update(){
+
+    }
 }

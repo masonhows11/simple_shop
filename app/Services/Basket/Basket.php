@@ -45,5 +45,10 @@ class Basket
         $this->storage->set($product->id, ['quantity' => $quantity]);
     }
 
+    public function itemCount()
+    {
+        return $this->storage->count();
+    }
+
 
 }

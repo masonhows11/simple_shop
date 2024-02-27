@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Services\Basket\Basket;
 use App\Services\Storage\Contracts\StorageInterface;
 use Illuminate\Http\Request;
 use function Symfony\Component\Mime\Header\all;
@@ -14,8 +15,8 @@ class ProductsController extends Controller
     public function index()
     {
 
-        $sessionStorage = resolve(StorageInterface::class);
         // for test
+        // $sessionStorage = resolve(StorageInterface::class);
         //        $sessionStorage->set('product', 2);
         //        $sessionStorage->set('product2', 4);
         //        $sessionStorage->set('product4', 6);
@@ -27,8 +28,9 @@ class ProductsController extends Controller
         // dd($sessionStorage->count());
         // dd($sessionStorage->get('product'));
 
+        // dump(session()->all());
+        // dump(resolve(Basket::class)->itemCount());
 
-        dump(session()->all());
         $products = Product::all();
         return view('front.products.products', ['products' => $products]);
     }

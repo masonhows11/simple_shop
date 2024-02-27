@@ -1,3 +1,5 @@
+{{-- for inject  class into blade & use it --}}
+@inject('basket','App\Services\Basket\Basket')
 <nav class="navbar navbar-expand-lg bg-dark-subtle bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('home') }}">{{ __('messages.site_name') }}</a>
@@ -12,10 +14,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('products') }}">{{ __('messages.products') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cart.check.out') }}">{{ __('messages.basket') }} </a>
-                </li>
+
                 @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.check.out') }}">
+                            {{ __('messages.basket') }}  <span class="badge text-bg-primary">{{ $basket->itemCount() }}</span>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
                     </li>

@@ -35,7 +35,7 @@ class SessionStorage implements StorageInterface, Countable
     public function all()
     {
         //// get all item store in session name like basket
-        return session()->get($this->basket);
+        return session()->get($this->basket) ?? [];
     }
 
     public function exists($index)

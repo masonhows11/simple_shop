@@ -14,7 +14,7 @@
         <div class="row d-flex justify-content-between ">
 
             @if($products->isEmpty())
-                <div class="col mt-4 bg-secondary-subtle py-2">
+                <div class="col mt-4 bg-secondary-subtle py-4 text-center rounded-2">
                     {{ __('messages.your_shopping_cart_is_empty') }}
                 </div>
             @else

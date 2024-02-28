@@ -31,16 +31,27 @@ class Transaction
 
     private function makeOrder()
     {
-       $order = Order::create([
+        $order = Order::create([
             'user_id' => auth()->id(),
             'code' => bin2hex(Str::random(16)),
             'amount' => $this->basket->subTotal(),
         ]);
 
-       $order->products->attach();
+        $this->products();
+        // $order->products->attach();
 
 
-       return $order;
+        return $order;
+    }
+
+    private function products()
+    {
+
+        foreach ($this->basket->all() as $product) {
+            $products[$product->id] = ['quantity' => $product->stock];
+        }
+
+        dd($products);
     }
 
 }

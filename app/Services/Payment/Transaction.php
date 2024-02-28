@@ -7,6 +7,7 @@ namespace App\Services\Payment;
 use App\Models\Order;
 use App\Services\Basket\Basket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class Transaction
 {
@@ -22,15 +23,18 @@ class Transaction
 
     public function checkOut()
     {
-        // dd('hello transaction');
+
         $order = $this->makeOrder();
+        dd($order);
     }
 
 
     private function makeOrder()
     {
-        Order::create([
-
+       return Order::create([
+            'user_id' => auth()->id(),
+            'code' => bin2hex(Str::random(16)),
+            'amount' => $this->basket->subTotal(),
         ]);
     }
 

@@ -453,7 +453,7 @@ return [
     'final_price_cart_with_discount' => 'مبلغ نهایی سبد و تخفیفات :',
     'your_order_has_been_successfully_placed' => 'سفارش شما با موفقیت ثبت شد',
     'full_name_receiver' => 'نام و نام خانوادگی دریافت کننده',
-    'zarrinpal' => 'زرین پال',
+    'zarinpal' => 'زرین پال',
     'payment_failed' => 'پرداخت سفارش با خطا مواجه شد',
     'payment_successfully' => 'پرداخت با موفقیت انجام شد',
     'order_number' => 'شماره سفارش',

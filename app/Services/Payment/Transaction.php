@@ -5,6 +5,7 @@ namespace App\Services\Payment;
 
 
 use App\Models\Order;
+use App\Models\Payment;
 use App\Services\Basket\Basket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -25,9 +26,20 @@ class Transaction
     {
 
         $order = $this->makeOrder();
-        dd($order);
+        $payment = $this->makePayment($order);
+        $this->basket->clear();
+        return $order;
     }
 
+    private function makePayment($order)
+    {
+
+        return Payment::create([
+            'order_id' => $order->id,
+            'method' => $this->request->method,
+            'amount' => $order->amount,
+        ]);
+    }
 
     private function makeOrder()
     {
@@ -37,21 +49,18 @@ class Transaction
             'amount' => $this->basket->subTotal(),
         ]);
 
-        $this->products();
-        // $order->products->attach();
-
-
+        $order->products()->attach($this->products());
         return $order;
     }
 
     private function products()
     {
 
+        $products = [];
         foreach ($this->basket->all() as $product) {
             $products[$product->id] = ['quantity' => $product->stock];
         }
-
-        dd($products);
+        return $products;
     }
 
 }

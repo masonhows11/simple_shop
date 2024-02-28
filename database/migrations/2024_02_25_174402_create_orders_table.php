@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('code',250)->unique()->nullable();
-            $table->double('amount')->nullable();
+            $table->unsignedBigInteger('amount')->nullable();
             $table->timestamps();
         });
         \Illuminate\Support\Facades\DB::update('alter table orders AUTO_INCREMENT = 100000');

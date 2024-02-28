@@ -79,5 +79,11 @@ class Basket
         return $total;
     }
 
+    // for clear all session basket items
+    public function clear()
+    {
+        return $this->storage->clearAll();
+    }
+
 
 }

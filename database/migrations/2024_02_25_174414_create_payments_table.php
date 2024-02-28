@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('method')->nullable();
             $table->string('gateway')->nullable();
             $table->string('bank_ref_number')->nullable();
-            $table->double('amount')->nullable();
+            $table->unsignedBigInteger('amount')->nullable();
             $table->tinyInteger('status')->default(0)->comment('0 : Incomplete , 1 : complete');
 
             $table->timestamps();

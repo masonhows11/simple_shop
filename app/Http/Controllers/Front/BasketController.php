@@ -17,7 +17,7 @@ class BasketController extends Controller
     private $basket;
     private $transaction;
 
-    public function __construct(Basket $basket,Transaction $transaction)
+    public function __construct(Basket $basket, Transaction $transaction)
     {
         //// below line said only users can access checkOutForm , pay methods or route
         /// that already logged in else they cannot access
@@ -71,7 +71,7 @@ class BasketController extends Controller
         $request->validate([
             'method' => ['required'],
             'gateway' => ['required_if:method,online']
-        ],$messages=[
+        ], $messages = [
             'method' => 'انتخاب نوع پرداخت را الزامی',
             'gateway' => 'انتخاب نوع درگاه را الزامی',
         ]);
@@ -80,9 +80,11 @@ class BasketController extends Controller
     // for final payment
     public function pay(Request $request)
     {
-        // dd($request->all());
+       
         $this->validateForm($request);
-        $this->transaction->checkOut();
+        $order = $this->transaction->checkOut();
+        session()->flash('success',__('messages.your_order_has_been_successfully_placed'));
+        return redirect()->route('home');
     }
 
 

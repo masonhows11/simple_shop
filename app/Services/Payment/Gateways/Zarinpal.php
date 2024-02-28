@@ -9,19 +9,20 @@ use Illuminate\Http\Request;
 
 class Zarinpal  implements GatewayInterface
 {
+    const ZARINPAL = 'zarinpal';
 
     public function pay(Order $order)
     {
-        // TODO: Implement pay() method.
+
     }
 
     public function verify(Request $request)
     {
-        // TODO: Implement verify() method.
+
     }
 
     public function getName(): string
     {
-        // TODO: Implement getName() method.
+       return self::ZARINPAL;
     }
 }

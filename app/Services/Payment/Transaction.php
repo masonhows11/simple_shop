@@ -27,6 +27,11 @@ class Transaction
 
         $order = $this->makeOrder();
         $payment = $this->makePayment($order);
+
+        if ($payment->isOnline()) {
+            dd('is online');
+        }
+
         $this->basket->clear();
         return $order;
     }

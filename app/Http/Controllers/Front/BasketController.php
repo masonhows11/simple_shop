@@ -82,6 +82,7 @@ class BasketController extends Controller
     {
         // dd($request->all());
         $this->validateForm($request);
+        $this->transaction->checkOut();
     }
 
 

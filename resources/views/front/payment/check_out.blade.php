@@ -62,7 +62,7 @@
                                             <select class="form-select" name="gateway" id="gateway">
                                                 <option value="">{{__('messages.choose')}}</option>
                                                 <option value="zarinpal">زرین پال</option>
-                                                <option value="idpay">ای دی پی</option>
+                                                <option value="idPay">ای دی پی</option>
                                             </select>
                                         </div>
                                     </li>

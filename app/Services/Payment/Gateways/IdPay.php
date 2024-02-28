@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class IdPay implements GatewayInterface
 {
-    const IdPay = 'zarinpal';
+    const IdPay = 'idPay';
     public function pay(Order $order)
     {
-
+        dd(self::IdPay);
     }
 
     public function verify(Request $request)

@@ -13,7 +13,7 @@ class Zarinpal  implements GatewayInterface
 
     public function pay(Order $order)
     {
-
+        dd(self::ZARINPAL);
     }
 
     public function verify(Request $request)

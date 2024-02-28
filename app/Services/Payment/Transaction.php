@@ -7,6 +7,8 @@ namespace App\Services\Payment;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Services\Basket\Basket;
+use App\Services\Payment\Gateways\IdPay;
+use App\Services\Payment\Gateways\Zarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -29,11 +31,21 @@ class Transaction
         $payment = $this->makePayment($order);
 
         if ($payment->isOnline()) {
-            dd('is online');
+            // dd($this->gatewayFactory());
+            $this->gatewayFactory()->pay($order);
         }
 
         $this->basket->clear();
         return $order;
+    }
+
+
+    private function gatewayFactory()
+    {
+        //// return gateway class based on request
+        $gateway = ['zarinpal' => Zarinpal::class, 'idPay' => IdPay::class][$this->request->gateway];
+        //// make once new instance gateway with resolve() method container laravel
+        return resolve($gateway);
     }
 
     private function makePayment($order)

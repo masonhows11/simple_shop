@@ -61,12 +61,8 @@ class BasketController extends Controller
             ->with(['info' => $info]);
     }
 
-    public function pay(Request $request)
-    {
-        // dd($request->all());
-        $this->validateForm($request);
-    }
 
+    // validate for final payment input from request
     public function validateForm($request)
     {
         $request->validate([
@@ -76,6 +72,13 @@ class BasketController extends Controller
             'method' => 'انتخاب نوع پرداخت را الزامی',
             'gateway' => 'انتخاب نوع درگاه را الزامی',
         ]);
+    }
+
+    // for final payment
+    public function pay(Request $request)
+    {
+        // dd($request->all());
+        $this->validateForm($request);
     }
 
 

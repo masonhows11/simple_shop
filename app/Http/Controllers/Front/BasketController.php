@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\Basket\Basket;
+use App\Services\Payment\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,13 +15,15 @@ class BasketController extends Controller
 {
     //
     private $basket;
+    private $transaction;
 
-    public function __construct(Basket $basket)
+    public function __construct(Basket $basket,Transaction $transaction)
     {
         //// below line said only users can access checkOutForm , pay methods or route
         /// that already logged in else they cannot access
         $this->middleware('auth')->only(['checkOutForm', 'pay']);
         $this->basket = $basket;
+        $this->transaction = $transaction;
     }
 
     public function add(Product $product)

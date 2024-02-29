@@ -37,10 +37,18 @@ class IdPay implements GatewayInterface
     public function verify(Request $request)
     {
 
-        //// check input response from bank
+        //// check input response from bank for verify payment if success or not
         if (!$request->has('State') || $request->has('State') !== 'OK') {
             return $this->transactionFailed();
         }
+
+        //// for verify payment after payment success
+        /// payment confirmation may differ depending on ype of payment gateway
+        /// .... in soapClient is route for verify depend on payment gateway
+        /// this code for saman payment gateway
+        $soapClient = new \SoapClient("....");
+        $response = $soapClient->verifyTransaction($request->input('RefNum'),$this->merchantID);
+
     }
 
 

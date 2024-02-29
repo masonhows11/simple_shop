@@ -31,12 +31,16 @@ class IdPay implements GatewayInterface
 
     private function redirectToBank(Order $order)
     {
-            return 'redirect user to bank';
+        return 'redirect user to bank';
     }
 
     public function verify(Request $request)
     {
 
+        //// check input response from bank
+        if (!$request->has('State') || $request->has('State') !== 'OK') {
+
+        }
     }
 
     public function getName(): string

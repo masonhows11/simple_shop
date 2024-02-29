@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 
 class Transaction
 {
+    //// this transaction for doing things for payment sequence
 
     private $request;
     private $basket;
@@ -32,7 +33,7 @@ class Transaction
 
         if ($payment->isOnline()) {
             // dd($this->gatewayFactory());
-          return   $this->gatewayFactory()->pay($order);
+            return $this->gatewayFactory()->pay($order);
         }
 
         $this->basket->clear();
@@ -78,6 +79,12 @@ class Transaction
             $products[$product->id] = ['quantity' => $product->stock];
         }
         return $products;
+    }
+
+    public function verify()
+    {
+        $result = $this->gatewayFactory()->veriy($this->request);
+        dd($result);
     }
 
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\Auth\RegisterController;
 use App\Http\Controllers\Front\Auth\SocialController;
 use App\Http\Controllers\Front\Auth\ValidateEmailController;
 use App\Http\Controllers\Front\BasketController;
+use App\Http\Controllers\Front\PaymentController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\HomeController;
 use App\Services\Storage\Contracts\StorageInterface;
@@ -106,6 +107,9 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
     Route::get('/cart/checkout',[BasketController::class,'checkOutForm'])->name('cart.check-out.form');
 
     Route::post('/cart/pay',[BasketController::class,'pay'])->name('cart.pay');
+
+    //// for call back from gateway
+    Route::post('payment/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
 
 
 

@@ -26,6 +26,7 @@ class IdPay implements GatewayInterface
 
     public function pay(Order $order)
     {
+        /// send payment request may differ depending on ype of payment gateway
         dd(self::IdPay);
     }
 
@@ -52,11 +53,26 @@ class IdPay implements GatewayInterface
         $response = $soapClient->verifyTransaction($request->input('RefNum'), $this->merchantID);
         $order = $this->getOrder($request->input('ResNum'));
 
+        //// 1000 is price fir shipment for example
+        /// total amount + shipment amount user must be pay
+        return $response == ($order->amount + 1000 ) ?
+            $this->transactionSuccess($order,$request->input('ResNum')) :
+            $this->transactionFailed();
+
     }
 
     private function getOrder($resNum)
     {
         return Order::where('code',$resNum)->firstOrFailed();
+    }
+    private function transactionSuccess($order,$refNum)
+    {
+        return [
+            'status' => self::TRANSACTION_SUCCESS,
+            'order' => $order,
+            'refNum' => $refNum,
+            'gateway' => $this->getName()
+        ];
     }
 
 

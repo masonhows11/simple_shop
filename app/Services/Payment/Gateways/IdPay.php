@@ -31,7 +31,7 @@ class IdPay implements GatewayInterface
 
     private function redirectToBank(Order $order)
     {
-
+            return 'redirect user to bank';
     }
 
     public function verify(Request $request)

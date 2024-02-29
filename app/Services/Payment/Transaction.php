@@ -32,7 +32,7 @@ class Transaction
 
         if ($payment->isOnline()) {
             // dd($this->gatewayFactory());
-            $this->gatewayFactory()->pay($order);
+          return   $this->gatewayFactory()->pay($order);
         }
 
         $this->basket->clear();

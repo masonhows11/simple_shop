@@ -28,4 +28,17 @@ class Payment extends Model
     {
         return $this->method == 'online';
     }
+
+
+    // for confirm the order  and fill the require field in database
+    public function confirm(string $refNum, string $gateway = null)
+    {
+        // below code means
+        // refer to property of payment model and save new value
+        $this->bank_ref_number = $refNum;
+        $this->gateway = $gateway;
+        $this->status = 1;
+        $this->save();
+
+    }
 }

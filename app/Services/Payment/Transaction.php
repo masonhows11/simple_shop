@@ -85,8 +85,23 @@ class Transaction
     public function verify()
     {
         $result = $this->gatewayFactory()->veriy($this->request);
-        // dd($result);
+
+        //////// if payment failed ////////
         if ($result['status'] == GatewayInterface::TRANSACTION_FAILED) return false;
+
+        //////// if payment success ////////
+        // confirm current payment record
+        $this->confirmPayment($result);
+        // clear all session  basket items
+        $this->basket->clear();
+
+        return true;
+    }
+
+
+    public function confirmPayment($result)
+    {
+        return $result['order']->payment()->confirm($result['refNum'], $result['gateway']);
     }
 
 }

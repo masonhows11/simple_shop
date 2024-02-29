@@ -39,8 +39,17 @@ class IdPay implements GatewayInterface
 
         //// check input response from bank
         if (!$request->has('State') || $request->has('State') !== 'OK') {
-
+            return $this->transactionFailed();
         }
+    }
+
+
+    private function transactionFailed()
+    {
+        return [
+                'status' =>  self::TRANSACTION_FAILED,
+            ''
+        ];
     }
 
     public function getName(): string

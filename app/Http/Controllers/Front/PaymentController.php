@@ -20,7 +20,21 @@ class PaymentController extends Controller
     {
         // dd('return from bank');
         // dd($request->all());
+        // dd($result);
         $result = $this->transaction->verify();
-        dd($result);
+        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
+    }
+
+
+    private function sendErrorResponse()
+    {
+        session()->flash('error', __('messages.payment_failed'));
+        return redirect()->route('home');
+    }
+
+    private function sendSuccessResponse()
+    {
+        session()->flash('error', __('messages.payment_successfully'));
+        return redirect()->route('home');
     }
 }

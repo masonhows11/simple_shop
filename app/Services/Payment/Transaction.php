@@ -7,6 +7,7 @@ namespace App\Services\Payment;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Services\Basket\Basket;
+use App\Services\Payment\Gateways\GatewayInterface;
 use App\Services\Payment\Gateways\IdPay;
 use App\Services\Payment\Gateways\Zarinpal;
 use Illuminate\Http\Request;
@@ -84,7 +85,8 @@ class Transaction
     public function verify()
     {
         $result = $this->gatewayFactory()->veriy($this->request);
-        dd($result);
+        // dd($result);
+        if ($result['status'] == GatewayInterface::TRANSACTION_FAILED) return false;
     }
 
 }

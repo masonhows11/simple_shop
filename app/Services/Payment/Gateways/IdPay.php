@@ -46,16 +46,24 @@ class IdPay implements GatewayInterface
         /// payment confirmation may differ depending on ype of payment gateway
         /// .... in soapClient is route for verify depend on payment gateway
         /// this code for saman payment gateway
-        $soapClient = new \SoapClient("....");
-        $response = $soapClient->verifyTransaction($request->input('RefNum'),$this->merchantID);
+        /// ResNum code generate from app
+        /// RefNum code generate from bank / gateway
+        $soapClient = new \SoapClient(" route for verify payment to saman gateway");
+        $response = $soapClient->verifyTransaction($request->input('RefNum'), $this->merchantID);
+        $order = $this->getOrder($request->input('ResNum'));
 
+    }
+
+    private function getOrder($resNum)
+    {
+        return Order::where('code',$resNum)->firstOrFailed();
     }
 
 
     private function transactionFailed()
     {
         return [
-                'status' =>  self::TRANSACTION_FAILED,
+            'status' => self::TRANSACTION_FAILED,
             ''
         ];
     }

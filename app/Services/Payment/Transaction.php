@@ -30,7 +30,7 @@ class Transaction
     public function checkOut()
     {
 
-        DB::transaction(function () { });
+        DB::transaction();
 
 
         try {

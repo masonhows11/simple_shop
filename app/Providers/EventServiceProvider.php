@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\OrderRegisteredEvent;
 use App\Events\UserRegisteredEvent;
+use App\Listeners\SendOrderDetailListener;
 use App\Listeners\SendVerificationEmailListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         //        Registered::class => [
         //            SendEmailVerificationNotification::class,
         //        ],
+        OrderRegisteredEvent::class => [
+            SendOrderDetailListener::class,
+        ],
         UserRegisteredEvent::class => [
             SendVerificationEmailListener::class,
         ]

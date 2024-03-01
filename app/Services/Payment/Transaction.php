@@ -4,6 +4,7 @@
 namespace App\Services\Payment;
 
 
+use App\Events\OrderRegisteredEvent;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Services\Basket\Basket;
@@ -52,6 +53,9 @@ class Transaction
 
         // Decreasing the number of products the user has purchased
         $this->normalizeQuantity($order);
+
+        // call even for send email
+        event(new OrderRegisteredEvent($order));
 
         $this->basket->clear();
         return $order;
@@ -112,6 +116,8 @@ class Transaction
 
         // Decreasing the number of products the user has purchased
         $this->normalizeQuantity($result['order']);
+
+
 
         // clear all session  basket items
         $this->basket->clear();

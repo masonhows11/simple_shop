@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>جز ئیات سفارش</title>
     <style>
+        body {
+            direction: rtl;
+        }
+
         .container {
             margin: 0 auto 0 auto;
             display: flex;

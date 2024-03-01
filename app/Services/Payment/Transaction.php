@@ -50,15 +50,19 @@ class Transaction
             // dd($this->gatewayFactory());
             return $this->gatewayFactory()->pay($order);
         }
+        
+        $this->completeOrder($order);
+        return $order;
 
         // Decreasing the number of products the user has purchased
-        $this->normalizeQuantity($order);
+        // $this->normalizeQuantity($order);
 
-        // call even for send email
-        event(new OrderRegisteredEvent($order));
+        // call event send email for send order detail email
+       // event(new OrderRegisteredEvent($order));
 
-        $this->basket->clear();
-        return $order;
+       // $this->basket->clear();
+
+
     }
 
 
@@ -105,24 +109,27 @@ class Transaction
     public function verify()
     {
         $result = $this->gatewayFactory()->veriy($this->request);
-
         //////// if payment failed ////////
         if ($result['status'] == GatewayInterface::TRANSACTION_FAILED) return false;
-
         //////// if payment success ////////
-
         // confirm current payment record
         $this->confirmPayment($result);
 
+        $this->completeOrder($result['order']);
+        return true;
+
+
+
         // Decreasing the number of products the user has purchased
-        $this->normalizeQuantity($result['order']);
+        // $this->normalizeQuantity($result['order']);
 
-
+        // call event send email for send order detail email
+        // event(new OrderRegisteredEvent($result['order']));
 
         // clear all session  basket items
-        $this->basket->clear();
+        // $this->basket->clear();
 
-        return true;
+
     }
 
 
@@ -138,5 +145,18 @@ class Transaction
         foreach ($order->products as $product) {
             $product->decrementStock($product->pivot->quantity);
         }
+    }
+
+
+    private function completeOrder($order)
+    {
+        // Decreasing the number of products the user has purchased
+        $this->normalizeQuantity($order);
+
+        // call event send email for send order detail email
+        event(new OrderRegisteredEvent($order));
+
+        // clear all session  basket items
+        $this->basket->clear();
     }
 }

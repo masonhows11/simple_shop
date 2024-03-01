@@ -37,6 +37,9 @@ class Transaction
             return $this->gatewayFactory()->pay($order);
         }
 
+        // Decreasing the number of products the user has purchased
+        $this->normalizeQuantity($order);
+
         $this->basket->clear();
         return $order;
     }
@@ -90,8 +93,13 @@ class Transaction
         if ($result['status'] == GatewayInterface::TRANSACTION_FAILED) return false;
 
         //////// if payment success ////////
+        
         // confirm current payment record
         $this->confirmPayment($result);
+
+        // Decreasing the number of products the user has purchased
+        $this->normalizeQuantity($result['order']);
+
         // clear all session  basket items
         $this->basket->clear();
 
@@ -104,4 +112,12 @@ class Transaction
         return $result['order']->payment()->confirm($result['refNum'], $result['gateway']);
     }
 
+
+    private function normalizeQuantity($order)
+    {
+
+        foreach ($order->products as $product) {
+            $product->decrementStock($product->pivot->quantity);
+        }
+    }
 }

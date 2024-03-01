@@ -30,4 +30,13 @@ class Product extends Model
     {
         return $this->BelongsToMany(Order::class);
     }
+
+
+    public function decrementStock(int $count)
+    {
+        // $this refer to this current model
+        // for decrement count of product
+        //  a user has buy
+        return $this->decrement('quantity',$count);
+    }
 }

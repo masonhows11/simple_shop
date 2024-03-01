@@ -31,26 +31,22 @@ class Transaction
     public function checkOut()
     {
 
-        DB::transaction();
-
+        DB::beginTransaction();
 
         try {
-
             $order = $this->makeOrder();
             $payment = $this->makePayment($order);
-
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             return null;
         }
 
-
         if ($payment->isOnline()) {
             // dd($this->gatewayFactory());
             return $this->gatewayFactory()->pay($order);
         }
-        
+
         $this->completeOrder($order);
         return $order;
 
@@ -61,8 +57,6 @@ class Transaction
        // event(new OrderRegisteredEvent($order));
 
        // $this->basket->clear();
-
-
     }
 
 
@@ -118,8 +112,6 @@ class Transaction
         $this->completeOrder($result['order']);
         return true;
 
-
-
         // Decreasing the number of products the user has purchased
         // $this->normalizeQuantity($result['order']);
 
@@ -128,17 +120,11 @@ class Transaction
 
         // clear all session  basket items
         // $this->basket->clear();
-
-
     }
-
-
     public function confirmPayment($result)
     {
         return $result['order']->payment()->confirm($result['refNum'], $result['gateway']);
     }
-
-
     private function normalizeQuantity($order)
     {
 
@@ -147,15 +133,12 @@ class Transaction
         }
     }
 
-
     private function completeOrder($order)
     {
         // Decreasing the number of products the user has purchased
         $this->normalizeQuantity($order);
-
         // call event send email for send order detail email
         event(new OrderRegisteredEvent($order));
-
         // clear all session  basket items
         $this->basket->clear();
     }

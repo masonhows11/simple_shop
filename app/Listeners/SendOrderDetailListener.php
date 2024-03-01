@@ -25,6 +25,6 @@ class SendOrderDetailListener
     public function handle(OrderRegisteredEvent $event): void
     {
         //
-        Mail::to($this)->send(new OrderDetailEmail($event->order->user));
+        Mail::to($event->order->user->email)->send(new OrderDetailEmail($event->order));
     }
 }

@@ -12,13 +12,18 @@ use Illuminate\Queue\SerializesModels;
 class OrderDetailEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    private $order;
+    private $user;
 
     /**
      * Create a new message instance.
+     * @param $order
      */
-    public function __construct()
+    public function __construct($order)
     {
         //
+        $this->order = $order;
+        $this->user = $order->user;
     }
 
     /**

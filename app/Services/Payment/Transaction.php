@@ -11,6 +11,7 @@ use App\Services\Payment\Gateways\GatewayInterface;
 use App\Services\Payment\Gateways\IdPay;
 use App\Services\Payment\Gateways\Zarinpal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class Transaction
@@ -29,8 +30,20 @@ class Transaction
     public function checkOut()
     {
 
-        $order = $this->makeOrder();
-        $payment = $this->makePayment($order);
+        DB::transaction(function () { });
+
+
+        try {
+
+            $order = $this->makeOrder();
+            $payment = $this->makePayment($order);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return null;
+        }
+
 
         if ($payment->isOnline()) {
             // dd($this->gatewayFactory());
@@ -93,7 +106,7 @@ class Transaction
         if ($result['status'] == GatewayInterface::TRANSACTION_FAILED) return false;
 
         //////// if payment success ////////
-        
+
         // confirm current payment record
         $this->confirmPayment($result);
 

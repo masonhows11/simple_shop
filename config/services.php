@@ -41,5 +41,8 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_LINK'),
     ],
-
+    'gateways' => [
+        'id_pay' => ['api_key' => 'ebb3b7ca-68f9-4447-804c-a34a59e806aa'],
+        'zarinpal' => ['api_key' => ''],
+    ]
 ];

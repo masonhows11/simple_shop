@@ -43,7 +43,7 @@ class IdPay implements GatewayInterface
 
         //// redirect user to bank
         $params = array(
-            'order_id' => $order->id,
+            'order_id' => $order->code,
             'amount' => $order->amount,
             'name' => $order->user->name,
             'phone' => $order->user->mobile,
@@ -64,22 +64,23 @@ class IdPay implements GatewayInterface
 
         $result = curl_exec($ch);
         curl_close($ch);
-        $send_result = json_decode($result, true);
+        $result = json_decode($result, true);
 
 
         ///// if error code true means send request to gateway has error
-        if (isset($send_result['error_code'])) {
-            throw  new \InvalidArgumentException($send_result['error_message']);
+        if (isset($result['error_code'])) {
+            throw  new \InvalidArgumentException($result['error_message']);
         }
 
 
         //// if no error_code then redirect user to gateway
-        return redirect()->away($send_result['link']);
+        return redirect()->away($result['link']);
     }
 
     public function verify(Request $request)
     {
-
+        // for test callback
+        dd($request);
         //// check input response from bank for verify payment if success or not
         //        if (!$request->has('State') || $request->has('State') !== 'OK') {
         //            return $this->transactionFailed();
@@ -103,8 +104,8 @@ class IdPay implements GatewayInterface
 
         //// verify payment from idPay
         $params = array(
-            'id' => $this->request->getId(),
-            'order_id' => $this->request->getOrderId(),
+            'id' => '',
+            'order_id' => '',
         );
 
         $ch = curl_init();
@@ -113,7 +114,7 @@ class IdPay implements GatewayInterface
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'X-API-KEY: ' . $this->request->getApiKey() . '',
+            'X-API-KEY: ' . $this->apiKey . '',
             'X-SANDBOX: 1',
         ));
 

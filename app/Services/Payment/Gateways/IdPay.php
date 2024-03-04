@@ -70,7 +70,7 @@ class IdPay implements GatewayInterface
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
         // if no error_code then redirect user to gateway
-        // dd($send_result);
+         dd($send_result);
         return redirect()->away($send_result['link']);
     }
 

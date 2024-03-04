@@ -45,19 +45,22 @@ class Transaction
         if ($payment->isOnline()) {
             // dd($this->gatewayFactory());
             return $this->gatewayFactory()->pay($order);
+
+        } else {
+            
+            $this->completeOrder($order);
+
+            return $order;
         }
 
-        $this->completeOrder($order);
-
-        return $order;
 
         // Decreasing the number of products the user has purchased
         // $this->normalizeQuantity($order);
 
         // call event send email for send order detail email
-       // event(new OrderRegisteredEvent($order));
+        // event(new OrderRegisteredEvent($order));
 
-       // $this->basket->clear();
+        // $this->basket->clear();
     }
 
 
@@ -123,10 +126,12 @@ class Transaction
         // clear all session  basket items
         // $this->basket->clear();
     }
+
     public function confirmPayment($result)
     {
         return $result['order']->payment()->confirm($result['refNum'], $result['gateway']);
     }
+
     private function normalizeQuantity($order)
     {
 

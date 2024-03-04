@@ -81,15 +81,12 @@ class BasketController extends Controller
     public function pay(Request $request)
     {
 
-        try {
-            $this->validateForm($request);
-            $order = $this->transaction->checkOut();
-            // dd($order);
-            session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
-            return redirect()->route('home');
-        } catch (\Exception $ex) {
-            return $ex->getMessage();
-        }
+        $this->validateForm($request);
+        $this->transaction->checkOut();
+
+        $order = $this->transaction->checkOut();
+        session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
+        return redirect()->route('home');
 
     }
 

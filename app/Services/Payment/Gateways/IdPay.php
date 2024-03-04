@@ -63,14 +63,15 @@ class IdPay implements GatewayInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $send_result = json_decode($result, true);
-        // dd($send_result);
 
-        // if error code true means send request to gateway has error
+
+        ///// if error code true means send request to gateway has error
         if (isset($send_result['error_code'])) {
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
-        // if no error_code then redirect user to gateway
-        // dd($send_result);
+
+        //// if no error_code then redirect user to gateway
+        // return redirect()->away('https://www.google.com');
         return redirect()->away($send_result['link']);
     }
 

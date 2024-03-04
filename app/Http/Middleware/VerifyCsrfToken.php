@@ -13,7 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        '/payment/idPay/callback',
-        '/payment/zarinpal/callback'
+        '/payment/verify/idPay/callback',
+        '/payment/verify/zarinpal/callback'
     ];
 }

@@ -25,16 +25,9 @@ class IdPay implements GatewayInterface
     }
 
 
-    public function pay(Order $order)
+    public function payment(Order $order)
     {
-
-        $this->redirectToBank($order);
-
-    }
-
-    private function redirectToBank($order)
-    {
-
+        
         $params = array(
             'order_id' => $order->code,
             'amount' => $order->amount,
@@ -66,6 +59,7 @@ class IdPay implements GatewayInterface
         return redirect()->away($result['link']);
 
     }
+
 
     public function verify(Request $request)
     {

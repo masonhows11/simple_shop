@@ -32,11 +32,13 @@ class BasketController extends Controller
     {
         try {
             $this->basket->addToBasket($product, 1);
-            session()->flash('success', __('messages.the_product_has_been_added_to_the_cart'));
+            session()->flash('success',
+                __('messages.the_product_has_been_added_to_the_cart'));
             return redirect()->back();
         } catch (QuantityExceededException $ex) {
 
-            return back()->with('error', __('messages.product_out_of_stock_as_u_requested'));
+            return back()->with('error',
+                __('messages.product_out_of_stock_as_u_requested'));
         }
 
     }
@@ -50,10 +52,11 @@ class BasketController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        // dd($product);
+
         //// update the quantity product
         $this->basket->update($product, $request->stock);
-        session()->flash('success', __('messages.The_update_was_completed_successfully'));
+        session()->flash('success',
+            __('messages.The_update_was_completed_successfully'));
         return redirect()->back();
     }
 
@@ -83,12 +86,16 @@ class BasketController extends Controller
     public function pay(Request $request)
     {
 
+
         $this->validateForm($request);
-        $this->transaction->checkOut();
+
         $order = $this->transaction->checkOut();
-        session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
+
+        session()->flash('success',
+            __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
         return redirect()->route('home');
 
+        // $this->transaction->checkOut();
         //        $order = Order::first();
         //        $callBack = route('payment.verify', 'idPay');
         //        $params = array(

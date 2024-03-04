@@ -13,7 +13,7 @@ interface GatewayInterface
     const TRANSACTION_SUCCESS = 'messages.payment_successfully';
 
 
-    public function pay(Order $order);
+    public function payment(Order $order);
 
     public function verify(Request $request);
 

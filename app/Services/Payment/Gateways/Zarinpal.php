@@ -11,7 +11,7 @@ class Zarinpal  implements GatewayInterface
 {
     const ZARINPAL = 'zarinpal';
 
-    public function pay(Order $order)
+    public function payment(Order $order)
     {
         dd(self::ZARINPAL);
     }

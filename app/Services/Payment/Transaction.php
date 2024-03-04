@@ -45,15 +45,22 @@ class Transaction
 
         }
 
-        if ($payment->isOnline()) {
-            // dd('fucker checkout online');
-            return $this->gatewayFactory()->pay($order);
+        try {
 
+            /////
+            if ($payment->isOnline()) {
+
+                return $this->gatewayFactory()->payment($order);
+
+            }
+
+            ////
+            $this->completeOrder($order);
+            return $order;
+
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
         }
-
-        // dd('fucker checkout offline');
-        $this->completeOrder($order);
-        return $order;
 
 
         // Decreasing the number of products the user has purchased
@@ -146,7 +153,7 @@ class Transaction
         // Decreasing the number of products the user has purchased
         $this->normalizeQuantity($order);
         // call event send email for send order detail email
-        event(new OrderRegisteredEvent($order));
+        //  event(new OrderRegisteredEvent($order));
         // clear all session  basket items
         $this->basket->clear();
     }

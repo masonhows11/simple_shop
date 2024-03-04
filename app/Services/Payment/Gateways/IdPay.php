@@ -31,13 +31,14 @@ class IdPay implements GatewayInterface
         /// send payment request may differ depending on ype of payment gateway
         //  dd(self::IdPay);
 
-        //// send payment to idPay gateway with redirectToBank() function
+        //// send payment to idPay gateway with redirectToBank($order) function and order parameter
         $this->redirectToBank($order);
 
     }
 
     private function redirectToBank(Order $order)
     {
+
         //// redirect user to bank
         $params = array(
             'order_id' => $order->id,
@@ -69,6 +70,7 @@ class IdPay implements GatewayInterface
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
         // if no error_code then redirect user to gateway
+        // dd($send_result);
         return redirect()->away($send_result['link']);
     }
 

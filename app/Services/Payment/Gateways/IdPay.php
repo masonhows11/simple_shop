@@ -79,8 +79,7 @@ class IdPay implements GatewayInterface
 
     public function verify(Request $request)
     {
-        // for test callback
-        dd($request);
+
         //// check input response from bank for verify payment if success or not
         //        if (!$request->has('State') || $request->has('State') !== 'OK') {
         //            return $this->transactionFailed();
@@ -101,6 +100,9 @@ class IdPay implements GatewayInterface
         //        return $response == ($order->amount + 1000 ) ?
         //            $this->transactionSuccess($order,$request->input('ResNum')) :
         //            $this->transactionFailed();
+
+        // for test callback
+        dd($request);
 
         //// verify payment from idPay
         $params = array(

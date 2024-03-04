@@ -72,8 +72,8 @@ class BasketController extends Controller
             'method' => ['required'],
             'gateway' => ['required_if:method,online']
         ], $messages = [
-            'method' => 'انتخاب نوع پرداخت را الزامی',
-            'gateway' => 'انتخاب نوع درگاه را الزامی',
+            'method' => 'انتخاب نوع پرداخت الزامی است',
+            'gateway' => 'انتخاب نوع درگاه الزامی است',
         ]);
     }
 

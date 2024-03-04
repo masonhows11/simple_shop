@@ -6,6 +6,7 @@ namespace App\Services\Payment\Gateways;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class IdPay implements GatewayInterface
 {
@@ -39,7 +40,7 @@ class IdPay implements GatewayInterface
     private function redirectToBank(Order $order)
     {
 
-        dd($this->callBak);
+
         //// redirect user to bank
         $params = array(
             'order_id' => $order->id,
@@ -73,8 +74,6 @@ class IdPay implements GatewayInterface
 
 
         //// if no error_code then redirect user to gateway
-        // return redirect()->away('https://www.google.com');
-
         return redirect()->away($send_result['link']);
     }
 

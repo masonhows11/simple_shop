@@ -11,14 +11,14 @@ class IdPay implements GatewayInterface
 {
     const IdPay = 'idPay';
 
-    private $merchantID;
+    // private $merchantID;
     private $apiKey;
     private $callBak;
 
 
     public function __construct()
     {
-        $this->merchantID = '1234656';
+        // $this->merchantID = '1234656';
         $this->apiKey = config('services.gateways.id_pay.api_key');
         //// define call back route & set a gateway name
         /// with $this->getName() method
@@ -62,8 +62,9 @@ class IdPay implements GatewayInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $send_result = json_decode($result, true);
+        // dd($send_result);
 
-        // the error code means send request to gateway has error
+        // if error code true means send request to gateway has error
         if (isset($send_result['error_code'])) {
             throw  new \InvalidArgumentException($send_result['error_message']);
         }

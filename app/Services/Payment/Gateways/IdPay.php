@@ -12,12 +12,14 @@ class IdPay implements GatewayInterface
     const IdPay = 'idPay';
 
     private $merchantID;
+    private $apiKey;
     private $callBak;
 
 
     public function __construct()
     {
-        $this->merchantID = '123456789';
+        $this->merchantID = '1234656';
+        $this->apiKey = config('services.gateways.id_pay.api_key');
         //// define call back route & set a gateway name
         /// with $this->getName() method
         $this->callBak = route('payment.verify', $this->getName());
@@ -53,18 +55,19 @@ class IdPay implements GatewayInterface
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'X-API-KEY: ' . $info->getApiKey() . '',
+            'X-API-KEY: ' . $this->apiKey . '',
             'X-SANDBOX: 1' // for real gateway comment the sandbox line
         ));
 
         $result = curl_exec($ch);
         curl_close($ch);
         $send_result = json_decode($result, true);
-        //dd($send_result);
+
+        // the error code means send request to gateway has error
         if (isset($send_result['error_code'])) {
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
-        // redirect user to gateway
+        // if no error_code then redirect user to gateway
         return redirect()->away($send_result['link']);
     }
 

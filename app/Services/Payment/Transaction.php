@@ -64,7 +64,7 @@ class Transaction
     {
         //// return gateway class based on request
         $gateway = ['zarinpal' => Zarinpal::class, 'idPay' => IdPay::class][$this->request->gateway];
-        dd($gateway);
+        // dd($gateway);
         //// make once new instance gateway with resolve() method container laravel
         return resolve($gateway);
     }

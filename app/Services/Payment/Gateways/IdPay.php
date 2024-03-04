@@ -30,16 +30,21 @@ class IdPay implements GatewayInterface
         //  dd(self::IdPay);
 
         //// send payment to idPay
-        $info = $this->request;
-        $full_user = $info->getUser()->first_name . ' ' . $info->getUser()->last_name;
+        $this->redirectToBank($order);
+
+    }
+
+    private function redirectToBank(Order $order)
+    {
+        // return 'redirect user to bank';
         $params = array(
-            'order_id' => $info->getOrderId(),
-            'amount' => $info->getAmount(),
-            'name' => $full_user,
-            'phone' => $info->getUser()->mobile,
-            'mail' => $info->getUser()->email,
+            'order_id' => $order->id,
+            'amount' => $order->amount,
+            'name' => $order->user->name,
+            'phone' => $order->user->mobile,
+            'mail' => $order->user->email,
             'desc' => 'توضیحات پرداخت کننده',
-            'callback' => route('callback.pay'),
+            'callback' => $this->callBak,
         );
 
         $ch = curl_init();
@@ -61,12 +66,6 @@ class IdPay implements GatewayInterface
         }
         // redirect user to gateway
         return redirect()->away($send_result['link']);
-
-    }
-
-    private function redirectToBank(Order $order)
-    {
-        return 'redirect user to bank';
     }
 
     public function verify(Request $request)
@@ -139,9 +138,10 @@ class IdPay implements GatewayInterface
 
     private function getOrder($resNum)
     {
-        return Order::where('code',$resNum)->firstOrFailed();
+        return Order::where('code', $resNum)->firstOrFailed();
     }
-    private function transactionSuccess($order,$refNum)
+
+    private function transactionSuccess($order, $refNum)
     {
         return [
             'status' => self::TRANSACTION_SUCCESS,

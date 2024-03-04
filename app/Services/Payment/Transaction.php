@@ -31,6 +31,7 @@ class Transaction
     public function checkOut()
     {
         DB::beginTransaction();
+
         try {
 
             $order = $this->makeOrder();
@@ -45,14 +46,14 @@ class Transaction
         }
 
         if ($payment->isOnline()) {
+            // dd('fucker checkout online');
             return $this->gatewayFactory()->pay($order);
 
-        } else {
-
-            $this->completeOrder($order);
-
-            return $order;
         }
+
+        // dd('fucker checkout offline');
+        $this->completeOrder($order);
+        return $order;
 
 
         // Decreasing the number of products the user has purchased

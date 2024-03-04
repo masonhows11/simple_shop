@@ -14,24 +14,27 @@ class IdPay implements GatewayInterface
 
     // private $merchantID;
     private $apiKey;
-    private $callBak;
+    private $callBack;
 
 
     public function __construct()
     {
         // $this->merchantID = '1234656';
         $this->apiKey = config('services.gateways.id_pay.api_key');
-        $this->callBak = route('payment.verify', $this->getName());
+        $this->callBack = route('payment.verify', $this->getName());
     }
 
 
     public function pay(Order $order)
     {
+
         $this->redirectToBank($order);
+
     }
 
     private function redirectToBank($order)
     {
+
         $params = array(
             'order_id' => $order->code,
             'amount' => $order->amount,
@@ -39,7 +42,7 @@ class IdPay implements GatewayInterface
             'phone' => $order->user->mobile,
             'mail' => $order->user->email,
             'desc' => 'توضیحات پرداخت کننده',
-            'callback' => $this->callBak,
+            'callback' => $this->callBack,
         );
 
         $ch = curl_init();
@@ -58,6 +61,7 @@ class IdPay implements GatewayInterface
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }
+
 
         return redirect()->away($result['link']);
 

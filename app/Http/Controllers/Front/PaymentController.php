@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     //
-    private $transaction;
+    private  $transaction;
 
     public function __construct(Transaction $transaction)
     {

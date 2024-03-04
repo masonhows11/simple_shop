@@ -42,7 +42,7 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_LINK'),
     ],
     'gateways' => [
-        'id_pay' => ['api_key' => 'ebb3b7ca-68f9-4447-804c-a34a59e806aa'],
+        'id_pay' => ['api_key' => '0f68647c-c3ea-4283-b296-f9fc03dfd37d'],
         'zarinpal' => ['api_key' => ''],
     ]
 ];

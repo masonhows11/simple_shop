@@ -82,7 +82,7 @@ class BasketController extends Controller
     {
 
         $this->validateForm($request);
-        $this->transaction->checkOut();
+        // $this->transaction->checkOut();
 
         $order = $this->transaction->checkOut();
         session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));

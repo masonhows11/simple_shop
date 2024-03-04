@@ -110,7 +110,7 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
     Route::post('/cart/pay',[BasketController::class,'pay'])->name('cart.pay');
     // lv.3
     //// for call back from gateway
-    Route::post('payment/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
+    Route::post('verify/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
 
 
 

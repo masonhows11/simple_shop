@@ -30,16 +30,18 @@ class Transaction
 
     public function checkOut()
     {
-
         DB::beginTransaction();
-
         try {
+
             $order = $this->makeOrder();
             $payment = $this->makePayment($order);
             DB::commit();
+
         } catch (\Exception $e) {
+
             DB::rollBack();
             return null;
+
         }
 
         if ($payment->isOnline()) {
@@ -47,7 +49,7 @@ class Transaction
             return $this->gatewayFactory()->pay($order);
 
         } else {
-            
+
             $this->completeOrder($order);
 
             return $order;
@@ -68,7 +70,6 @@ class Transaction
     {
         //// return gateway class based on request
         $gateway = ['zarinpal' => Zarinpal::class, 'idPay' => IdPay::class][$this->request->gateway];
-        // dd($gateway);
         //// make once new instance gateway with resolve() method container laravel
         return resolve($gateway);
     }

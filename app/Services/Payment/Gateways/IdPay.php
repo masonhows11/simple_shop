@@ -39,6 +39,7 @@ class IdPay implements GatewayInterface
     private function redirectToBank(Order $order)
     {
 
+        dd($this->callBak);
         //// redirect user to bank
         $params = array(
             'order_id' => $order->id,
@@ -70,8 +71,10 @@ class IdPay implements GatewayInterface
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
 
+
         //// if no error_code then redirect user to gateway
         // return redirect()->away('https://www.google.com');
+
         return redirect()->away($send_result['link']);
     }
 

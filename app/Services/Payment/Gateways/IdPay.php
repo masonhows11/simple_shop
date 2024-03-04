@@ -6,7 +6,7 @@ namespace App\Services\Payment\Gateways;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+
 
 class IdPay implements GatewayInterface
 {
@@ -21,27 +21,17 @@ class IdPay implements GatewayInterface
     {
         // $this->merchantID = '1234656';
         $this->apiKey = config('services.gateways.id_pay.api_key');
-        //// define call back route & set a gateway name
-        /// with $this->getName() method
         $this->callBak = route('payment.verify', $this->getName());
     }
 
 
     public function pay(Order $order)
     {
-        /// send payment request may differ depending on ype of payment gateway
-        //  dd(self::IdPay);
-
-        //// send payment to idPay gateway with redirectToBank($order) function and order parameter
         $this->redirectToBank($order);
-
     }
 
-    private function redirectToBank(Order $order)
+    private function redirectToBank($order)
     {
-
-
-        //// redirect user to bank
         $params = array(
             'order_id' => $order->code,
             'amount' => $order->amount,
@@ -65,16 +55,12 @@ class IdPay implements GatewayInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result, true);
-
-
-        ///// if error code true means send request to gateway has error
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }
 
-
-        //// if no error_code then redirect user to gateway
         return redirect()->away($result['link']);
+
     }
 
     public function verify(Request $request)
@@ -101,7 +87,6 @@ class IdPay implements GatewayInterface
         //            $this->transactionSuccess($order,$request->input('ResNum')) :
         //            $this->transactionFailed();
 
-        // for test callback
         dd($request);
 
         //// verify payment from idPay

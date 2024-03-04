@@ -45,7 +45,6 @@ class Transaction
         }
 
         if ($payment->isOnline()) {
-            // dd($this->gatewayFactory());
             return $this->gatewayFactory()->pay($order);
 
         } else {

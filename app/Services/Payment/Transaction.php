@@ -48,6 +48,7 @@ class Transaction
         }
 
         $this->completeOrder($order);
+
         return $order;
 
         // Decreasing the number of products the user has purchased

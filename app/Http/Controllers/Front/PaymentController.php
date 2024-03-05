@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Services\Payment\Transaction;
+use App\Services\PaymentServiceOne\Transaction;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller

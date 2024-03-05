@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Payment\Gateways;
+namespace App\Services\PaymentServiceOne\Gateways;
 
 
 use App\Models\Order;
@@ -29,8 +29,8 @@ class IdPay implements GatewayInterface
     {
 
         $params = array(
-            'order_id' => $order->code,
-            'amount' => $order->amount,
+            'order_id' => null,
+            'amount' => null,
             'name' => $order->user->name,
             'phone' => $order->user->mobile,
             'mail' => $order->user->email,
@@ -54,15 +54,19 @@ class IdPay implements GatewayInterface
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }
+        dd($result);
 
 
-        return redirect()->away($result['link']);
+       return redirect()->away($result['link']);
 
     }
 
 
+
+
     public function verify(Request $request)
     {
+
 
         //// check input response from bank for verify payment if success or not
         //        if (!$request->has('State') || $request->has('State') !== 'OK') {

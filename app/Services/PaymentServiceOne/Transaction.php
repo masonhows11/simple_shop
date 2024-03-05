@@ -1,16 +1,16 @@
 <?php
 
 
-namespace App\Services\Payment;
+namespace App\Services\PaymentServiceOne;
 
 
 use App\Events\OrderRegisteredEvent;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Services\Basket\Basket;
-use App\Services\Payment\Gateways\GatewayInterface;
-use App\Services\Payment\Gateways\IdPay;
-use App\Services\Payment\Gateways\Zarinpal;
+use App\Services\PaymentServiceOne\Gateways\GatewayInterface;
+use App\Services\PaymentServiceOne\Gateways\IdPay;
+use App\Services\PaymentServiceOne\Gateways\Zarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -48,7 +48,7 @@ class Transaction
         try {
             if ($payment->isOnline()) {
 
-                $this->gatewayFactory()->payment($order);
+                return $this->gatewayFactory()->payment($order);
 
             } else {
                 $this->completeOrder($order);
@@ -74,8 +74,8 @@ class Transaction
         //// return gateway class based on request
         $gateway = ['zarinpal' => Zarinpal::class, 'idPay' => IdPay::class][$this->request->gateway];
         //// make once new instance gateway with resolve() method container laravel
-        // return resolve($gateway);
-        return new $gateway;
+        return resolve($gateway);
+        //  return new $gateway;
     }
 
     private function makePayment($order)

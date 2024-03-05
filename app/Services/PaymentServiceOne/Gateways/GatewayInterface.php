@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Payment\Gateways;
+namespace App\Services\PaymentServiceOne\Gateways;
 
 
 use App\Models\Order;

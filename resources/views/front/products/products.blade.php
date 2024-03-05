@@ -6,11 +6,12 @@
 
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="height: 125px">
             <div class="col-md-6 mt-5">
                 @include('layouts.alert.alert')
             </div>
         </div>
+        
         <div class="row row-cols-1 row-cols-md-4 g-4">
 
             @foreach($products as $product)

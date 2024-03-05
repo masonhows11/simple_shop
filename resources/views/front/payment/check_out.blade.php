@@ -5,7 +5,7 @@
 @section('main_content')
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="height: 125px">
             <div class="col-md-6 mt-5">
                 @include('layouts.alert.alert')
             </div>

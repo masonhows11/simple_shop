@@ -11,7 +11,7 @@
                 @include('layouts.alert.alert')
             </div>
         </div>
-        
+
         <div class="row row-cols-1 row-cols-md-4 g-4">
 
             @foreach($products as $product)

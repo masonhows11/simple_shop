@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     //
-    private  $transaction;
-
-    public function __construct(Transaction $transaction)
-    {
-        $this->transaction = $transaction;
-    }
+    //    private  $transaction;
+    //
+    //    public function __construct(Transaction $transaction)
+    //    {
+    //        $this->transaction = $transaction;
+    //    }
 
     // validate for final payment input from request
     public function validateForm($request)
@@ -28,37 +28,31 @@ class PaymentController extends Controller
         ]);
     }
 
-    // for final payment
+    // for pay the payment
     public function pay(Request $request)
     {
 
-
         $this->validateForm($request);
 
-
-        dd('this is pay function');
-
-
-        session()->flash('success',
-            __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
+        session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
         return redirect()->route('home');
 
-
-    
-
     }
-
-
-
-
+    // for verify the payment
     public function verify(Request $request)
     {
-        // dd('return from bank');
-        // dd($request->all());
-        // dd($result);
-        $result = $this->transaction->verify();
-        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
+
+
     }
+
+
+
+
+    //    public function verify(Request $request)
+    //    {
+    //        $result = $this->transaction->verify();
+    //        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
+    //    }
 
 
     private function sendErrorResponse()

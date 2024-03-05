@@ -10,9 +10,7 @@ use App\Services\PaymentServiceOne\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-//use App\Models\Order;
-//use App\Models\User;
-//use Illuminate\Support\Facades\Config;
+
 
 class BasketController extends Controller
 {
@@ -71,7 +69,7 @@ class BasketController extends Controller
     }
 
 
-    // validate for final payment input from request
+
     // public function validateForm($request)
     // {
     //     $request->validate([
@@ -83,20 +81,13 @@ class BasketController extends Controller
     //     ]);
     // }
 
-    // for final payment
     // public function pay(Request $request)
     // {
-
-
     //     $this->validateForm($request);
-
     //     $order = $this->transaction->checkOut();
-
     //     session()->flash('success',
     //         __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
     //     return redirect()->route('home');
-
-    
     // }
 
 

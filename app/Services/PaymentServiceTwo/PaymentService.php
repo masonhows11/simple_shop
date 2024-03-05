@@ -16,7 +16,7 @@ class PaymentService
     // RequestInterface $request  means that request is type of payment gateway we used for pay
     // private RequestInterface $request;
 
-    private $request;
+    private RequestInterface $request;
 
     // RequestInterface $request  means that request is type of payment gateway we used for pay
     public function __construct($provider_name, RequestInterface $request)
@@ -29,7 +29,7 @@ class PaymentService
     private function findProvider()
     {
         // find provider
-        $providerClassName = 'App\\Services\\PaymentService\\Providers\\' . $this->provider_name;
+        $providerClassName = 'App\\Services\\PaymentServiceTwo\\Gateways\\' . $this->provider_name;
         if (!class_exists($providerClassName)) {
             throw new ProviderNotFoundException(__('messages.the_selected_payment_gateway_could_not_be_found'));
         }

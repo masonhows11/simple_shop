@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\PaymentService\Providers;
+namespace App\Services\PaymentService\Gateways;
 
 
 use App\Services\PaymentService\Contracts\AbstractProviderConstructor;

@@ -43,35 +43,8 @@ class PaymentController extends Controller
             __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
         return redirect()->route('home');
 
-        // $this->transaction->checkOut();
-        //        $order = Order::first();
-        //        $callBack = route('payment.verify', 'idPay');
-        //        $params = array(
-        //            'order_id' => $order->code,
-        //            'amount' => $order->amount,
-        //            'name' => $order->user->name,
-        //            'phone' => $order->user->mobile,
-        //            'mail' => $order->user->email,
-        //            'desc' => 'توضیحات پرداخت کننده',
-        //            'callback' => $callBack,
-        //        );
-        //        $ch = curl_init();
-        //        curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
-        //        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
-        //        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        //        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        //            'Content-Type: application/json',
-        //            'X-API-KEY: ' . Config::get('services.gateways.id_pay.api_key') . '',
-        //            'X-SANDBOX: 1' // for real gateway comment the sandbox line
-        //        ));
-        //        $result = curl_exec($ch);
-        //        curl_close($ch);
-        //        $result = json_decode($result, true);
-        //        if (isset($result['error_code'])) {
-        //            throw  new \InvalidArgumentException($result['error_message']);
-        //        }
-        //        return redirect()->away($result['link']);
 
+    
 
     }
 

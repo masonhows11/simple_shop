@@ -1,14 +1,12 @@
 <?php
 
 
-namespace App\Services\PaymentService\Gateways;
+namespace App\Services\PaymentServiceTwo\Gateways;
 
 
-use App\Services\PaymentService\Contracts\AbstractProviderConstructor;
-use App\Services\PaymentService\Contracts\PayableInterface;
-use App\Services\PaymentService\Contracts\VerifyInterface;
-
-
+use App\Services\PaymentServiceTwo\Contracts\AbstractProviderConstructor;
+use App\Services\PaymentServiceTwo\Contracts\PayableInterface;
+use App\Services\PaymentServiceTwo\Contracts\VerifyInterface;
 
 class IDPayGateway extends AbstractProviderConstructor implements PayableInterface, VerifyInterface
 {

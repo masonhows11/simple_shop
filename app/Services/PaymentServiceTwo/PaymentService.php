@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services\PaymentService;
+namespace App\Services\PaymentServiceTwo;
 
-use App\Services\PaymentService\Contracts\RequestInterface;
-use App\Services\PaymentService\Exceptions\ProviderNotFoundException;
+use App\Services\PaymentServiceTwo\Contracts\RequestInterface;
+use App\Services\PaymentServiceTwo\Exceptions\ProviderNotFoundException;
 
 class PaymentService
 {

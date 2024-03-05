@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\PaymentService\Contracts;
+namespace App\Services\PaymentServiceTwo\Contracts;
 
 
 // for  pay the payment

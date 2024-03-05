@@ -1,8 +1,8 @@
 <?php
 
 
-namespace App\Services\PaymentService\Request;
-use App\Services\PaymentService\Contracts\RequestInterface;
+namespace App\Services\PaymentServiceTwo\Request;
+use App\Services\PaymentServiceTwo\Contracts\RequestInterface;
 
 class IDPayRequest implements RequestInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services\PaymentService\Request;
+namespace App\Services\PaymentServiceTwo\Request;
 
 
-use App\Services\PaymentService\Contracts\RequestInterface;
+use App\Services\PaymentServiceTwo\Contracts\RequestInterface;
 
 class ZarinpalRequest implements RequestInterface
 {

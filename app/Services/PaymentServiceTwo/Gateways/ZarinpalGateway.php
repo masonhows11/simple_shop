@@ -9,7 +9,7 @@ use App\Services\PaymentService\Contracts\PayableInterface;
 use App\Services\PaymentService\Contracts\RequestInterface;
 use App\Services\PaymentService\Contracts\VerifyInterface;
 
-class ZarinpalProvider extends AbstractProviderConstructor implements PayableInterface , VerifyInterface
+class ZarinpalGateway extends AbstractProviderConstructor implements PayableInterface , VerifyInterface
 {
 
 

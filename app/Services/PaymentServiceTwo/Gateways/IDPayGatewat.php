@@ -10,7 +10,7 @@ use App\Services\PaymentService\Contracts\VerifyInterface;
 
 
 
-class IDPayProvider extends AbstractProviderConstructor implements PayableInterface, VerifyInterface
+class IDPayGateway extends AbstractProviderConstructor implements PayableInterface, VerifyInterface
 {
 
     private $StatusOk = 100;

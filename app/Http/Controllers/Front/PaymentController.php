@@ -36,6 +36,8 @@ class PaymentController extends Controller
         $this->validateForm($request);
 
 
+        dd('this is pay function');
+
 
         session()->flash('success',
             __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));

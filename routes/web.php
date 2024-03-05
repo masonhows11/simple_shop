@@ -102,17 +102,13 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/cart/add-to-cart/{product}', [BasketController::class, 'add'])->name('cart.add-to-cart');
     Route::get('/cart',[BasketController::class,'cart'])->name('cart');
-
     Route::post('/cart/update/{product}',[BasketController::class,'update'])->name('cart.update');
     // lv.1
     Route::get('/cart/checkout',[BasketController::class,'checkOutForm'])->name('cart.check-out.form');
     // lv.2
-    Route::post('/cart/pay',[BasketController::class,'pay'])->name('cart.pay');
+    Route::post('/cart/pay',[PaymentController::class,'pay'])->name('cart.pay');
     // lv.3
-    //// for call back from gateway
     Route::post('verify/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
-
-
 
 });
 

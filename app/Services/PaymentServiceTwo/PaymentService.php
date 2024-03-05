@@ -9,8 +9,8 @@ use App\Services\PaymentServiceTwo\Exceptions\ProviderNotFoundException;
 class PaymentService
 {
 
-    public const IDPAY = 'IDPayProvider';
-    public const ZARRINPAL = 'ZarinpalProvider';
+    public const IDPAY = 'IDPayGateway';
+    public const ZARRINPAL = 'ZarinpalGateway';
 
     private $provider_name;
     // RequestInterface $request  means that request is type of payment gateway we used for pay
@@ -25,7 +25,7 @@ class PaymentService
         $this->request = $request;
     }
 
-    // for find payment provider like zarinpal or idpay or mellat
+    // for find payment provider / gateway like zarinpal or idPay or melLat
     private function findProvider()
     {
         // find provider

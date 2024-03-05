@@ -46,18 +46,14 @@ class Transaction
         }
 
         try {
-
-            /////
             if ($payment->isOnline()) {
 
-                return $this->gatewayFactory()->payment($order);
+                $this->gatewayFactory()->payment($order);
 
+            } else {
+                $this->completeOrder($order);
+                return $order;
             }
-
-            ////
-            $this->completeOrder($order);
-            return $order;
-
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -78,7 +74,8 @@ class Transaction
         //// return gateway class based on request
         $gateway = ['zarinpal' => Zarinpal::class, 'idPay' => IdPay::class][$this->request->gateway];
         //// make once new instance gateway with resolve() method container laravel
-        return resolve($gateway);
+        // return resolve($gateway);
+        return new $gateway;
     }
 
     private function makePayment($order)

@@ -27,7 +27,7 @@ class IdPay implements GatewayInterface
 
     public function payment(Order $order)
     {
-        
+
         $params = array(
             'order_id' => $order->code,
             'amount' => $order->amount,

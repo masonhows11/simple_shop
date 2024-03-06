@@ -58,19 +58,15 @@ class PaymentController extends Controller
             $this->makePayment($order);
 
             DB::commit();
-
-            dd('hello fucker');
-
+            
             $idPayRequest = new IDPayRequest([
-                'amount' => 1000,
+                'amount' => $order->amount,
+                'orderId' => $order->code,
                 'user' => Auth::user()->id,
             ]);
 
-
-
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-
-            dd($paymentService->pay());
+            $paymentService->pay();
         } catch (\Exception $ex) {
 
             DB::rollBack();

@@ -12,6 +12,7 @@ use App\Services\PaymentServiceTwo\Request\IDPayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -103,6 +104,16 @@ class PaymentController extends Controller
             'method' => $this->request->method,
             'amount' => $order->amount,
         ]);
+    }
+
+    private function products()
+    {
+
+        $products = [];
+        foreach ($this->basket->all() as $product) {
+            $products[$product->id] = ['quantity' => $product->stock];
+        }
+        return $products;
     }
 
 

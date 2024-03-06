@@ -12,13 +12,13 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class PaymentController extends Controller
 {
-    //
-    //    private  $transaction;
-    //
-    //    public function __construct(Transaction $transaction)
-    //    {
-    //        $this->transaction = $transaction;
-    //    }
+
+       private  $transaction;
+
+       public function __construct(Transaction $transaction)
+       {
+           $this->transaction = $transaction;
+       }
 
     // validate for final payment input from request
     public function validateForm($request)
@@ -49,7 +49,7 @@ class PaymentController extends Controller
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
 
             dd($paymentService->pay());
-            
+
         } catch (\Exception $ex) {
 
 

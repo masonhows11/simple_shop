@@ -3,22 +3,29 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Payment;
+use App\Services\Basket\Basket;
 use App\Services\PaymentServiceOne\Transaction;
 use App\Services\PaymentServiceTwo\PaymentService;
 use App\Services\PaymentServiceTwo\Request\IDPayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
 
-       private  $transaction;
+    private  $transaction;
+    private $request;
+    private $basket;
 
-       public function __construct(Transaction $transaction)
-       {
-           $this->transaction = $transaction;
-       }
+    public function __construct(Transaction $transaction, Request $request, Basket $basket)
+    {
+        $this->transaction = $transaction;
+        $this->request = $request;
+        $this->basket = $basket;
+    }
 
     // validate for final payment input from request
     public function validateForm($request)
@@ -39,37 +46,64 @@ class PaymentController extends Controller
         $this->validateForm($request);
 
 
+        DB::beginTransaction();
+
         try {
+
+            // make order & order items
+            $order = $this->makeOrder();
+
+            // make payment
+            $this->makePayment($order);
+
+            DB::commit();
+
+            dd('hello fucker');
 
             $idPayRequest = new IDPayRequest([
                 'amount' => 1000,
                 'user' => Auth::user()->id,
             ]);
 
+
+
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
 
             dd($paymentService->pay());
-
         } catch (\Exception $ex) {
 
-
+            DB::rollBack();
             return $ex->getMessage();
         }
-
-
-
-
-
     }
 
 
     public function verify(Request $request)
+    { }
+
+
+    private function makeOrder()
     {
+        $order = Order::create([
+            'user_id' => auth()->id(),
+            'code' => bin2hex(Str::random(16)),
+            'amount' => $this->basket->subTotal(),
+        ]);
 
-
+        $order->products()->attach($this->products());
+        return $order;
     }
 
 
+    private function makePayment($order)
+    {
+
+        return Payment::create([
+            'order_id' => $order->id,
+            'method' => $this->request->method,
+            'amount' => $order->amount,
+        ]);
+    }
 
 
     //    public function verify(Request $request)

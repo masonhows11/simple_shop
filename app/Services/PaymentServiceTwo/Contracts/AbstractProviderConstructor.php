@@ -11,6 +11,7 @@ abstract class AbstractProviderConstructor
     // the child class can access to
     protected $request;
 
+    // this abstract class  initial value  gateway request like IdPayGateway
     public function __construct(RequestInterface $request)
     {
         $this->request = $request;

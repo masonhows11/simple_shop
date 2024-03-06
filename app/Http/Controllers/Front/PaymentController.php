@@ -42,8 +42,10 @@ class PaymentController extends Controller
             'amount' => 1000,
             'user' => Auth::user()->id,
         ]);
+
         // make obj fromPaymentService for pay the order
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+
         // then call payment service on created obj (bank gateway)
         dd($paymentService->pay());
 

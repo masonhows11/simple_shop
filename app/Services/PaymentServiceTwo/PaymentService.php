@@ -30,10 +30,12 @@ class PaymentService
     {
         // find provider
         $providerClassName = 'App\\Services\\PaymentServiceTwo\\Gateways\\' . $this->provider_name;
+
         if (!class_exists($providerClassName)) {
             throw new ProviderNotFoundException(__('messages.the_selected_payment_gateway_could_not_be_found'));
         }
-        // create an instance founded class
+
+        // create an instance  from founded class
         // give request to construct that made as abstract class for gateway providers
         // $this->request is type of payment provider we used and when we call construct method
         // we should give data  , these data is request type of payment provider
@@ -44,6 +46,7 @@ class PaymentService
     public function pay()
     {
         try {
+
             // the pay() method is defined in interface
             return $this->findProvider()->pay();
         } catch (ProviderNotFoundException $e) {

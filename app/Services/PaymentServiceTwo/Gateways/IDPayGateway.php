@@ -36,6 +36,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
             'desc' => 'توضیحات پرداخت کننده',
             'callback' => $callBack,
         );
+        // dd($params);
 
 
         $ch = curl_init();

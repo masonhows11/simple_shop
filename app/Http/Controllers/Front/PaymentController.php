@@ -45,7 +45,7 @@ class PaymentController extends Controller
     public function pay(Request $request)
     {
 
-         // dd($this->request);
+        // dd($this->request);
 
 
         $this->validateForm($request);
@@ -54,7 +54,6 @@ class PaymentController extends Controller
         DB::beginTransaction();
 
         try {
-
 
 
             // make order & order items
@@ -69,42 +68,13 @@ class PaymentController extends Controller
                 'apiKey' => Config::get('services.gateways.id_pay.api_key'),
             ]);
 
-           $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-           return $paymentService->pay();
-
-            //            $user = Auth::user();
-            //            $callBack = route('payment.verify', 'idPay');
-            //            $full_user = $user->first_name . ' ' . $user->last_name;
-            //            $params = array(
-            //                'order_id' => $order->code,
-            //                'amount' => $order->amount * 10,
-            //                'name' => $full_user,
-            //                'phone' => $user->mobile,
-            //                'mail' => $user->email,
-            //                'desc' => 'توضیحات پرداخت کننده',
-            //                'callback' => $callBack,
-            //            );
-            //            $ch = curl_init();
-            //            curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
-            //            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
-            //            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            //            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            //                'Content-Type: application/json',
-            //                'X-API-KEY: ' .  Config::get('services.gateways.id_pay.api_key')  . '',
-            //                'X-SANDBOX: 1' // for real gateway comment the sandbox line
-            //            ));
-            //            $result = curl_exec($ch);
-            //            curl_close($ch);
-            //            $send_result = json_decode($result, true);
-            //            if (isset($send_result['error_code'])) {
-            //                throw  new \InvalidArgumentException($send_result['error_message']);
-            //            }
-            //            return redirect()->away($send_result['link']);
+            $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+            return $paymentService->pay();
 
         } catch (\Exception $ex) {
 
             DB::rollBack();
-            return $ex->getMessage();
+            return redirect()->back()->with(['error' => $ex->getMessage()]);
 
         }
     }
@@ -112,6 +82,7 @@ class PaymentController extends Controller
 
     public function verify(Request $request)
     {
+        dd($request);
     }
 
 

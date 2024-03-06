@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\DB;
 class PaymentController extends Controller
 {
 
-    private  $transaction;
-    private $request;
-    private $basket;
+    private Transaction $transaction;
+    private Request $request;
+    private Basket $basket;
 
     public function __construct(Transaction $transaction, Request $request, Basket $basket)
     {
@@ -44,6 +44,9 @@ class PaymentController extends Controller
     public function pay(Request $request)
     {
 
+         // dd($this->request);
+
+
         $this->validateForm($request);
 
 
@@ -57,26 +60,29 @@ class PaymentController extends Controller
             // make payment
             $this->makePayment($order);
 
+
+
             DB::commit();
-            
+
             $idPayRequest = new IDPayRequest([
                 'amount' => $order->amount,
                 'orderId' => $order->code,
-                'user' => Auth::user()->id,
+                'user' => Auth::user(),
             ]);
-
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
             $paymentService->pay();
         } catch (\Exception $ex) {
 
             DB::rollBack();
             return $ex->getMessage();
+
         }
     }
 
 
     public function verify(Request $request)
-    { }
+    {
+    }
 
 
     private function makeOrder()
@@ -97,7 +103,7 @@ class PaymentController extends Controller
 
         return Payment::create([
             'order_id' => $order->id,
-            'method' => $this->request->method,
+            'method' => $this->request['method'],
             'amount' => $order->amount,
         ]);
     }

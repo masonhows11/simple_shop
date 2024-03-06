@@ -36,9 +36,9 @@ class IDPayRequest implements RequestInterface
     {
         return $this->user;
     }
-    public function getApiKey()
-    {
-        return $this->apiKey;
-    }
+    //    public function getApiKey()
+    //    {
+    //        return $this->apiKey;
+    //    }
 
 }

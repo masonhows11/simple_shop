@@ -97,8 +97,7 @@ class PaymentController extends Controller
         $order->products()->attach($this->products());
         return $order;
     }
-
-
+    
     private function makePayment($order)
     {
 

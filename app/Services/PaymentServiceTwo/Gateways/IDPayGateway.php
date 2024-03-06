@@ -36,7 +36,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
             'desc' => 'توضیحات پرداخت کننده',
             'callback' => $callBack,
         );
-        dd($params);
+
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
@@ -44,7 +44,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'X-API-KEY: ' .  Config::get('services.gateways.id_pay.api_key')  . '',
+            'X-API-KEY: ' .  $this->request->getApiKey()  . '',
             'X-SANDBOX: 1' // for real gateway comment the sandbox line
         ));
 
@@ -59,9 +59,6 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
 
         // redirect user to gateway
         return redirect()->away($send_result['link']);
-
-
-
 
     }
 

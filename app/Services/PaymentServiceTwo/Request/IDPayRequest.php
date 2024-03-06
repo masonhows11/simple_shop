@@ -11,14 +11,14 @@ class IDPayRequest implements RequestInterface
     private $user;
     private $amount;
     private $orderId;
-   // private $apiKey;
+    private $apiKey;
 
     public function __construct(array $data)
     {
         $this->user = $data['user'];
         $this->amount = $data['amount'];
         $this->orderId = $data['orderId'];
-       // $this->apiKey = $data['apiKey'];
+        $this->apiKey = $data['apiKey'];
     }
 
     // unique random code in order table
@@ -36,9 +36,9 @@ class IDPayRequest implements RequestInterface
     {
         return $this->user;
     }
-    //    public function getApiKey()
-    //    {
-    //        return $this->apiKey;
-    //    }
+        public function getApiKey()
+        {
+            return $this->apiKey;
+        }
 
 }

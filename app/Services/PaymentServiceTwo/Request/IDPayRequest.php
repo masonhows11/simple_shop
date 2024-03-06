@@ -4,6 +4,8 @@
 namespace App\Services\PaymentServiceTwo\Request;
 use App\Services\PaymentServiceTwo\Contracts\RequestInterface;
 
+// why this idPayRequest
+// Because we may have different inputs
 class IDPayRequest implements RequestInterface
 {
     private $user;

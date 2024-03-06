@@ -31,30 +31,25 @@ class PaymentController extends Controller
         ]);
     }
 
-    // for pay the payment
+
     public function pay(Request $request)
     {
 
         $this->validateForm($request);
 
-        // make obj from IDPayRequest for request (information payment)
+
         $idPayRequest = new IDPayRequest([
             'amount' => 1000,
             'user' => Auth::user()->id,
         ]);
-
-        // make obj fromPaymentService for pay the order
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-
-        // then call payment service on created obj (bank gateway)
         dd($paymentService->pay());
 
-        //  session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->id]));
-        //  return redirect()->route('home');
+
 
     }
 
-    // for verify the payment
+
     public function verify(Request $request)
     {
 

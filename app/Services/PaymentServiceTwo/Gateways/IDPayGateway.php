@@ -16,6 +16,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
 
     public function pay()
     {
+        dd('this is idPay Gateway');
         // this request come from AbstractProviderConstructor class
         // $this->request;
         // $this->request is content info for payment operation

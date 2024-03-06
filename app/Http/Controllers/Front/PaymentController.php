@@ -8,6 +8,7 @@ use App\Services\PaymentServiceTwo\PaymentService;
 use App\Services\PaymentServiceTwo\Request\IDPayRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\TryCatch;
 
 class PaymentController extends Controller
 {
@@ -38,12 +39,24 @@ class PaymentController extends Controller
         $this->validateForm($request);
 
 
-        $idPayRequest = new IDPayRequest([
-            'amount' => 1000,
-            'user' => Auth::user()->id,
-        ]);
-        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-        dd($paymentService->pay());
+        try {
+
+            $idPayRequest = new IDPayRequest([
+                'amount' => 1000,
+                'user' => Auth::user()->id,
+            ]);
+
+            $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+
+            dd($paymentService->pay());
+            
+        } catch (\Exception $ex) {
+
+
+            return $ex->getMessage();
+        }
+
+
 
 
 

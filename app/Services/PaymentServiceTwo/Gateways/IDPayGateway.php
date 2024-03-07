@@ -7,8 +7,8 @@ namespace App\Services\PaymentServiceTwo\Gateways;
 use App\Services\PaymentServiceTwo\Contracts\AbstractProviderConstructor;
 use App\Services\PaymentServiceTwo\Contracts\PayableInterface;
 use App\Services\PaymentServiceTwo\Contracts\VerifyInterface;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
+//use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Config;
 
 class IDPayGateway extends AbstractProviderConstructor implements PayableInterface, VerifyInterface
 {

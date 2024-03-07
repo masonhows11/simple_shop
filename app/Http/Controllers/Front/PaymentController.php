@@ -97,12 +97,10 @@ class PaymentController extends Controller
         $result = $paymentService->verify();
 
         if ($result['status'] == false ) {
-            dd($result);
-          return  $this->sendErrorResponse();
+          return  $this->sendErrorResponse($result);
         }
         if ($result['status'] == true) {
-            dd($result);
-            return  $this->sendSuccessResponse();
+            return  $this->sendSuccessResponse($result);
         }
     }
 
@@ -138,14 +136,16 @@ class PaymentController extends Controller
         return $products;
     }
 
-    private function sendErrorResponse()
+    private function sendErrorResponse($result)
     {
+
         session()->flash('error', __('messages.payment_failed'));
         return redirect()->route('home');
     }
 
-    private function sendSuccessResponse()
+    private function sendSuccessResponse($result)
     {
+
         session()->flash('success', __('messages.payment_successfully'));
         return redirect()->route('home');
     }

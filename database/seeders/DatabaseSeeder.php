@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 'mobile' => '09917230927',
                 'password' => Hash::make('123456'),
                 'email' => 'mason.hows11@gmail.com',
+                'email_verified_at' => now(),
             ],
             [
                 'name' => 'mason_hows11',
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
                 'mobile' => '09179817599',
                 'password' => Hash::make('123456'),
                 'email' => 'mason.hows12@gmail.com',
+                'email_verified_at' => now(),
             ],
             [
                 'name' => 'joe_james',
@@ -47,6 +49,7 @@ class DatabaseSeeder extends Seeder
                 'mobile' => '09172890423',
                 'password' => Hash::make('123456'),
                 'email' => 'joe.james556@gmail.com',
+                'email_verified_at' => now(),
             ],
             [
                 'name' => 'james',

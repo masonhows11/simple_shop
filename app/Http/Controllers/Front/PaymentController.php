@@ -86,12 +86,8 @@ class PaymentController extends Controller
 
     public function verify(Request $request)
     {
-        // dd($request);
-
-       //  dd(session()->get('current_user'),$request);
 
         $paymentInfo = $request->all();
-
         $idPayVerifyRequest = new  IDPayVerifyRequest([
             'apiKey' => config('services.gateways.id_pay.api_key'),
             'id' => $paymentInfo['id'],

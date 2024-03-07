@@ -108,15 +108,15 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
 
     //  lv.2
-    //    Route::post('/cart/pay',[PaymentController::class,'pay'])->name('cart.pay');
-    //    Route::post('verify/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
+    //    Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');
+    //    Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
 
 });
 
 Route::prefix('payment')->group(function () {
-    // lv.2
+
     Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');
-    // lv.3
+
     Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
 
 });

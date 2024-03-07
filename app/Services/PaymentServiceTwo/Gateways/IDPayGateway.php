@@ -7,6 +7,7 @@ namespace App\Services\PaymentServiceTwo\Gateways;
 use App\Services\PaymentServiceTwo\Contracts\AbstractProviderConstructor;
 use App\Services\PaymentServiceTwo\Contracts\PayableInterface;
 use App\Services\PaymentServiceTwo\Contracts\VerifyInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
 class IDPayGateway extends AbstractProviderConstructor implements PayableInterface, VerifyInterface
@@ -23,6 +24,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
         // $this->request;
         // $this->request is content info for payment operation
 
+        
 
         $callBack = route('payment.verify', 'idPay');
         $info = $this->request;

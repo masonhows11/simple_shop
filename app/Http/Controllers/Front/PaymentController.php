@@ -55,6 +55,7 @@ class PaymentController extends Controller
 
         try {
 
+            session(['current_user' => Auth::user()]);
 
             // make order & order items
             $order = $this->makeOrder();
@@ -82,7 +83,9 @@ class PaymentController extends Controller
 
     public function verify(Request $request)
     {
-        dd($request);
+        // dd($request);
+
+        dd(session()->get('current_user'),$request);
 
 
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);

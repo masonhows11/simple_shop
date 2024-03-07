@@ -70,11 +70,12 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
             'X-SANDBOX: 1',
         ));
 
+
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result, true);
-        dd($result);
 
+        // verify failed
         if (isset($result['error_code'])) {
             return [
                 'status' => false,
@@ -82,7 +83,17 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
                 'msg' => $result['error_message'],
             ];
         }
+        // verify successfully
         if ($result['status'] == $this->StatusOk) {
+            return [
+                'status' => true,
+                'order_id' => $result['order_id'],
+                'statusCode' => $result['status'],
+                'data' => $result,
+            ];
+        }
+        // already verified  successfully
+        if ($result['status'] == $this->StatusOKAlready) {
             return [
                 'status' => true,
                 'order_id' => $result['order_id'],

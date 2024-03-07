@@ -71,7 +71,6 @@ class PaymentController extends Controller
             ]);
 
 
-
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
             return $paymentService->pay();
 
@@ -94,9 +93,18 @@ class PaymentController extends Controller
             'orderId' => $paymentInfo['order_id'],
         ]);
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
-        return $paymentService->verify();
-    }
 
+        $result = $paymentService->verify();
+
+        if ($result['status'] == false ) {
+            dd($result);
+          return  $this->sendErrorResponse();
+        }
+        if ($result['status'] == true) {
+            dd($result);
+            return  $this->sendSuccessResponse();
+        }
+    }
 
     private function makeOrder()
     {
@@ -130,14 +138,6 @@ class PaymentController extends Controller
         return $products;
     }
 
-
-    //    public function verify(Request $request)
-    //    {
-    //        $result = $this->transaction->verify();
-    //        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
-    //    }
-
-
     private function sendErrorResponse()
     {
         session()->flash('error', __('messages.payment_failed'));
@@ -146,7 +146,16 @@ class PaymentController extends Controller
 
     private function sendSuccessResponse()
     {
-        session()->flash('error', __('messages.payment_successfully'));
+        session()->flash('success', __('messages.payment_successfully'));
         return redirect()->route('home');
     }
+
+    //    public function verify(Request $request)
+    //    {
+    //        $result = $this->transaction->verify();
+    //        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
+    //    }
+
+
+
 }

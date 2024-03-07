@@ -455,7 +455,7 @@ return [
     'your_order_has_been_successfully_register_with_number' => 'سفارش شما با شماره :order_number با موفقیت ثبت شد.',
     'full_name_receiver' => 'نام و نام خانوادگی دریافت کننده',
     'zarinpal' => 'زرین پال',
-    'payment_failed' => 'پرداخت سفارش با خطا مواجه شد',
+    'payment_failed' => 'پرداخت سفارش انجام نشد',
     'payment_successfully' => 'پرداخت با موفقیت انجام شد',
     'order_number' => 'شماره سفارش',
     'product_not_found' => 'محصولی وجود ندارد',

@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasPermission,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasPermission, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -77,11 +77,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-        Mail::to($this)->send(new ResetPasswordEmail($this,$token));
+        Mail::to($this)->send(new ResetPasswordEmail($this, $token));
     }
 
-    public function addresses(){
+    public function addresses()
+    {
 
         return $this->hasMany(Address::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'user_id');
     }
 }

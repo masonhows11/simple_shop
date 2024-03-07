@@ -87,8 +87,16 @@ class PaymentController extends Controller
 
         dd(session()->get('current_user'),$request);
 
+        $paymentInfo = $request->all();
 
-        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+        $idPayVerifyRequest = new  IDPayVerifyRequest([
+            'apiKey' => config('services.gateways.id_pay.api_key'),
+            'id' => $paymentInfo['id'],
+            'orderId' => $paymentInfo['order_id'],
+        ]);
+
+
+        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
         return $paymentService->pay();
     }
 

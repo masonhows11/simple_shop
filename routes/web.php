@@ -105,12 +105,21 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
     Route::post('/cart/update/{product}',[BasketController::class,'update'])->name('cart.update');
     // lv.1
     Route::get('/cart/checkout',[BasketController::class,'checkOutForm'])->name('cart.check-out.form');
+    // // lv.2
+    // Route::post('/cart/pay',[PaymentController::class,'pay'])->name('cart.pay');
+    // // lv.3
+    // Route::post('verify/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
+
+});
+
+Route::prefix('payment')->group(function () {
     // lv.2
     Route::post('/cart/pay',[PaymentController::class,'pay'])->name('cart.pay');
     // lv.3
     Route::post('verify/{gateway}/callback',[PaymentController::class,'verify'])->name('payment.verify');
 
 });
+
 
 
 Route::get('/products',[ProductsController::class,'index'])->name('products');

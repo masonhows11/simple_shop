@@ -83,6 +83,10 @@ class PaymentController extends Controller
     public function verify(Request $request)
     {
         dd($request);
+
+
+        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+        return $paymentService->pay();
     }
 
 

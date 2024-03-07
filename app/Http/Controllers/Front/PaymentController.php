@@ -30,7 +30,6 @@ class PaymentController extends Controller
         $this->basket = $basket;
     }
 
-    // validate for final payment input from request
     public function validateForm($request)
     {
         $request->validate([
@@ -45,22 +44,11 @@ class PaymentController extends Controller
 
     public function pay(Request $request)
     {
-
-        // dd($this->request);
-
-
         $this->validateForm($request);
-
-
         DB::beginTransaction();
-
         try {
-
             session(['current_user' => Auth::user()]);
-
-            // make order & order items
             $order = $this->makeOrder();
-            // make payment
             $this->makePayment($order);
             DB::commit();
             $idPayRequest = new IDPayRequest([
@@ -69,23 +57,17 @@ class PaymentController extends Controller
                 'user' => Auth::user(),
                 'apiKey' => Config::get('services.gateways.id_pay.api_key'),
             ]);
-
-
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
             return $paymentService->pay();
-
         } catch (\Exception $ex) {
-
             DB::rollBack();
             return redirect()->back()->with(['error' => $ex->getMessage()]);
-
         }
     }
 
 
     public function verify(Request $request)
     {
-
         $paymentInfo = $request->all();
         $idPayVerifyRequest = new  IDPayVerifyRequest([
             'apiKey' => config('services.gateways.id_pay.api_key'),
@@ -93,9 +75,7 @@ class PaymentController extends Controller
             'orderId' => $paymentInfo['order_id'],
         ]);
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
-
         $result = $paymentService->verify();
-
         if ($result['status'] == false ) {
           return  $this->sendErrorResponse($result);
         }
@@ -111,14 +91,12 @@ class PaymentController extends Controller
             'code' => bin2hex(Str::random(16)),
             'amount' => $this->basket->subTotal(),
         ]);
-
         $order->products()->attach($this->products());
         return $order;
     }
 
     private function makePayment($order)
     {
-
         return Payment::create([
             'order_id' => $order->id,
             'method' => $this->request['method'],
@@ -128,7 +106,6 @@ class PaymentController extends Controller
 
     private function products()
     {
-
         $products = [];
         foreach ($this->basket->all() as $product) {
             $products[$product->id] = ['quantity' => $product->stock];

@@ -27,16 +27,17 @@ class LoginController extends Controller
     {
         try {
 
-
-            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->filled('remember'))) {
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->filled('remember')))
+            {
                 $request->session()->regenerate();
                 session()->flash('success', __('messages.your_login_was_successful'));
                 return redirect()->route('home');
+
             }else
-                session()->flash('error', __('messages.your_login_information_is_not_valid'));
+                 session()->flash('error', __('messages.your_login_information_is_not_valid'));
                  return redirect()->back();
         } catch (\Exception $ex) {
-
+           /// return $ex->getMessage();
             session()->flash('success', __('messages.An_error_occurred'));
             return redirect()->route('home');
         }

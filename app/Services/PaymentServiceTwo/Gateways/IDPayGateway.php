@@ -18,14 +18,9 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
 
     public function pay()
     {
-
-
         // this request coming from AbstractProviderConstructor class
         // $this->request;
         // $this->request is content info for payment operation
-
-        
-
         $callBack = route('payment.verify', 'idPay');
         $info = $this->request;
         $full_user = $info->getUser()->first_name . ' ' . $info->getUser()->last_name;
@@ -38,8 +33,6 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
             'desc' => 'توضیحات پرداخت کننده',
             'callback' => $callBack,
         );
-        // dd($params);
-
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
@@ -47,27 +40,21 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'X-API-KEY: ' .  $this->request->getApiKey()  . '',
+            'X-API-KEY: ' . $this->request->getApiKey() . '',
             'X-SANDBOX: 1' // for real gateway comment the sandbox line
         ));
-
         $result = curl_exec($ch);
         curl_close($ch);
         $send_result = json_decode($result, true);
-
-        //dd($send_result);
         if (isset($send_result['error_code'])) {
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
-
-        // redirect user to gateway
         return redirect()->away($send_result['link']);
-
     }
 
     public function verify()
     {
-        //  dd($this->request);
+        // dd($this->request);
         $params = array(
             'id' => $this->request->getId(),
             'order_id' => $this->request->getOrderId(),

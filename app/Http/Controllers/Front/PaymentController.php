@@ -70,6 +70,8 @@ class PaymentController extends Controller
                 'apiKey' => Config::get('services.gateways.id_pay.api_key'),
             ]);
 
+        
+
             $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
             return $paymentService->pay();
 
@@ -98,7 +100,7 @@ class PaymentController extends Controller
 
 
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
-        return $paymentService->pay();
+        return $paymentService->verify();
     }
 
 

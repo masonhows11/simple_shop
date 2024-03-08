@@ -48,7 +48,8 @@ class Transaction
         try {
             if ($payment->isOnline()) {
 
-                return $this->gatewayFactory()->payment($order);
+               // dd($this->getGateway());
+                return $this->getGateway()->payment($order);
 
             } else {
                 $this->completeOrder($order);
@@ -57,19 +58,14 @@ class Transaction
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
-
-
-        // Decreasing the number of products the user has purchased
-        // $this->normalizeQuantity($order);
-
+        
         // call event send email for send order detail email
         // event(new OrderRegisteredEvent($order));
 
-        // $this->basket->clear();
     }
 
 
-    private function gatewayFactory()
+    private function getGateway()
     {
         //// return gateway class based on request
         $gateway = ['zarinpal' => Zarinpal::class, 'idPay' => IdPay::class][$this->request->gateway];
@@ -83,7 +79,7 @@ class Transaction
 
         return Payment::create([
             'order_id' => $order->id,
-            'method' => $this->request->method,
+            'method' => $this->request['method'],
             'amount' => $order->amount,
         ]);
     }

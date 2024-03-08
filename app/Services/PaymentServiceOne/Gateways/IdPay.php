@@ -54,9 +54,7 @@ class IdPay implements GatewayInterface
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }
-        dd($result);
-
-
+       // dd($result);
        return redirect()->away($result['link']);
 
     }

@@ -45,72 +45,24 @@ class PaymentController extends Controller
     public function pay(Request $request)
     {
         $this->validateForm($request);
-        DB::beginTransaction();
 
-        try {
-
-
-            $order = $this->makeOrder();
-            $payment = $this->makePayment($order);
-            DB::commit();
+        $order = $this->transaction->checkOut();
 
 
-            if ($payment->isOnline()) {
-
-
-            } else {
-
-            };
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return redirect()->back()->with(['error' => $ex->getMessage()]);
-        }
-    }
-
-    private function getGateway()
-    {
-
-
+        session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->code]));
+        return redirect()->route('home');
 
     }
+
 
     public function verify(Request $request)
     {
         dd($request);
-        
+
         $result = $this->transaction->verify();
         return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
     }
 
-
-    private function makeOrder()
-    {
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'code' => bin2hex(Str::random(16)),
-            'amount' => $this->basket->subTotal(),
-        ]);
-        $order->products()->attach($this->products());
-        return $order;
-    }
-
-    private function makePayment($order)
-    {
-        return Payment::create([
-            'order_id' => $order->id,
-            'method' => $this->request['method'],
-            'amount' => $order->amount,
-        ]);
-    }
-
-    private function products()
-    {
-        $products = [];
-        foreach ($this->basket->all() as $product) {
-            $products[$product->id] = ['quantity' => $product->stock];
-        }
-        return $products;
-    }
 
     private function sendErrorResponse($result, $message = null)
     {

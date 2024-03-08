@@ -42,7 +42,6 @@ class PaymentController extends Controller
         ]);
     }
 
-
     public function pay(Request $request)
     {
         $this->validateForm($request);
@@ -50,39 +49,17 @@ class PaymentController extends Controller
 
         try {
 
-            // session(['current_user' => Auth::user()]);
+
             $order = $this->makeOrder();
             $payment = $this->makePayment($order);
             DB::commit();
 
 
-            if($payment->isOnline()){
-              $gateway = $this->request->gateway;
-               if($gateway == 'idPay')
-               {
-                    $idPayRequest = new IDPayRequest([
-                        'amount' => $order->amount,
-                        'orderId' => $order->code,
-                        'user' => Auth::user(),
-                        'apiKey' => Config::get('services.gateways.id_pay.api_key'),
-                    ]);
-                    $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-                    return $paymentService->pay();
-               }
-               if($gateway == 'zarinpal'){
-                    session()->flash('warning',  __('messages.this_part_is_being_prepared'));
-                    return redirect()->back();
-               }
+            if ($payment->isOnline()) {
+
 
             } else {
-                $result = [
-                    'status' => true,
-                    'order_id' => $order->code,
 
-                ];
-                $this->basket->clear();
-                session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number',['order_number' => $result['order_id'] ]));
-                return redirect()->route('home');
             };
         } catch (\Exception $ex) {
             DB::rollBack();
@@ -90,55 +67,21 @@ class PaymentController extends Controller
         }
     }
 
-
-    private function gateway()
+    private function getGateway()
     {
 
-        //// make gateway
 
-        ////  and make gateway request
-
-        // $idPayRequest = new IDPayRequest([
-        //     'amount' => $order->amount,
-        //     'orderId' => $order->code,
-        //     'user' => Auth::user(),
-        //     'apiKey' => Config::get('services.gateways.id_pay.api_key'),
-        // ]);
-
-
-        // $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-        // return $paymentService->pay();
 
     }
-
-
 
     public function verify(Request $request)
     {
-
-        $paymentInfo = $request->all();
-       // dd($paymentInfo);
-
-        $idPayVerifyRequest = new  IDPayVerifyRequest([
-            'apiKey' => config('services.gateways.id_pay.api_key'),
-            'id' => $paymentInfo['id'],
-            'orderId' => $paymentInfo['order_id'],
-        ]);
-
-        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
-
-        $result = $paymentService->verify();
-
-        if ($result['status'] == false ) {
-            return  $this->sendErrorResponse($result);
-        }
-
-        if ($result['status'] == true)
-            return  $this->sendSuccessResponse($result); {
-        }
-
-        return null;
+        dd($request);
+        
+        $result = $this->transaction->verify();
+        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
     }
+
 
     private function makeOrder()
     {
@@ -169,26 +112,115 @@ class PaymentController extends Controller
         return $products;
     }
 
-    private function sendErrorResponse($result,$message = null)
+    private function sendErrorResponse($result, $message = null)
     {
 
         session()->flash('error', $message ? $message : __('messages.payment_failed'));
         return redirect()->route('home');
     }
 
-    private function sendSuccessResponse($result,$message = null)
+    private function sendSuccessResponse($result, $message = null)
     {
 
         session()->flash('success', $message ? $message : __('messages.payment_successfully'));
         return redirect()->route('home');
     }
 
-    //    public function verify(Request $request)
+    //    public function pay(Request $request)
     //    {
-    //        $result = $this->transaction->verify();
-    //        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
+    //        $this->validateForm($request);
+    //        DB::beginTransaction();
+    //
+    //        try {
+    //
+    //            // session(['current_user' => Auth::user()]);
+    //            $order = $this->makeOrder();
+    //            $payment = $this->makePayment($order);
+    //            DB::commit();
+    //
+    //
+    //            if($payment->isOnline()){
+    //              $gateway = $this->request->gateway;
+    //               if($gateway == 'idPay')
+    //               {
+    //                    $idPayRequest = new IDPayRequest([
+    //                        'amount' => $order->amount,
+    //                        'orderId' => $order->code,
+    //                        'user' => Auth::user(),
+    //                        'apiKey' => Config::get('services.gateways.id_pay.api_key'),
+    //                    ]);
+    //                    $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+    //                    return $paymentService->pay();
+    //               }
+    //               if($gateway == 'zarinpal'){
+    //                    session()->flash('warning',  __('messages.this_part_is_being_prepared'));
+    //                    return redirect()->back();
+    //               }
+    //
+    //            } else {
+    //                $result = [
+    //                    'status' => true,
+    //                    'order_id' => $order->code,
+    //
+    //                ];
+    //                $this->basket->clear();
+    //                session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number',['order_number' => $result['order_id'] ]));
+    //                return redirect()->route('home');
+    //            };
+    //        } catch (\Exception $ex) {
+    //            DB::rollBack();
+    //            return redirect()->back()->with(['error' => $ex->getMessage()]);
+    //        }
     //    }
 
+
+    //    private function gateway()
+    //    {
+    //
+    //        //// make gateway
+    //
+    //        ////  and make gateway request
+    //
+    //        // $idPayRequest = new IDPayRequest([
+    //        //     'amount' => $order->amount,
+    //        //     'orderId' => $order->code,
+    //        //     'user' => Auth::user(),
+    //        //     'apiKey' => Config::get('services.gateways.id_pay.api_key'),
+    //        // ]);
+    //
+    //
+    //        // $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+    //        // return $paymentService->pay();
+    //
+    //    }
+
+
+    //    public function verify(Request $request)
+    //    {
+    //
+    //        $paymentInfo = $request->all();
+    //       // dd($paymentInfo);
+    //
+    //        $idPayVerifyRequest = new  IDPayVerifyRequest([
+    //            'apiKey' => config('services.gateways.id_pay.api_key'),
+    //            'id' => $paymentInfo['id'],
+    //            'orderId' => $paymentInfo['order_id'],
+    //        ]);
+    //
+    //        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
+    //
+    //        $result = $paymentService->verify();
+    //
+    //        if ($result['status'] == false ) {
+    //            return  $this->sendErrorResponse($result);
+    //        }
+    //
+    //        if ($result['status'] == true)
+    //            return  $this->sendSuccessResponse($result); {
+    //        }
+    //
+    //        return null;
+    //    }
 
 
 }

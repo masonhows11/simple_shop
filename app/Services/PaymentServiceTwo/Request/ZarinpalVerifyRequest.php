@@ -6,7 +6,7 @@ namespace App\Services\PaymentServiceTwo\Request;
 
 use App\Services\PaymentServiceTwo\Contracts\RequestInterface;
 
-class IDPayVerifyRequest implements RequestInterface
+class ZarinpalVerifyRequest implements RequestInterface
 {
 
     private $id;

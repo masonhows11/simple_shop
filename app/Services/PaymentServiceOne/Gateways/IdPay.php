@@ -53,7 +53,7 @@ class IdPay implements GatewayInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result, true);
-        // dd($result);
+
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }

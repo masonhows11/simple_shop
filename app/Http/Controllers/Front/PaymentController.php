@@ -46,88 +46,106 @@ class PaymentController extends Controller
     public function pay(Request $request)
     {
         $this->validateForm($request);
+        DB::beginTransaction();
+
+        try {
+
+            $order = $this->makeOrder();
+            $payment = $this->makePayment($order);
+            DB::commit();
 
 
-        $order = $this->transaction->checkout();
+            if ($payment->isOnline()) {
+                $gateway = $this->request->gateway;
+                if ($gateway == 'idPay') {
+                    $idPayRequest = new IDPayRequest([
+                        'amount' => $order->amount,
+                        'orderId' => $order->code,
+                        'user' => Auth::user(),
+                        'apiKey' => Config::get('services.gateways.id_pay.api_key'),
+                    ]);
+                    $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+                    return $paymentService->pay();
+                }
+                if ($gateway == 'zarinpal') {
+                    session()->flash('warning', __('messages.this_part_is_being_prepared'));
+                    return redirect()->back();
+                }
 
+            } else {
+                $result = [
+                    'status' => true,
+                    'order_id' => $order->code,
 
-
-        session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->code]));
-        return redirect()->route('home');
-
+                ];
+                $this->basket->clear();
+                session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $result['order_id']]));
+                return redirect()->route('home');
+            };
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return redirect()->back()->with(['error' => $ex->getMessage()]);
+        }
     }
 
 
     public function verify(Request $request)
     {
-        dd($request);
 
-        $result = $this->transaction->verify();
-        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
+        $paymentInfo = $request->all();
+        // dd($paymentInfo);
+        $idPayVerifyRequest = new  IDPayVerifyRequest([
+            'apiKey' => config('services.gateways.id_pay.api_key'),
+            'id' => $paymentInfo['id'],
+            'orderId' => $paymentInfo['order_id'],
+        ]);
+
+        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
+
+        $result = $paymentService->verify();
+
+        if ($result['status'] == false) {
+            return $this->sendErrorResponse($result);
+        }
+
+        if ($result['status'] == true){
+            return $this->sendSuccessResponse($result);
+        }
+
+        return null;
     }
 
-
-    private function sendErrorResponse($result, $message = null)
+    private function makePayment($order)
     {
 
-        session()->flash('error', $message ? $message : __('messages.payment_failed'));
-        return redirect()->route('home');
+        return Payment::create([
+            'order_id' => $order->id,
+            'method' => $this->request['method'],
+            'amount' => $order->amount,
+        ]);
     }
 
-    private function sendSuccessResponse($result, $message = null)
+    private function makeOrder()
+    {
+        $order = Order::create([
+            'user_id' => auth()->id(),
+            'code' => bin2hex(Str::random(16)),
+            'amount' => $this->basket->subTotal(),
+        ]);
+
+        $order->products()->attach($this->products());
+        return $order;
+    }
+
+    private function products()
     {
 
-        session()->flash('success', $message ? $message : __('messages.payment_successfully'));
-        return redirect()->route('home');
+        $products = [];
+        foreach ($this->basket->all() as $product) {
+            $products[$product->id] = ['quantity' => $product->stock];
+        }
+        return $products;
     }
-
-    //    public function pay(Request $request)
-    //    {
-    //        $this->validateForm($request);
-    //        DB::beginTransaction();
-    //
-    //        try {
-    //
-    //            // session(['current_user' => Auth::user()]);
-    //            $order = $this->makeOrder();
-    //            $payment = $this->makePayment($order);
-    //            DB::commit();
-    //
-    //
-    //            if($payment->isOnline()){
-    //              $gateway = $this->request->gateway;
-    //               if($gateway == 'idPay')
-    //               {
-    //                    $idPayRequest = new IDPayRequest([
-    //                        'amount' => $order->amount,
-    //                        'orderId' => $order->code,
-    //                        'user' => Auth::user(),
-    //                        'apiKey' => Config::get('services.gateways.id_pay.api_key'),
-    //                    ]);
-    //                    $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-    //                    return $paymentService->pay();
-    //               }
-    //               if($gateway == 'zarinpal'){
-    //                    session()->flash('warning',  __('messages.this_part_is_being_prepared'));
-    //                    return redirect()->back();
-    //               }
-    //
-    //            } else {
-    //                $result = [
-    //                    'status' => true,
-    //                    'order_id' => $order->code,
-    //
-    //                ];
-    //                $this->basket->clear();
-    //                session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number',['order_number' => $result['order_id'] ]));
-    //                return redirect()->route('home');
-    //            };
-    //        } catch (\Exception $ex) {
-    //            DB::rollBack();
-    //            return redirect()->back()->with(['error' => $ex->getMessage()]);
-    //        }
-    //    }
-
 
     //    private function gateway()
     //    {
@@ -150,31 +168,39 @@ class PaymentController extends Controller
     //    }
 
 
+
+    private function sendErrorResponse($result, $message = null)
+    {
+
+        session()->flash('error', $message ? $message : __('messages.payment_failed'));
+        return redirect()->route('home');
+    }
+
+    private function sendSuccessResponse($result, $message = null)
+    {
+
+        session()->flash('success', $message ? $message : __('messages.payment_successfully'));
+        return redirect()->route('home');
+    }
+
+
+
+    /////// other way for pay & verify ///////
+    //    public function pay(Request $request)
+    //    {
+    //        $this->validateForm($request);
+    //        $order = $this->transaction->checkout();
+    //        session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->code]));
+    //        return redirect()->route('home');
+    //
+    //    }
+
     //    public function verify(Request $request)
     //    {
+    //        dd($request);
     //
-    //        $paymentInfo = $request->all();
-    //       // dd($paymentInfo);
-    //
-    //        $idPayVerifyRequest = new  IDPayVerifyRequest([
-    //            'apiKey' => config('services.gateways.id_pay.api_key'),
-    //            'id' => $paymentInfo['id'],
-    //            'orderId' => $paymentInfo['order_id'],
-    //        ]);
-    //
-    //        $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
-    //
-    //        $result = $paymentService->verify();
-    //
-    //        if ($result['status'] == false ) {
-    //            return  $this->sendErrorResponse($result);
-    //        }
-    //
-    //        if ($result['status'] == true)
-    //            return  $this->sendSuccessResponse($result); {
-    //        }
-    //
-    //        return null;
+    //        $result = $this->transaction->verify();
+    //        return $result ? $this->sendErrorResponse() : $this->sendSuccessResponse();
     //    }
 
 

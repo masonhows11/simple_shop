@@ -8,7 +8,7 @@
         <strong>{{  session('success') }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-@else( session()->has('warning'))
+@elseif( session()->has('warning'))
     <div class="alert alert-warning text-center" role="alert">
         <strong>{{  session('warning') }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

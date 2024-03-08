@@ -2,6 +2,7 @@
 
 
 namespace App\Services\PaymentServiceTwo\Request;
+
 use App\Services\PaymentServiceTwo\Contracts\RequestInterface;
 
 // why this idPayRequest
@@ -26,19 +27,24 @@ class IDPayRequest implements RequestInterface
     {
         return $this->orderId;
     }
+
     public function getAmount()
     {
         // amount is convert to rials
         // because gateway worked with rials money unit
         return $this->amount * 10;
     }
+
     public function getUser()
     {
         return $this->user;
     }
-        public function getApiKey()
-        {
-            return $this->apiKey;
-        }
+
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+
 
 }

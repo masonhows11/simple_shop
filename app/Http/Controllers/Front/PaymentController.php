@@ -8,7 +8,6 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Services\Basket\Basket;
@@ -16,7 +15,7 @@ use App\Services\PaymentServiceOne\Transaction;
 use App\Services\PaymentServiceTwo\PaymentService;
 use App\Services\PaymentServiceTwo\Request\IDPayRequest;
 use App\Services\PaymentServiceTwo\Request\IDPayVerifyRequest;
-use PhpParser\Node\Stmt\Switch_;
+
 
 class PaymentController extends Controller
 {

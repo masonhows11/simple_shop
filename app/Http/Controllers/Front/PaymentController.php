@@ -86,7 +86,7 @@ class PaymentController extends Controller
 
 
             } else {
-                
+
                 $result = [
                     'status' => true,
                     'order_id' => $order->code,
@@ -108,6 +108,26 @@ class PaymentController extends Controller
         }
     }
 
+
+    private function gateway()
+    {
+
+        //// make gateway 
+
+        ////  and make gateway request
+        
+        // $idPayRequest = new IDPayRequest([
+        //     'amount' => $order->amount,
+        //     'orderId' => $order->code,
+        //     'user' => Auth::user(),
+        //     'apiKey' => Config::get('services.gateways.id_pay.api_key'),
+        // ]);
+            
+
+        // $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+        // return $paymentService->pay();
+
+    }
    
 
 

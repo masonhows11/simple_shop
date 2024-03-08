@@ -94,7 +94,9 @@ class PaymentController extends Controller
                 ];
     
                 $this->basket->clear();
-                return $this->sendSuccessResponse($result,__('messages.your_order_has_been_successfully_register'));
+                session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number',['order_number' => $result['order_id'] ]));
+                return redirect()->route('home');
+              
     
             };
 

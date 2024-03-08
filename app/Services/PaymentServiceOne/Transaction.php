@@ -28,7 +28,7 @@ class Transaction
         $this->basket = $basket;
     }
 
-    public function checkOut()
+    public function checkout()
     {
         DB::beginTransaction();
 
@@ -38,23 +38,22 @@ class Transaction
             $payment = $this->makePayment($order);
             DB::commit();
 
-            if ($payment->isOnline()) {
 
-                return $this->getGateway()->payment($order);
-                // dd($this->getGateway());
+            if ($payment->isOnline()) {
+               return  $this->getGateway()->payment($order);
+            } else {
+                $this->completeOrder($order);
+                return $order;
             }
-            $this->completeOrder($order);
-            return $order;
 
 
         } catch (\Exception $e) {
 
             DB::rollBack();
-            return null;
+            session()->flash('error', __('messages.An_error_occurred'));
+            return redirect()->back();
 
         }
-
-
         // call event send email for send order detail email
         // event(new OrderRegisteredEvent($order));
 

@@ -6,6 +6,7 @@ namespace App\Services\PaymentServiceOne\Gateways;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 
 class IdPay implements GatewayInterface
@@ -52,16 +53,14 @@ class IdPay implements GatewayInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result, true);
-        dd($result);
+        // dd($result);
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }
 
-       return redirect()->away($result['link']);
+        return redirect()->away($result['link']);
 
     }
-
-
 
 
     public function verify(Request $request)

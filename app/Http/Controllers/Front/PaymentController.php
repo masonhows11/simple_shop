@@ -8,6 +8,7 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Services\Basket\Basket;
@@ -46,7 +47,9 @@ class PaymentController extends Controller
     {
         $this->validateForm($request);
 
-        $order = $this->transaction->checkOut();
+
+        $order = $this->transaction->checkout();
+
 
 
         session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number', ['order_number' => $order->code]));

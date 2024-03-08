@@ -29,14 +29,15 @@ class IdPay implements GatewayInterface
     {
 
         $params = array(
-            'order_id' => null,
-            'amount' => null,
+            'order_id' => $order->code,
+            'amount' => $order->amount * 10,
             'name' => $order->user->name,
             'phone' => $order->user->mobile,
             'mail' => $order->user->email,
             'desc' => 'توضیحات پرداخت کننده',
             'callback' => $this->callBack,
         );
+
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
@@ -51,10 +52,11 @@ class IdPay implements GatewayInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result, true);
+        dd($result);
         if (isset($result['error_code'])) {
             throw  new \InvalidArgumentException($result['error_message']);
         }
-       // dd($result);
+
        return redirect()->away($result['link']);
 
     }

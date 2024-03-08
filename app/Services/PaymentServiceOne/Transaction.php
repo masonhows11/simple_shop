@@ -38,6 +38,15 @@ class Transaction
             $payment = $this->makePayment($order);
             DB::commit();
 
+            if ($payment->isOnline()) {
+
+                return $this->getGateway()->payment($order);
+                // dd($this->getGateway());
+            }
+            $this->completeOrder($order);
+            return $order;
+
+
         } catch (\Exception $e) {
 
             DB::rollBack();
@@ -45,20 +54,7 @@ class Transaction
 
         }
 
-        try {
-            if ($payment->isOnline()) {
 
-               // dd($this->getGateway());
-                return $this->getGateway()->payment($order);
-
-            } else {
-                $this->completeOrder($order);
-                return $order;
-            }
-        } catch (\Exception $ex) {
-            return $ex->getMessage();
-        }
-        
         // call event send email for send order detail email
         // event(new OrderRegisteredEvent($order));
 

@@ -70,6 +70,15 @@ class PaymentController extends Controller
 
             };
 
+            $result = [
+                'status' => true,
+                'order_id' => $order->code,
+
+            ];
+
+            $this->basket->clear();
+            return $this->sendSuccessResponse($result,__('messages.your_order_has_been_successfully_register'));
+
 
 
            
@@ -132,17 +141,17 @@ class PaymentController extends Controller
         return $products;
     }
 
-    private function sendErrorResponse($result)
+    private function sendErrorResponse($result,$message = null)
     {
 
-        session()->flash('error', __('messages.payment_failed'));
+        session()->flash('error', $message ? $message : __('messages.payment_failed'));
         return redirect()->route('home');
     }
 
-    private function sendSuccessResponse($result)
+    private function sendSuccessResponse($result,$message = null)
     {
 
-        session()->flash('success', __('messages.payment_successfully'));
+        session()->flash('success', $message ? $message : __('messages.payment_successfully'));
         return redirect()->route('home');
     }
 

@@ -54,16 +54,11 @@ class PaymentController extends Controller
             $order = $this->makeOrder();
             $payment = $this->makePayment($order);
             DB::commit();
-           
+
 
             if($payment->isOnline()){
-                
-                // dd('pay is online');
-
               $gateway = $this->request->gateway;
-            
-
-               if($gateway == 'idPay') 
+               if($gateway == 'idPay')
                {
                     $idPayRequest = new IDPayRequest([
                         'amount' => $order->amount,
@@ -71,8 +66,6 @@ class PaymentController extends Controller
                         'user' => Auth::user(),
                         'apiKey' => Config::get('services.gateways.id_pay.api_key'),
                     ]);
-                        
-
                     $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
                     return $paymentService->pay();
                }
@@ -80,30 +73,17 @@ class PaymentController extends Controller
                     session()->flash('warning',  __('messages.this_part_is_being_prepared'));
                     return redirect()->back();
                }
-                    
-            
-
-
 
             } else {
-
                 $result = [
                     'status' => true,
                     'order_id' => $order->code,
-    
+
                 ];
-    
                 $this->basket->clear();
                 session()->flash('success', __('messages.your_order_has_been_successfully_register_with_number',['order_number' => $result['order_id'] ]));
                 return redirect()->route('home');
-              
-    
             };
-
-           
-
-
-           
         } catch (\Exception $ex) {
             DB::rollBack();
             return redirect()->back()->with(['error' => $ex->getMessage()]);
@@ -114,29 +94,30 @@ class PaymentController extends Controller
     private function gateway()
     {
 
-        //// make gateway 
+        //// make gateway
 
         ////  and make gateway request
-        
+
         // $idPayRequest = new IDPayRequest([
         //     'amount' => $order->amount,
         //     'orderId' => $order->code,
         //     'user' => Auth::user(),
         //     'apiKey' => Config::get('services.gateways.id_pay.api_key'),
         // ]);
-            
+
 
         // $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
         // return $paymentService->pay();
 
     }
-   
+
 
 
     public function verify(Request $request)
     {
 
         $paymentInfo = $request->all();
+       // dd($paymentInfo);
 
         $idPayVerifyRequest = new  IDPayVerifyRequest([
             'apiKey' => config('services.gateways.id_pay.api_key'),
@@ -149,11 +130,14 @@ class PaymentController extends Controller
         $result = $paymentService->verify();
 
         if ($result['status'] == false ) {
-          return  $this->sendErrorResponse($result);
+            return  $this->sendErrorResponse($result);
         }
-        if ($result['status'] == true) {
-            return  $this->sendSuccessResponse($result);
+
+        if ($result['status'] == true)
+            return  $this->sendSuccessResponse($result); {
         }
+
+        return null;
     }
 
     private function makeOrder()

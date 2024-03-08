@@ -15,7 +15,7 @@ use App\Services\PaymentServiceOne\Transaction;
 use App\Services\PaymentServiceTwo\PaymentService;
 use App\Services\PaymentServiceTwo\Request\IDPayRequest;
 use App\Services\PaymentServiceTwo\Request\IDPayVerifyRequest;
-
+use PhpParser\Node\Stmt\Switch_;
 
 class PaymentController extends Controller
 {
@@ -54,31 +54,50 @@ class PaymentController extends Controller
             $order = $this->makeOrder();
             $payment = $this->makePayment($order);
             DB::commit();
-            $idPayRequest = new IDPayRequest([
-                'amount' => $order->amount,
-                'orderId' => $order->code,
-                'user' => Auth::user(),
-                'apiKey' => Config::get('services.gateways.id_pay.api_key'),
-            ]);
+           
 
             if($payment->isOnline()){
                 
-                dd('pay is online');
+                // dd('pay is online');
 
-                $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-                return $paymentService->pay();
+              $gateway = $this->request->gateway;
+            
 
+               if($gateway == 'idPay') 
+               {
+                    $idPayRequest = new IDPayRequest([
+                        'amount' => $order->amount,
+                        'orderId' => $order->code,
+                        'user' => Auth::user(),
+                        'apiKey' => Config::get('services.gateways.id_pay.api_key'),
+                    ]);
+                        
+
+                    $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+                    return $paymentService->pay();
+               }
+               if($gateway == 'zarinpal'){
+                    session()->flash('warning',  __('messages.this_part_is_being_prepared'));
+                    return redirect()->back();
+               }
+                    
+            
+
+
+
+            } else {
+                $result = [
+                    'status' => true,
+                    'order_id' => $order->code,
+    
+                ];
+    
+                $this->basket->clear();
+                return $this->sendSuccessResponse($result,__('messages.your_order_has_been_successfully_register'));
+    
             };
 
-            $result = [
-                'status' => true,
-                'order_id' => $order->code,
-
-            ];
-
-            $this->basket->clear();
-            return $this->sendSuccessResponse($result,__('messages.your_order_has_been_successfully_register'));
-
+           
 
 
            
@@ -87,6 +106,8 @@ class PaymentController extends Controller
             return redirect()->back()->with(['error' => $ex->getMessage()]);
         }
     }
+
+   
 
 
     public function verify(Request $request)

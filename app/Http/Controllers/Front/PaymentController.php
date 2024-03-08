@@ -47,10 +47,12 @@ class PaymentController extends Controller
     {
         $this->validateForm($request);
         DB::beginTransaction();
+
         try {
-            session(['current_user' => Auth::user()]);
+
+            // session(['current_user' => Auth::user()]);
             $order = $this->makeOrder();
-            $this->makePayment($order);
+            $payment = $this->makePayment($order);
             DB::commit();
             $idPayRequest = new IDPayRequest([
                 'amount' => $order->amount,
@@ -58,8 +60,19 @@ class PaymentController extends Controller
                 'user' => Auth::user(),
                 'apiKey' => Config::get('services.gateways.id_pay.api_key'),
             ]);
-            $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
-            return $paymentService->pay();
+
+            if($payment->isOnline()){
+                
+                dd('pay is online');
+
+                $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
+                return $paymentService->pay();
+
+            };
+
+
+
+           
         } catch (\Exception $ex) {
             DB::rollBack();
             return redirect()->back()->with(['error' => $ex->getMessage()]);
@@ -69,14 +82,19 @@ class PaymentController extends Controller
 
     public function verify(Request $request)
     {
+
         $paymentInfo = $request->all();
+
         $idPayVerifyRequest = new  IDPayVerifyRequest([
             'apiKey' => config('services.gateways.id_pay.api_key'),
             'id' => $paymentInfo['id'],
             'orderId' => $paymentInfo['order_id'],
         ]);
+
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
+
         $result = $paymentService->verify();
+
         if ($result['status'] == false ) {
           return  $this->sendErrorResponse($result);
         }

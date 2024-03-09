@@ -55,6 +55,7 @@ class PaymentController extends Controller
 
 
             if ($payment->isOnline()) {
+
                 $gateway = $this->request->gateway;
                 if ($gateway == 'idPay') {
                     $idPayRequest = new IDPayRequest([
@@ -83,7 +84,7 @@ class PaymentController extends Controller
             };
         } catch (\Exception $ex) {
             DB::rollBack();
-            return redirect()->back()->with(['error' => $ex->getMessage()]);
+            return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }
     }
 
@@ -97,6 +98,7 @@ class PaymentController extends Controller
             'apiKey' => config('services.gateways.id_pay.api_key'),
             'id' => $paymentInfo['id'],
             'orderId' => $paymentInfo['order_id'],
+            'gateway' => 'idPay',
         ]);
 
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);

@@ -7,6 +7,7 @@ namespace App\Services\PaymentServiceTwo\Gateways;
 use App\Services\PaymentServiceTwo\Contracts\AbstractProviderConstructor;
 use App\Services\PaymentServiceTwo\Contracts\PayableInterface;
 use App\Services\PaymentServiceTwo\Contracts\VerifyInterface;
+
 //use Illuminate\Support\Facades\Auth;
 //use Illuminate\Support\Facades\Config;
 
@@ -89,6 +90,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
                 'status' => true,
                 'order_id' => $result['order_id'],
                 'statusCode' => $result['status'],
+                'gateway' => $this->request->getGateway(),
                 'data' => $result,
             ];
         }
@@ -98,6 +100,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
                 'status' => true,
                 'order_id' => $result['order_id'],
                 'statusCode' => $result['status'],
+                'gateway' => $this->request->getGateway(),
                 'data' => $result,
             ];
         }

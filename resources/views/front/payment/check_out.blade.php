@@ -15,9 +15,7 @@
             @csrf
             <div class="row">
 
-
                 <div class="col-lg-7 d-flex flex-column">
-
 
                     <div>
                         <div class="card">
@@ -34,16 +32,11 @@
                         </div>
                     </div>
 
-
                     <div class="mt-5">
-
-
                         <div class="card">
-
                             <div class="card-header py-4">
                                 {{ __('messages.payment_type') }}
                             </div>
-
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
 
@@ -61,12 +54,11 @@
                                             <label for="gateway"></label>
                                             <select class="form-select" name="gateway" id="gateway">
                                                 <option value="">{{__('messages.choose')}}</option>
-                                                <option value="zarinpal">زرین پال</option>
                                                 <option value="idPay">ای دی پی</option>
+                                                <option value="zarinpal">زرین پال</option>
                                             </select>
                                         </div>
                                     </li>
-
 
                                     <li class="list-group-item my-2">
                                         <div class="mt-2 form-check form-check-inline">
@@ -97,34 +89,18 @@
                                     <li class="list-group-item my-2">
                                         @include('layouts.alert.validate_error')
                                     </li>
-
-
                                 </ul>
-
                             </div>
-
-
-
-
                         </div>
-
-
-
-
                     </div>
-
                 </div>
-
                 <div class="col-lg-5">
                     @include('front.payment.summery')
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary w-100 py-3">{{ __('messages.pay') }}</button>
                     </div>
                 </div>
-
-
             </div>
         </form>
-
     </div>
 @endsection

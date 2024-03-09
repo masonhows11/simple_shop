@@ -57,7 +57,7 @@ class SessionStorage implements StorageInterface, Countable
     }
 
 
-    public function count()
+    public function count() : int
     {
         //// for count the value of item
         return count($this->all());

@@ -150,7 +150,6 @@ class PaymentController extends Controller
 
     private function sendErrorResponse($result, $message = null)
     {
-        // dd($result);
         session()->flash('error', $message ? $message : __('messages.payment_failed'));
         return redirect()->route('home');
     }
@@ -158,8 +157,36 @@ class PaymentController extends Controller
     private function sendSuccessResponse($result, $message = null)
     {
         // dd($result);
+        $order = Order::where('code',$result['order_id'])->first();
+        $this->completeOrder($order);
+        $this->confirmPayment($result,$order);
         session()->flash('success', $message ? $message : __('messages.payment_successfully'));
         return redirect()->route('home');
+    }
+
+    public function confirmPayment($result,Order $order)
+    {
+        return $order->payment->confirm($result['data']['track_id'], $result['gateway']);
+    }
+
+    private function normalizeQuantity($order)
+    {
+
+        foreach ($order->products as $product) {
+            $product->decrementStock($product->pivot->quantity);
+        }
+    }
+
+    private function completeOrder($order)
+    {
+        //// Decreasing the number of products the user has purchased
+        $this->normalizeQuantity($order);
+
+        //// call event send email for send order detail email
+        //  event(new OrderRegisteredEvent($order));
+
+        //// clear all session  basket items
+        $this->basket->clear();
     }
 
     //    private function gateway()

@@ -109,12 +109,13 @@ class PaymentController extends Controller
             return $this->sendErrorResponse($result);
         }
 
-        if ($result['status'] == true){
+        if ($result['status'] == true) {
             return $this->sendSuccessResponse($result);
         }
 
         return null;
     }
+
     private function makeOrder()
     {
         $order = Order::create([
@@ -126,6 +127,7 @@ class PaymentController extends Controller
         $order->products()->attach($this->products());
         return $order;
     }
+
     private function makePayment($order)
     {
 
@@ -135,6 +137,7 @@ class PaymentController extends Controller
             'amount' => $order->amount,
         ]);
     }
+
     private function products()
     {
 
@@ -147,14 +150,14 @@ class PaymentController extends Controller
 
     private function sendErrorResponse($result, $message = null)
     {
-
+        // dd($result);
         session()->flash('error', $message ? $message : __('messages.payment_failed'));
         return redirect()->route('home');
     }
 
     private function sendSuccessResponse($result, $message = null)
     {
-
+        // dd($result);
         session()->flash('success', $message ? $message : __('messages.payment_successfully'));
         return redirect()->route('home');
     }

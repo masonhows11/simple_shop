@@ -115,17 +115,6 @@ class PaymentController extends Controller
 
         return null;
     }
-
-    private function makePayment($order)
-    {
-
-        return Payment::create([
-            'order_id' => $order->id,
-            'method' => $this->request['method'],
-            'amount' => $order->amount,
-        ]);
-    }
-
     private function makeOrder()
     {
         $order = Order::create([
@@ -137,7 +126,15 @@ class PaymentController extends Controller
         $order->products()->attach($this->products());
         return $order;
     }
+    private function makePayment($order)
+    {
 
+        return Payment::create([
+            'order_id' => $order->id,
+            'method' => $this->request['method'],
+            'amount' => $order->amount,
+        ]);
+    }
     private function products()
     {
 
@@ -146,6 +143,20 @@ class PaymentController extends Controller
             $products[$product->id] = ['quantity' => $product->stock];
         }
         return $products;
+    }
+
+    private function sendErrorResponse($result, $message = null)
+    {
+
+        session()->flash('error', $message ? $message : __('messages.payment_failed'));
+        return redirect()->route('home');
+    }
+
+    private function sendSuccessResponse($result, $message = null)
+    {
+
+        session()->flash('success', $message ? $message : __('messages.payment_successfully'));
+        return redirect()->route('home');
     }
 
     //    private function gateway()
@@ -167,24 +178,6 @@ class PaymentController extends Controller
     //        // return $paymentService->pay();
     //
     //    }
-
-
-
-    private function sendErrorResponse($result, $message = null)
-    {
-
-        session()->flash('error', $message ? $message : __('messages.payment_failed'));
-        return redirect()->route('home');
-    }
-
-    private function sendSuccessResponse($result, $message = null)
-    {
-
-        session()->flash('success', $message ? $message : __('messages.payment_successfully'));
-        return redirect()->route('home');
-    }
-
-
 
     /////// other way for pay & verify ///////
     //    public function pay(Request $request)

@@ -35,6 +35,8 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
             'callback' => $callBack,
         );
 
+       
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.idpay.ir/v1.1/payment');
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
@@ -50,6 +52,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
         if (isset($send_result['error_code'])) {
             throw  new \InvalidArgumentException($send_result['error_message']);
         }
+        dd($send_result);
         return redirect()->away($send_result['link']);
     }
 

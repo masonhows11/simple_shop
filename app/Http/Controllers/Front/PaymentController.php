@@ -94,7 +94,9 @@ class PaymentController extends Controller
     public function verify(Request $request)
     {
 
+
         $paymentInfo = $request->all();
+
         $idPayVerifyRequest = new  IDPayVerifyRequest([
             'apiKey' => config('services.gateways.id_pay.api_key'),
             'id' => $paymentInfo['id'],
@@ -107,10 +109,12 @@ class PaymentController extends Controller
         $result = $paymentService->verify();
 
         if ($result['status'] == false) {
+
             return $this->sendErrorResponse($result);
         }
 
         if ($result['status'] == true) {
+            // dd(session()->all());
             return $this->sendSuccessResponse($result);
         }
 
@@ -158,14 +162,14 @@ class PaymentController extends Controller
     private function sendSuccessResponse($result, $message = null)
     {
         // dd($result);
-        $order = Order::where('code',$result['order_id'])->first();
+        $order = Order::where('code', $result['order_id'])->first();
         $this->completeOrder($order);
-        $this->confirmPayment($result,$order);
+        $this->confirmPayment($result, $order);
         session()->flash('success', $message ? $message : __('messages.payment_successfully'));
         return redirect()->route('home');
     }
 
-    public function confirmPayment($result,Order $order)
+    public function confirmPayment($result, Order $order)
     {
         return $order->payment->confirm($result['data']['track_id'], $result['gateway']);
     }
@@ -187,7 +191,7 @@ class PaymentController extends Controller
         //  event(new OrderRegisteredEvent($order));
 
         //// clear all session  basket items
-        $this->basket->clear();
+        // $this->basket->clear();
     }
 
     //    private function gateway()

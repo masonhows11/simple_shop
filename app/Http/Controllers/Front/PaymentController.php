@@ -44,6 +44,7 @@ class PaymentController extends Controller
 
     public function pay(Request $request)
     {
+        session()->put('test','mason');
         $this->validateForm($request);
         DB::beginTransaction();
 
@@ -64,6 +65,7 @@ class PaymentController extends Controller
                         'user' => Auth::user(),
                         'apiKey' => Config::get('services.gateways.id_pay.api_key'),
                     ]);
+
                     $paymentService = new PaymentService(PaymentService::IDPAY, $idPayRequest);
                     return $paymentService->pay();
                 }
@@ -91,7 +93,7 @@ class PaymentController extends Controller
 
     public function verify(Request $request)
     {
-
+        dd(session('test', 'default'));
         $paymentInfo = $request->all();
         // dd($paymentInfo);
         $idPayVerifyRequest = new  IDPayVerifyRequest([

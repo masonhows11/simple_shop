@@ -137,11 +137,13 @@ class Transaction
 
     private function completeOrder($order)
     {
-        // Decreasing the number of products the user has purchased
+        //// Decreasing the number of products the user has purchased
         $this->normalizeQuantity($order);
-        // call event send email for send order detail email
+
+        //// call event send email for send order detail email
         //  event(new OrderRegisteredEvent($order));
-        // clear all session  basket items
+
+        ///// clear all session  basket items
         $this->basket->clear();
     }
 }

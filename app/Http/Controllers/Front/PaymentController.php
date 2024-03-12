@@ -191,7 +191,7 @@ class PaymentController extends Controller
         //  event(new OrderRegisteredEvent($order));
 
         //// clear all session  basket items
-        // $this->basket->clear();
+         $this->basket->clear();
     }
 
     //    private function gateway()

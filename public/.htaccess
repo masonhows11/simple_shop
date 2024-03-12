@@ -1,4 +1,5 @@
 <IfModule mod_rewrite.c>
+    Header always edit Set-Cookie ^(.*)$ $1;Secure;SameSite=None
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>

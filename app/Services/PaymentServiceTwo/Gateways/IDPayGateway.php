@@ -80,6 +80,7 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
         curl_close($ch);
         $result = json_decode($result, true);
 
+
         // verify failed
         if (isset($result['error_code'])) {
             return [

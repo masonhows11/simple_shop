@@ -114,7 +114,7 @@ class PaymentController extends Controller
         }
 
         if ($result['status'] == true) {
-            // dd(session()->all());
+
             return $this->sendSuccessResponse($result);
         }
 
@@ -123,11 +123,17 @@ class PaymentController extends Controller
 
     private function makeOrder()
     {
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'code' => bin2hex(Str::random(16)),
-            'amount' => $this->basket->subTotal(),
-        ]);
+        $order = Order::updateOrCreate(
+            ['user_id' => auth()->id(), 'status' => 0],
+            ['code' => bin2hex(Str::random(16)),
+                'amount' => $this->basket->subTotal()]
+        );
+
+        //        $order = Order::create([
+        //            'user_id' => auth()->id(),
+        //            'code' => bin2hex(Str::random(16)),
+        //            'amount' => $this->basket->subTotal(),
+        //        ]);
 
         $order->products()->attach($this->products());
         return $order;
@@ -135,12 +141,17 @@ class PaymentController extends Controller
 
     private function makePayment($order)
     {
+        return Payment::updateOrCreate(
+            ['user_id' => auth()->id(), 'order_id' => $order->id, 'status' => 0],
+            ['method' => $this->request['method'],
+                'amount' => $order->amount,]
+        );
 
-        return Payment::create([
-            'order_id' => $order->id,
-            'method' => $this->request['method'],
-            'amount' => $order->amount,
-        ]);
+        //        return Payment::create([
+        //            'order_id' => $order->id,
+        //            'method' => $this->request['method'],
+        //            'amount' => $order->amount,
+        //        ]);
     }
 
     private function products()

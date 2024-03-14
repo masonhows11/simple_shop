@@ -31,7 +31,8 @@ class Basket
 
     public function addToBasket(Product $product, int $quantity)
     {
-        if ($this->has($product)) {
+        if ($this->has($product))
+        {
             $quantity = $this->get($product)['quantity'] + $quantity;
         }
         $this->update($product, $quantity);
@@ -39,7 +40,8 @@ class Basket
 
     public function update(Product $product, int $quantity)
     {
-        if (!$product->hasStock($quantity)) {
+        if (!$product->hasStock($quantity))
+        {
             throw new QuantityExceededException();
         }
         if($quantity == 0){

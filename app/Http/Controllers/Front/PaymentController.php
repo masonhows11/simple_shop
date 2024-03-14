@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -222,9 +223,10 @@ class PaymentController extends Controller
         ]);
         // Returning cart items
         $items = Order::find($currentOrder->id)->products()->get();
-        dd($items);
-
-        $this->sendErrorResponse();
+        foreach ($items as $item){
+            $this->basket->addToBasket( Product::find($item->pivot->product_id), $item->pivot->quantity);
+        }
+         return  $this->sendErrorResponse();
     }
 
     //    private function gateway()

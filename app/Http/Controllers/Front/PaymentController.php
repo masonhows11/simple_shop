@@ -111,7 +111,7 @@ class PaymentController extends Controller
 
         if ($result['status'] == false) {
             return redirect()->route('payment.failed.result')
-                ->with('result',$this);
+                ->with('result',$request);
         }
         if ($result['status'] == true) {
             return $this->sendSuccessResponse($result);
@@ -159,13 +159,13 @@ class PaymentController extends Controller
         return $products;
     }
 
-    private function sendErrorResponse($result, $message = null)
+    private function sendErrorResponse($result = null, $message = null)
     {
         session()->flash('error', $message ? $message : __('messages.payment_failed'));
         return redirect()->route('home');
     }
 
-    private function sendSuccessResponse($result, $message = null)
+    private function sendSuccessResponse($result = null, $message = null)
     {
         // dd($result);
         $order = Order::where('code', $result['order_id'])->first();
@@ -205,17 +205,19 @@ class PaymentController extends Controller
         $user = Auth::id();
         // update order
         $currentOrder = Order::where('user_id', $user)->where('order_status', '=', 0)->first();
-        $currentOrder->order_status = 1;
+        // 0 on process
+        // 1 paid
+        // 2 unpaid
+        $currentOrder->order_status = 2;
         $currentOrder->save();
 
         // update payment
         $currentPayment = Payment::where('order_id', '=', $currentOrder->id)->first();
         $currentPayment->update([
-            'status' => 'unpaid',
+            'status' => 2,
             'bank_id' => null,
         ]);
-        return redirect()->route('cart.check')->with(['error' => 'پرداخت شما انجام نشد']);
-
+        $this->sendErrorResponse();
     }
 
     //    private function gateway()

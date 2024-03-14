@@ -107,6 +107,8 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
     Route::get('/cart/checkout', [BasketController::class, 'checkOutForm'])->name('cart.check-out.form');
     //  lv.2
     Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');
+
+
     //    Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
 
 });
@@ -114,6 +116,7 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
 Route::prefix('payment')->group(function () {
 
     Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
+    Route::get('/gateway/auth',[PaymentController::class,'gatewayAuth'])->name('gateway.auth');
 
 });
 

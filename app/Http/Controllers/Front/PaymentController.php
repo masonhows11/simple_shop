@@ -107,20 +107,14 @@ class PaymentController extends Controller
         ]);
 
         $paymentService = new PaymentService(PaymentService::IDPAY, $idPayVerifyRequest);
-
         $result = $paymentService->verify();
 
         if ($result['status'] == false) {
-
-            dd(Auth::user());
             return $this->sendErrorResponse($result);
         }
-
         if ($result['status'] == true) {
-            dd(Auth::user());
             return $this->sendSuccessResponse($result);
         }
-
         return null;
     }
 
@@ -145,7 +139,7 @@ class PaymentController extends Controller
         return Payment::updateOrCreate(
             ['order_id' => $order->id, 'status' => 0],
             ['method' => $this->request['method'],
-                'amount' => $order->amount,]
+             'amount' => $order->amount,]
         );
         //        return Payment::create([
         //            'order_id' => $order->id,
@@ -203,6 +197,12 @@ class PaymentController extends Controller
 
         //// clear all session  basket items
         $this->basket->clear();
+    }
+
+    public function gatewayAuth(array $result)
+    {
+
+
     }
 
     //    private function gateway()

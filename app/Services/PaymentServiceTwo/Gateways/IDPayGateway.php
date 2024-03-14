@@ -83,6 +83,8 @@ class IDPayGateway extends AbstractProviderConstructor implements PayableInterfa
 
         // verify failed
         if (isset($result['error_code'])) {
+
+            return redirect()->route('');
             return [
                 'status' => false,
                 'statusCode' => $result['error_code'],

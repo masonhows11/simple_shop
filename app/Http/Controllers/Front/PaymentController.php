@@ -110,7 +110,8 @@ class PaymentController extends Controller
         $result = $paymentService->verify();
 
         if ($result['status'] == false) {
-            return $this->sendErrorResponse($result);
+            return redirect()->route('payment.failed.result')
+                ->with('result',$this);
         }
         if ($result['status'] == true) {
             return $this->sendSuccessResponse($result);
@@ -201,7 +202,19 @@ class PaymentController extends Controller
 
     public function failedPaymentResult(array $result)
     {
+        $user = Auth::id();
+        // update order
+        $currentOrder = Order::where('user_id', $user)->where('order_status', '=', 0)->first();
+        $currentOrder->order_status = 1;
+        $currentOrder->save();
 
+        // update payment
+        $currentPayment = Payment::where('order_id', '=', $currentOrder->id)->first();
+        $currentPayment->update([
+            'status' => 'unpaid',
+            'bank_id' => null,
+        ]);
+        return redirect()->route('cart.check')->with(['error' => 'پرداخت شما انجام نشد']);
 
     }
 

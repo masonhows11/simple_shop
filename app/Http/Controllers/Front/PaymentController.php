@@ -52,6 +52,8 @@ class PaymentController extends Controller
 
             $order = $this->makeOrder();
             $payment = $this->makePayment($order);
+
+
             DB::commit();
 
 
@@ -86,7 +88,6 @@ class PaymentController extends Controller
             };
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $ex->getMessage();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }
     }
@@ -130,13 +131,11 @@ class PaymentController extends Controller
             ['code' => bin2hex(Str::random(16)),
                 'amount' => $this->basket->subTotal()]
         );
-
         //        $order = Order::create([
         //            'user_id' => auth()->id(),
         //            'code' => bin2hex(Str::random(16)),
         //            'amount' => $this->basket->subTotal(),
         //        ]);
-
         $order->products()->attach($this->products());
         return $order;
     }
@@ -148,7 +147,6 @@ class PaymentController extends Controller
             ['method' => $this->request['method'],
                 'amount' => $order->amount,]
         );
-
         //        return Payment::create([
         //            'order_id' => $order->id,
         //            'method' => $this->request['method'],
@@ -159,7 +157,6 @@ class PaymentController extends Controller
     //// Add the number of each product
     private function products()
     {
-
         $products = [];
         foreach ($this->basket->all() as $product) {
             $products[$product->id] = ['quantity' => $product->stock];

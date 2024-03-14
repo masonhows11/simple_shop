@@ -86,6 +86,7 @@ class PaymentController extends Controller
             };
         } catch (\Exception $ex) {
             DB::rollBack();
+            return $ex->getMessage();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }
     }
@@ -110,11 +111,12 @@ class PaymentController extends Controller
 
         if ($result['status'] == false) {
 
+            dd(Auth::user());
             return $this->sendErrorResponse($result);
         }
 
         if ($result['status'] == true) {
-
+            dd(Auth::user());
             return $this->sendSuccessResponse($result);
         }
 
@@ -142,7 +144,7 @@ class PaymentController extends Controller
     private function makePayment($order)
     {
         return Payment::updateOrCreate(
-            ['user_id' => auth()->id(), 'order_id' => $order->id, 'status' => 0],
+            ['order_id' => $order->id, 'status' => 0],
             ['method' => $this->request['method'],
                 'amount' => $order->amount,]
         );

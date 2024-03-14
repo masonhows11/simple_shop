@@ -156,6 +156,7 @@ class PaymentController extends Controller
         //        ]);
     }
 
+    //// Add the number of each product
     private function products()
     {
 

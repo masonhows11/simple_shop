@@ -37,6 +37,9 @@ class Payment extends Model
         // refer to property of payment model and save new value
         $this->bank_ref_number = $refNum;
         $this->gateway = $gateway;
+        // 0 on process
+        // 1 paid
+        // 2 unpaid
         $this->status = 1;
         $this->save();
 

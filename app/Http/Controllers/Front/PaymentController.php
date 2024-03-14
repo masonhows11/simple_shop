@@ -168,8 +168,11 @@ class PaymentController extends Controller
 
     private function sendSuccessResponse($result = null, $message = null)
     {
-        // dd($result);
+        // update order
         $order = Order::where('code', $result['order_id'])->first();
+        $order->status = 1;
+        $order->save();
+        // update payment
         $this->completeOrder($order);
         $this->confirmPayment($result, $order);
         session()->flash('success', $message ? $message : __('messages.payment_successfully'));
@@ -192,7 +195,7 @@ class PaymentController extends Controller
     private function completeOrder($order)
     {
         //// Decreasing the number of products the user has purchased
-        //  $this->normalizeQuantity($order);
+        $this->normalizeQuantity($order);
 
         //// call event send email for send order detail email
         //  event(new OrderRegisteredEvent($order));

@@ -203,6 +203,7 @@ class PaymentController extends Controller
     public function failedPaymentResult(array $result)
     {
         $user = Auth::id();
+
         // update order
         $currentOrder = Order::where('user_id', $user)->where('order_status', '=', 0)->first();
         // 0 on process
@@ -211,12 +212,16 @@ class PaymentController extends Controller
         $currentOrder->order_status = 2;
         $currentOrder->save();
 
+        
         // update payment
         $currentPayment = Payment::where('order_id', '=', $currentOrder->id)->first();
         $currentPayment->update([
             'status' => 2,
             'bank_id' => null,
         ]);
+        // Returning cart items
+
+
         $this->sendErrorResponse();
     }
 

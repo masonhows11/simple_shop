@@ -16,10 +16,7 @@ class Product extends Model
         'image',
         'quantity'
     ];
-    /**
-     * @var mixed
-     */
-    // private $quantity;
+
 
     public function hasStock(int $quantity)
     {

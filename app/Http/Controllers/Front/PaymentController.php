@@ -88,6 +88,7 @@ class PaymentController extends Controller
             };
         } catch (\Exception $ex) {
             DB::rollBack();
+            return $ex->getMessage();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }
     }
@@ -110,8 +111,7 @@ class PaymentController extends Controller
         $result = $paymentService->verify();
 
         if ($result['status'] == false) {
-            return redirect()->route('payment.failed.result')
-                ->with('result',$request);
+            return redirect()->route('payment.failed.result')->with('result',$result);
         }
         if ($result['status'] == true) {
             return $this->sendSuccessResponse($result);
@@ -200,19 +200,20 @@ class PaymentController extends Controller
         $this->basket->clear();
     }
 
-    public function failedPaymentResult(array $result)
+    public function failedPaymentResult()
     {
         $user = Auth::id();
 
+
         // update order
-        $currentOrder = Order::where('user_id', $user)->where('order_status', '=', 0)->first();
+        $currentOrder = Order::where('user_id', $user)->where('status', '=', 0)->first();
         // 0 on process
         // 1 paid
         // 2 unpaid
-        $currentOrder->order_status = 2;
+        $currentOrder->status = 2;
         $currentOrder->save();
 
-        
+
         // update payment
         $currentPayment = Payment::where('order_id', '=', $currentOrder->id)->first();
         $currentPayment->update([
@@ -220,7 +221,8 @@ class PaymentController extends Controller
             'bank_id' => null,
         ]);
         // Returning cart items
-
+        $items = Order::find($currentOrder->id)->products()->get();
+        dd($items);
 
         $this->sendErrorResponse();
     }

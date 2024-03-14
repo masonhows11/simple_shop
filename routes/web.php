@@ -115,8 +115,8 @@ Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
 Route::prefix('payment')->group(function () {
 
-    Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
-    Route::get('/gateway/auth',[PaymentController::class,'gatewayAuth'])->name('gateway.auth');
+    Route::post('/verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
+    Route::get('/failed/result',[PaymentController::class,'failedPaymentResult'])->name('payment.failed.result');
 
 });
 

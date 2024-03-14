@@ -199,7 +199,7 @@ class PaymentController extends Controller
         $this->basket->clear();
     }
 
-    public function gatewayAuth(array $result)
+    public function failedPaymentResult(array $result)
     {
 
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\Auth\RegisterController;
 use App\Http\Controllers\Front\Auth\SocialController;
 use App\Http\Controllers\Front\Auth\ValidateEmailController;
 use App\Http\Controllers\Front\BasketController;
+use App\Http\Controllers\Front\CouponsController;
 use App\Http\Controllers\Front\PaymentController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\HomeController;
@@ -95,6 +96,11 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['verified']);
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
+
+});
+Route::middleware(['auth', 'web'])->group(function () {
+
+    Route::post('/coupon/store', [CouponsController::class, 'store'])->name('coupon.store');
 
 });
 

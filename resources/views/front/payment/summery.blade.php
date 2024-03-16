@@ -27,13 +27,8 @@
         <div> {{ $description }} </div>
         <div> {{ number_format($price)  }} {{ __('messages.toman') }}</div>
     </div>
+    <hr>
     @endforeach
-    <hr>
-    {{--<div class="d-flex justify-content-between">
-        <div>{{ __('messages.shipment_price') }}</div>
-        <div>{{ number_format(10000) }} {{ __('messages.toman') }}</div>
-    </div>--}}
-    <hr>
     <div class="d-flex justify-content-between">
         <div>{{ __('messages.the_amount_payable') }}</div>
         <div>{{ number_format( $cost->getTotalPrices() ) }} {{ __('messages.toman') }}</div>

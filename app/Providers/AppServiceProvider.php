@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\Basket\Basket;
 use App\Services\Price\BasketPrice;
 use App\Services\Price\Contracts\PriceInterface;
+use App\Services\Price\ShippingPrice;
 use App\Services\Storage\Contracts\StorageInterface;
 use App\Services\Storage\SessionStorage;
 use Illuminate\Support\ServiceProvider;
@@ -34,7 +35,9 @@ class AppServiceProvider extends ServiceProvider
         // in this code when we call  PriceInterface interface return to us
         // new instance  BasketPrice class with construct parameter like 'cart'
         $this->app->bind(PriceInterface::class, function ($app) {
-            return new BasketPrice($app->make(Basket::class));
+            $basketPrice = new BasketPrice($app->make(Basket::class));
+            $shippingPrice = new ShippingPrice($basketPrice);
+            return $shippingPrice;
         });
     }
 }

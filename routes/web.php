@@ -103,7 +103,7 @@ Route::controller(CouponsController::class)->middleware(['auth', 'web'])->group(
 
     Route::post('/coupon/store','store')->name('coupon.store');
     Route::get('/coupon/delete','delete')->name('coupon.delete');
-    
+
 });
 
 Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {

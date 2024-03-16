@@ -37,16 +37,12 @@
 
     @auth
         @if(session()->has('coupon'))
-            <form action="#" method="get">
+            <form class="row" action="#" method="get">
                 @csrf
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="my-auto">{{ __('messages.coupon_code') }}</div>
-                    <div>
-                        <input type="text" class="form-control" name="code" placeholder="کد تخفیف را وارد کنید...">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <input type="submit" class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
+                <div class="col my-auto">{{ __('messages.coupon_code') }}</div>
+                <div class="col my-auto">{{ session()->get('coupon')->code }}</div>
+                <div class="col  my-auto">
+                    <input type="submit" class="btn btn-primary" value="{{ __('messages.delete_coupon') }}">
                 </div>
             </form>
         @else

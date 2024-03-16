@@ -223,8 +223,9 @@ return [
     'new_coupon' => 'ایجاد کوپن جدید',
     'edit_coupon' => 'ویرایش کوپن',
     'apply_coupon' => 'اعمال کد تخفیف',
-
-
+    'delete_coupon' => 'حذف کد تخفیف',
+    'invalid_coupon' => 'کد تخفیف نامعتبر می باشد',
+    'coupon_applied_successful' => 'کد تخفیف با موفقیت اعمال شد',
     'percentage_type' => 'درصدی',
     'numeric_type' => 'عددی',
     'private_coupon' => 'کوپن خصوصی',

@@ -23,11 +23,11 @@
     <h4 class="h4">{{ __('messages.payment') }}</h4>
     <hr>
     @foreach($cost->getSummary() as $description => $price)
-    <div class="d-flex justify-content-between">
-        <div> {{ $description }} </div>
-        <div> {{ number_format($price)  }} {{ __('messages.toman') }}</div>
-    </div>
-    <hr>
+        <div class="d-flex justify-content-between">
+            <div> {{ $description }} </div>
+            <div> {{ number_format($price)  }} {{ __('messages.toman') }}</div>
+        </div>
+        <hr>
     @endforeach
     <div class="d-flex justify-content-between">
         <div>{{ __('messages.the_amount_payable') }}</div>
@@ -35,12 +35,31 @@
     </div>
     <hr>
 
-    <div class="mb-3 d-flex justify-content-between">
-        <div class="my-auto">{{ __('messages.coupon_code') }}</div>
-         <div>
-             <input type="text" class="form-control" name="coupon_code"  placeholder="کد تخفیف را وارد کنید...">
-         </div>
-    </div>
+    @auth
+        @if(session()->has('coupon'))
+            <form action="#" method="get">
+                @csrf
+                <div class="mb-3 d-flex justify-content-between">
+                    <div class="my-auto">{{ __('messages.coupon_code') }}</div>
+                    <div>
+                        <input type="text" class="form-control" name="coupon_code" placeholder="کد تخفیف را وارد کنید...">
+                    </div>
+                </div>
+            </form>
+        @else
+            <form action="{{ route('coupon.store') }}" method="post">
+                <div class="mb-3 d-flex justify-content-between">
+                    <div class="my-auto">{{ __('messages.coupon_code') }}</div>
+                    <div>
+                        <input type="text" class="form-control" name="coupon_code" placeholder="کد تخفیف را وارد کنید...">
+                    </div>
+                </div>
+            </form>
+
+        @endif
+
+    @endauth
+
 </div>
 
 

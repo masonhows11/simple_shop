@@ -33,6 +33,6 @@ class BasketPrice implements PriceInterface
 
     public function getSummary()
     {
-        return [$this->persianDescription() , $this->getPrice()];
+        return [$this->persianDescription() => $this->getPrice()];
     }
 }

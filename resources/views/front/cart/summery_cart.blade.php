@@ -46,19 +46,21 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <input type="submit"  class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
+                    <input type="submit" class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
                 </div>
             </form>
         @else
             <form class="row" action="{{ route('coupon.store') }}" method="post">
                 @csrf
+
                 <div class="col  my-auto">{{ __('messages.coupon_code') }}</div>
                 <div class="col  my-auto">
-                        <input type="text" class="form-control" name="code">
+                    <input type="text" class="form-control" name="code">
                 </div>
                 <div class="col  my-auto">
-                    <input type="submit"  class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
+                    <input type="submit" class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
                 </div>
+                @include('layouts.alert.validate_error')
             </form>
 
         @endif

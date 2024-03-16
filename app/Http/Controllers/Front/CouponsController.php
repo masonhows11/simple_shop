@@ -12,6 +12,9 @@ class CouponsController extends Controller
     {
        // dd($request->all());
 
+        $request->validate([
+           'code' => ['required','exists:coupons,code']
+        ]);
 
     }
 }

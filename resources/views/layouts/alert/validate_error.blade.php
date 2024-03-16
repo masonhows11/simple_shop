@@ -2,9 +2,9 @@
 
 <ul>
     @foreach ($errors->all() as $error)
-     <div class="small mb-2">
-        <li class="text-danger">{{ $error }}</li>
-     </div>
+     <ul class="small mt-4 mb-2 list-unstyled">
+        <li class="text-danger ">{{ $error }}</li>
+     </ul>
     @endforeach
 </ul>
 

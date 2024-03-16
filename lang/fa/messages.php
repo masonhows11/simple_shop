@@ -222,6 +222,7 @@ return [
     'coupon_discount_list' => 'کوپن های تخفیف',
     'new_coupon' => 'ایجاد کوپن جدید',
     'edit_coupon' => 'ویرایش کوپن',
+    'apply_coupon' => 'اعمال کد تخفیف',
 
 
     'percentage_type' => 'درصدی',

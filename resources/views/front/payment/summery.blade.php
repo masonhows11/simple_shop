@@ -42,17 +42,22 @@
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="my-auto">{{ __('messages.coupon_code') }}</div>
                     <div>
-                        <input type="text" class="form-control" name="coupon_code" placeholder="کد تخفیف را وارد کنید...">
+                        <input type="text" class="form-control" name="code" placeholder="کد تخفیف را وارد کنید...">
                     </div>
+                </div>
+                <div class="mb-3">
+                    <input type="submit"  class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
                 </div>
             </form>
         @else
-            <form action="{{ route('coupon.store') }}" method="post">
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="my-auto">{{ __('messages.coupon_code') }}</div>
-                    <div>
-                        <input type="text" class="form-control" name="coupon_code" placeholder="کد تخفیف را وارد کنید...">
-                    </div>
+            <form class="row" action="{{ route('coupon.store') }}" method="post">
+                @csrf
+                <div class="col  my-auto">{{ __('messages.coupon_code') }}</div>
+                <div class="col  my-auto">
+                        <input type="text" class="form-control" name="code">
+                </div>
+                <div class="col  my-auto">
+                    <input type="submit"  class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
                 </div>
             </form>
 

@@ -37,7 +37,7 @@
 
     @auth
         @if(session()->has('coupon'))
-            <form class="row" action="#" method="get">
+            <form class="row" action="{{ route('coupon.delete') }}" method="get">
                 @csrf
                 <div class="col my-auto">{{ __('messages.coupon_code') }}</div>
                 <div class="col my-auto">{{ session()->get('coupon')->code }}</div>

@@ -98,10 +98,12 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
 
 });
-Route::middleware(['auth', 'web'])->group(function () {
 
-    Route::post('/coupon/store', [CouponsController::class, 'store'])->name('coupon.store');
+Route::controller(CouponsController::class)->middleware(['auth', 'web'])->group(function () {
 
+    Route::post('/coupon/store','store')->name('coupon.store');
+    Route::get('/coupon/delete','delete')->name('coupon.delete');
+    
 });
 
 Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {

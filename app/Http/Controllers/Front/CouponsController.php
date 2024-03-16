@@ -24,7 +24,11 @@ class CouponsController extends Controller
         }catch (\Exception $ex){
             return redirect()->back()->withErrors(__('messages.invalid_coupon'));
         }
+    }
 
-
+    public function delete(Request $request)
+    {
+        session()->forget('coupon');
+        return redirect()->back();
     }
 }

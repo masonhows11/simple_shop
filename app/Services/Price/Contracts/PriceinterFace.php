@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Cost\Contracts;
+namespace App\Services\Price\Contracts;
 
 
 

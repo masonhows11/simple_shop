@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="col-lg-4 border-2 border-secondary   py-4">
-                    @include('front.payment.summery')
+                    @include('front.cart.summery_cart')
                     <div class="mt-4">
                         <a href="{{ route('cart.check-out.form') }}" class="btn btn-primary w-100 py-3" >{{ __('messages.register_and_pay') }}</a>
                     </div>

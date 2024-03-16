@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    @include('front.payment.summery')
+                    @include('front.payment.summery_checkout')
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary w-100 py-3">{{ __('messages.pay') }}</button>
                     </div>

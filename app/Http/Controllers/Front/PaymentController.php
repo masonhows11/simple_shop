@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Services\Price\Contracts\PriceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -24,12 +25,14 @@ class PaymentController extends Controller
     private Transaction $transaction;
     private Request $request;
     private Basket $basket;
+    private PriceInterface $price;
 
-    public function __construct(Transaction $transaction, Request $request, Basket $basket)
+    public function __construct(Transaction $transaction, Request $request, Basket $basket,PriceInterface $price)
     {
         $this->transaction = $transaction;
         $this->request = $request;
         $this->basket = $basket;
+        $this->price = $price;
     }
 
     public function validateForm($request)
@@ -63,7 +66,8 @@ class PaymentController extends Controller
                 $gateway = $this->request->gateway;
                 if ($gateway == 'idPay') {
                     $idPayRequest = new IDPayRequest([
-                        'amount' => $order->amount,
+                        //// $this->price->getTotalPrices() this total price means =  cart price + shipping price
+                        'amount' => $this->price->getTotalPrices(),
                         'orderId' => $order->code,
                         'user' => Auth::user(),
                         'apiKey' => Config::get('services.gateways.id_pay.api_key'),
@@ -89,7 +93,6 @@ class PaymentController extends Controller
             };
         } catch (\Exception $ex) {
             DB::rollBack();
-            return $ex->getMessage();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }
     }
@@ -141,8 +144,15 @@ class PaymentController extends Controller
         return Payment::updateOrCreate(
             ['order_id' => $order->id, 'status' => 0],
             ['method' => $this->request['method'],
-             'amount' => $order->amount,]
+                'amount' => $this->price->getTotalPrices(),]
         );
+
+        //        return Payment::updateOrCreate(
+        //            ['order_id' => $order->id, 'status' => 0],
+        //            ['method' => $this->request['method'],
+        //             'amount' => $order->amount,]
+        //        );
+
         //        return Payment::create([
         //            'order_id' => $order->id,
         //            'method' => $this->request['method'],

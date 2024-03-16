@@ -36,8 +36,8 @@ class AppServiceProvider extends ServiceProvider
         // new instance  BasketPrice class with construct parameter like 'cart'
         $this->app->bind(PriceInterface::class, function ($app) {
             $basketPrice = new BasketPrice($app->make(Basket::class));
-            $shippingPrice = new ShippingPrice($basketPrice);
-            return $shippingPrice;
+            return $shippingPrice = new ShippingPrice($basketPrice);
+
         });
     }
 }

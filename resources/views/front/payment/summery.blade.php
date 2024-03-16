@@ -34,6 +34,13 @@
         <div>{{ number_format( $cost->getTotalPrices() ) }} {{ __('messages.toman') }}</div>
     </div>
     <hr>
+
+    <div class="mb-3 d-flex justify-content-between">
+        <div class="my-auto">{{ __('messages.coupon_code') }}</div>
+         <div>
+             <input type="text" class="form-control" name="coupon_code"  placeholder="کد تخفیف را وارد کنید...">
+         </div>
+    </div>
 </div>
 
 

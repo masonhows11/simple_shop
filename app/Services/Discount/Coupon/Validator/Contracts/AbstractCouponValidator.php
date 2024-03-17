@@ -15,7 +15,7 @@ abstract class AbstractCouponValidator implements CouponValidatorInterface
     //// set next validate function for validate coupon code
     public function setNextValidator(CouponValidatorInterface $validator){
 
-        //// set next validate function into nextValidator variable
+        //// set next validator into nextValidator variable
         $this->nextValidator = $validator;
     }
 
@@ -27,6 +27,9 @@ abstract class AbstractCouponValidator implements CouponValidatorInterface
             return true;
         }
         //// else
+        /// below line means create instance of this interface in setNextValidator()
+        /// and with nextValidator variable access to validate() function that make in setNextValidator()
+        /// for set next validate and check it
         return  $this->nextValidator->validate($coupon);
     }
 }

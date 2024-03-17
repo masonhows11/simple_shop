@@ -18,6 +18,7 @@ class CouponValidator
         //// set next validator for our steps
         $isExpired->setNextValidator($canUsedIt);
 
+        //// run first step of chain (first class)
         return $isExpired->validate($coupon);
 
     }

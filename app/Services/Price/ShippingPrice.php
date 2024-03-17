@@ -8,7 +8,7 @@ use App\Services\Price\Contracts\PriceInterface;
 
 class ShippingPrice implements PriceInterface
 {
-    private $price;
+    private PriceInterface $price;
     const SHIPPING_COST = 20000;
 
     ////  when PriceInterface $price is call
@@ -37,7 +37,7 @@ class ShippingPrice implements PriceInterface
 
     public function getSummary()
     {
-        //// merge info into array for display in summary view
+        //// merge old info into array for display in summary view
         return array_merge($this->price->getSummary(), [$this->persianDescription() => $this->getPrice()]);
     }
 }

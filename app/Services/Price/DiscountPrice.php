@@ -4,28 +4,39 @@
 namespace App\Services\Price;
 
 
+use App\Services\Discount\DiscountManager;
 use App\Services\Price\Contracts\PriceInterface;
 
 class DiscountPrice implements PriceInterface
 {
 
+    private PriceInterface $price;
+    private DiscountManager $discountManager;
+    public function __construct(PriceInterface $price,DiscountManager $discountManager)
+    {
+        $this->price = $price;
+        $this->discountManager = $discountManager;
+    }
+
     public function getPrice()
     {
-        // TODO: Implement getPrice() method.
+       return $this->discountManager->calculateUserDiscount();
     }
 
     public function getTotalPrices()
     {
-        // TODO: Implement getTotalPrices() method.
+        //// for calculate the final price when we use the coupon
+        return $this->price->getTotalPrices() - $this->getPrice();
     }
 
     public function persianDescription()
     {
-        // TODO: Implement persianDescription() method.
+        return 'میزان تخفیف';
     }
 
     public function getSummary()
     {
-        // TODO: Implement getSummary() method.
+        //// merge old info into array for display in summary view
+        return array_merge($this->price->getSummary(), [$this->persianDescription() => $this->getPrice()]);
     }
 }

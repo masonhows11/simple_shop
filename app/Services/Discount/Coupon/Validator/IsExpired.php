@@ -10,8 +10,14 @@ use App\Services\Discount\Coupon\Validator\Contracts\AbstractCouponValidator;
 class IsExpired extends AbstractCouponValidator
 {
 
-    public function validate(Coupon $coupon){
+    public function validate(Coupon $coupon)
+    {
 
-        dd($coupon);
+        dd($coupon->isExpired());
+
+        if($coupon->isExpired()){
+
+        }
+
     }
 }

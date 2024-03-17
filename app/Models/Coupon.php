@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Coupon extends Model
 {
@@ -17,4 +18,10 @@ class Coupon extends Model
         'couponable_id',
         'couponable_type'
     ];
+
+
+    public function isExpired()
+    {
+        return Carbon::now()->isAfter(Carbon::parse($this->expire_time));
+    }
 }

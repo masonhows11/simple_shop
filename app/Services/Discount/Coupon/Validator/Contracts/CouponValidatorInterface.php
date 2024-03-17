@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Discount\Coupon\Validator;
+namespace App\Services\Discount\Coupon\Validator\Contracts;
 
 
 use App\Models\Coupon;

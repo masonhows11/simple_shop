@@ -13,10 +13,10 @@ abstract class AbstractCouponValidator implements CouponValidatorInterface
     private $nextValidator;
 
     //// set next validate function for validate coupon code
-    public function setNextValidator(CouponValidatorInterface $couponValidator){
+    public function setNextValidator(CouponValidatorInterface $validator){
 
         //// set next validate function into nextValidator variable
-        $this->nextValidator = $couponValidator;
+        $this->nextValidator = $validator;
     }
 
     public function validate(Coupon $coupon){

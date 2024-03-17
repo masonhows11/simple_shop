@@ -32,7 +32,7 @@ class CouponsController extends Controller
             $coupon = Coupon::where('code', $request->code)->firstOrFail();
 
             //// check coupon belong to user
-            dd($this->validator->isValid($coupon));
+           $this->validator->isValid($coupon);
 
             //// save coupon to session user
             session()->put(['coupon' => $coupon]);

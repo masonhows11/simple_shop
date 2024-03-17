@@ -13,6 +13,10 @@ class CouponValidator
     {
 
         $isExpired = resolve(IsExpired::class);
+        $canUsedIt = resolve(CanUserUseCoupon::class);
+
+        //// set next validator for our steps
+        $isExpired->setNextValidator($canUsedIt);
 
         return $isExpired->validate($coupon);
 

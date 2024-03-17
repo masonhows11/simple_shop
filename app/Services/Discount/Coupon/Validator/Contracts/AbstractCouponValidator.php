@@ -23,7 +23,7 @@ abstract class AbstractCouponValidator implements CouponValidatorInterface
 
         //// the chain of validators is finished
         /// and there is not next validator function
-        if($this->nextValidator == null){
+        if($this->nextValidator === null){
             return true;
         }
         //// else

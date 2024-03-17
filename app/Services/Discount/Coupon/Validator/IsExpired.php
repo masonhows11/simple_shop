@@ -15,14 +15,13 @@ class IsExpired extends AbstractCouponValidator
     {
 
 
-
-        if($coupon->isExpired()){
+        if ($coupon->isExpired()) {
             throw  new CouponHasExpiredException();
         }
 
         //// for execute next validator
-        /// parent is class AbstractCouponValidator and validate is function
-        /// for set new validator function
+        //// parent is  AbstractCouponValidator class and validate is function
+        //// for set new validator function
         return parent::validate($coupon);
 
     }

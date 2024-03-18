@@ -35,7 +35,16 @@
             <th>مجموع</th>
         </tr>
         <tr>
-
+            <td>محصول شماره یک</td>
+            <td>10000</td>
+            <td>12</td>
+            <td>120000</td>
+        </tr>
+        <tr>
+            <td>محصول شماره دو</td>
+            <td>5000</td>
+            <td>2</td>
+            <td>10000</td>
         </tr>
         {{--@foreach($order->products as $product)
         <tr>

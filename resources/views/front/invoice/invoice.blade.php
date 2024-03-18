@@ -1,4 +1,4 @@
-@inject('price','App\Services\Price\Contracts\PriceInterface')
+@inject('cost','App\Services\Price\Contracts\PriceInterface')
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
@@ -42,17 +42,16 @@
             <td>{{$product->price * $product->pivot->quantity}}</td>
         </tr>
         @endforeach
-       {{-- @foreach($cost->getSummary() as $description => $price)
+        @foreach($cost->getSummary() as $desc => $price)
         <tr>
-            <td colspan=3>{{$description}}</td>
+            <td colspan=3>{{$desc}}</td>
             <td>{{$price}}</td>
         </tr>
         @endforeach
-        <tr>
+       <tr>
             <td colspan=3>مجموع</td>
-            <td>{{$cost->getTotalCosts()}}</td>
-
-        </tr>--}}
+            <td>{{$cost->getTotalPrices()}}</td>
+        </tr>
     </table>
 </div>
 </body>

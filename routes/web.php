@@ -9,6 +9,7 @@ use App\Http\Controllers\Front\Auth\SocialController;
 use App\Http\Controllers\Front\Auth\ValidateEmailController;
 use App\Http\Controllers\Front\BasketController;
 use App\Http\Controllers\Front\CouponsController;
+use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PaymentController;
 use App\Http\Controllers\Front\ProductsController;
@@ -124,6 +125,8 @@ Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(fu
 
     Route::get('/orders','index')->name('orders.index');
 });
+
+Route::get('/invoice/{order}',[InvoiceController::class,'invoice'])->name('invoice');
 
 Route::controller(PaymentController::class)->prefix('payment')->group(function () {
 

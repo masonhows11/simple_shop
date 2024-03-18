@@ -59,6 +59,11 @@ class Order extends Model
         return Storage::disk('public')->download('invoices/'.$this->id. '.pdf');
     }
 
+    public function invoicePath()
+    {
+
+    }
+
     public function products()
     {
         return $this->BelongsToMany(Product::class)->withPivot('quantity');

@@ -15,6 +15,10 @@ class InvoiceController extends Controller
 
     public function invoice(Order $order)
     {
+      // for download invoice
+      // check if invoice does not exist
+      // create first then download
+      // or if exists download it
       return   $order->downloadInvoice();
     }
 

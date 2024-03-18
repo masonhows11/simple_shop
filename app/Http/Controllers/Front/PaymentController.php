@@ -54,9 +54,9 @@ class PaymentController extends Controller
 
         try {
 
-            if(!$request->has('order_id')){
+            if($request->missing('order_id')){
                 $order = $this->makeOrder();
-                $order->generateInvoice();
+                 $order->generateInvoice();
                 // dd('invoice created');
                 $payment = $this->makePayment($order);
                 DB::commit();

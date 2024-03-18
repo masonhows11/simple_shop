@@ -46,6 +46,12 @@
             <td>2</td>
             <td>10000</td>
         </tr>
+        <tr>
+            <td>محصول شماره سه</td>
+            <td>6000</td>
+            <td>3</td>
+            <td>18000</td>
+        </tr>
         {{--@foreach($order->products as $product)
         <tr>
             <td>{{$product->title}}</td>

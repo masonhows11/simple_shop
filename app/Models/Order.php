@@ -22,9 +22,12 @@ class Order extends Model
         //        $data = [
         //            'foo' => 'bar'
         //        ];
-        
+
         //// $this in ['order' => $this] array means this model = order model
         // return $pdf->stream('document.pdf');
+
+        //        $pdf = PDF::loadView('front.invoice.invoice', ['order' => $this]);
+        //        return $pdf->save(storage_path('app/public/invoices/').$this->id. '.pdf');
 
         $pdf = PDF::loadView('front.invoice.invoice', ['order' => $this]);
         return $pdf->save(storage_path('app/public/invoices/').$this->id. '.pdf');

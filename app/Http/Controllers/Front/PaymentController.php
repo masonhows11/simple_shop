@@ -94,6 +94,7 @@ class PaymentController extends Controller
                 return redirect()->route('home');
             };
         } catch (\Exception $ex) {
+
             DB::rollBack();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }

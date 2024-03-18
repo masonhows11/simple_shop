@@ -29,7 +29,7 @@ class Order extends Model
         //        $pdf = PDF::loadView('front.invoice.invoice', ['order' => $this]);
         //        return $pdf->save(storage_path('app/public/invoices/').$this->id. '.pdf');
 
-        $pdf = PDF::loadView('front.invoice.invoice', ['order' => $this]);
+        $pdf = PDF::loadView('front.invoice.invoice_test', ['order' => $this]);
         return $pdf->save(storage_path('app/public/invoices/').$this->id. '.pdf');
     }
 

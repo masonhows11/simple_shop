@@ -25,6 +25,9 @@
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{ \Illuminate\Support\Facades\Auth::user()->name  }}</a>
                     </li>
 

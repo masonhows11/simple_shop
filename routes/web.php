@@ -106,25 +106,23 @@ Route::controller(CouponsController::class)->middleware(['auth', 'web'])->group(
 
 });
 
-Route::prefix('payment')->middleware(['auth', 'web'])->group(function () {
+Route::controller(BasketController::class)->prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
-    Route::get('/cart/add-to-cart/{product}', [BasketController::class, 'add'])->name('cart.add-to-cart');
-    Route::get('/cart', [BasketController::class, 'cart'])->name('cart');
-    Route::post('/cart/update/{product}', [BasketController::class, 'update'])->name('cart.update');
-    // lv.1
-    Route::get('/cart/checkout', [BasketController::class, 'checkOutForm'])->name('cart.check-out.form');
-    //  lv.2
-    Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');
-
-
+    Route::get('/cart/add-to-cart/{product}','add')->name('cart.add-to-cart');
+    Route::get('/cart','cart')->name('cart');
+    Route::post('/cart/update/{product}', 'update')->name('cart.update');
+    Route::get('/cart/checkout', 'checkOutForm')->name('cart.check-out.form');   // lv.1
     //    Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
+});
+Route::controller(BasketController::class)->prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
+    Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');    //  lv.2
 });
 
-Route::prefix('payment')->group(function () {
+Route::controller(PaymentController::class)->prefix('payment')->group(function () {
 
-    Route::post('/verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
-    Route::get('/failed/result',[PaymentController::class,'failedPaymentResult'])->name('payment.failed.result');
+    Route::post('/verify/{gateway}/callback','verify')->name('payment.verify');
+    Route::get('/failed/result','failedPaymentResult')->name('payment.failed.result');
 
 });
 

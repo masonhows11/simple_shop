@@ -56,6 +56,7 @@ class PaymentController extends Controller
 
             $order = $this->makeOrder();
             $order->generateInvoice();
+            // dd('invoice created');
             $payment = $this->makePayment($order);
             DB::commit();
 
@@ -91,7 +92,7 @@ class PaymentController extends Controller
                 return redirect()->route('home');
             };
         } catch (\Exception $ex) {
-
+            dd($ex);
             DB::rollBack();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }

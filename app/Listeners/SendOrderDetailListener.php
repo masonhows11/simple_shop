@@ -14,11 +14,11 @@ class SendOrderDetailListener
     /**
      * Create the event listener.
      */
-    public Order $order;
-    public function __construct(Order $order)
+
+    public function __construct()
     {
         //
-        $this->order = $order;
+
     }
 
     /**

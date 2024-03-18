@@ -14,8 +14,10 @@ use Illuminate\Queue\SerializesModels;
 class OrderDetailEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $order;
+
+    public Order $order;
     public $user;
+    public $order_id;
 
     /**
      * Create a new message instance.
@@ -26,6 +28,7 @@ class OrderDetailEmail extends Mailable
         //
         $this->order = $order;
         $this->user = $order->user;
+        $this->order_id = $order->id;
     }
 
     /**
@@ -34,7 +37,7 @@ class OrderDetailEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: " جزئیات سفارش $this->order->id"
+            subject: "$this->order_id آنلاین شاپ جزئیات سفارش شماره",
         );
     }
 

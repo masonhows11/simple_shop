@@ -45,13 +45,6 @@
                                         <a href="{{ route('invoice.pay',$order) }}" class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>
                                     @endif
                                     <a href="{{ route('invoice',$order) }}" class="btn btn-primary btn-sm">{{ __('messages.download_invoice') }}</a>
-                                    {{-- <form action="#" method="post" class="row d-flex justify-content-center">
-                                         @csrf
-                                         <div class="col-auto">
-                                             <button type="submit" class="btn btn-primary btn-sm">{{ __('messages.update') }}</button>
-                                         </div>
-                                     </form>--}}
-
                                 </td>
                             </tr>
                         @endforeach

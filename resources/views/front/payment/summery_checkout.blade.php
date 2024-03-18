@@ -18,6 +18,7 @@
     </div>
     <hr>
 </div>--}}
+@if(!isset($re_paid))
 @inject('cost','App\Services\Price\Contracts\PriceInterface')
 <div class="p-4 bg-light-subtle rounded-2 border border-dark">
     <h4 class="h4">{{ __('messages.payment') }}</h4>
@@ -35,35 +36,25 @@
     </div>
     <hr>
 
-    {{--@auth
-        @if(session()->has('coupon'))
-            <form action="#" method="get">
-                @csrf
-                <div class="mb-3 d-flex justify-content-between">
-                    <div class="my-auto">{{ __('messages.coupon_code') }}</div>
-                    <div>
-                        <input type="text" class="form-control" name="code" placeholder="کد تخفیف را وارد کنید...">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <input type="submit"  class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
-                </div>
-            </form>
-        @else
-            <form class="row" action="{{ route('coupon.store') }}" method="post">
-                @csrf
-                <div class="col  my-auto">{{ __('messages.coupon_code') }}</div>
-                <div class="col  my-auto">
-                        <input type="text" class="form-control" name="code">
-                </div>
-                <div class="col  my-auto">
-                    <input type="submit"  class="btn btn-primary" value="{{ __('messages.apply_coupon') }}">
-                </div>
-            </form>
-        @endif
-    @endauth--}}
-
 </div>
+@else
+    <div class="p-4 bg-light-subtle rounded-2 border border-dark">
+        <h4 class="h4">{{ __('messages.payment') }}</h4>
+        <input type="hidden" name="order_id" value="{{ $order->id }}">
+        <hr>
+            <div class="d-flex justify-content-between">
+                <div> {{ __('messages.order_price')  }} </div>
+                <div> {{ number_format($order->amount)  }} {{ __('messages.toman') }}</div>
+            </div>
+            <hr>
+        <div class="d-flex justify-content-between">
+            <div>{{ __('messages.the_amount_payable') }}</div>
+            <div>{{ number_format( $order->payment->amount ) }} {{ __('messages.toman') }}</div>
+        </div>
+        <hr>
+
+    </div>
+@endif
 
 
 

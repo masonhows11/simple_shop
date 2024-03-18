@@ -267,7 +267,7 @@ return [
     'order_factor' => 'فاکتور سفارش',
     'order_specification' => 'مشخصات فاکتور',
     'order_date' => 'تاریخ',
-    'order_price' => 'مبلغ',
+    'order_price' => 'مبلغ سفارش',
     'no_order_registered' => 'سفارشی وجود ندارد',
 
     'print' => 'چاپ',

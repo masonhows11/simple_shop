@@ -127,7 +127,7 @@ Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(fu
 });
 
 Route::controller(InvoiceController::class)->group(function (){
-    
+
     Route::get('/invoice/{order}','invoice')->name('invoice');
     Route::get('/invoice/pay/{order}','pay')->name('invoice.pay');
 });

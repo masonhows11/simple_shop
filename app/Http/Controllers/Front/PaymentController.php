@@ -54,11 +54,18 @@ class PaymentController extends Controller
 
         try {
 
-            $order = $this->makeOrder();
-            $order->generateInvoice();
-            // dd('invoice created');
-            $payment = $this->makePayment($order);
-            DB::commit();
+            if(!$request->has('order_id')){
+                $order = $this->makeOrder();
+                $order->generateInvoice();
+                // dd('invoice created');
+                $payment = $this->makePayment($order);
+                DB::commit();
+            }else{
+                $order = Order::where('id',$request->order_id)->first();
+                $payment = $order->payment;
+            }
+
+
 
 
             if ($payment->isOnline()) {
@@ -92,7 +99,6 @@ class PaymentController extends Controller
                 return redirect()->route('home');
             };
         } catch (\Exception $ex) {
-            dd($ex);
             DB::rollBack();
             return redirect()->back()->with(['error' => __('messages.An_error_occurred')]);
         }

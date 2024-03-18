@@ -62,7 +62,7 @@ class OrderDetailEmail extends Mailable
     public function attachments(): array
     {
         return [
-          //  Attachment::fromStorage('public')->as('invoices/'.$this->order->id)->withMime('application/pdf'),
+            Attachment::fromStorage('public/invoices/'.$this->order->id.'.pdf'),
         ];
     }
 }

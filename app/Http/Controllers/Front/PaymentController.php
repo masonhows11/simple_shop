@@ -54,19 +54,18 @@ class PaymentController extends Controller
 
         try {
 
+            // id condition true
             if($request->missing('order_id')){
-                $order = $this->makeOrder();
+                 $order = $this->makeOrder();
                  $order->generateInvoice();
                 // dd('invoice created');
                 $payment = $this->makePayment($order);
                 DB::commit();
+            // if condition false
             }else{
                 $order = Order::where('id',$request->order_id)->first();
                 $payment = $order->payment;
             }
-
-
-
 
             if ($payment->isOnline()) {
 

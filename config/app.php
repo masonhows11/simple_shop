@@ -171,6 +171,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Providers\PermissionServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
     ])->toArray(),
 
     /*
@@ -185,6 +186,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

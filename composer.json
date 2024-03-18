@@ -6,13 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ext-curl": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.8",
-      "ext-curl": "*"
+        "niklasravnsborg/laravel-pdf": "^4.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.10",

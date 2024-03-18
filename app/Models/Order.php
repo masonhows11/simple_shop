@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 
@@ -53,6 +54,10 @@ class Order extends Model
         return $result;
     }
 
+    public function downloadInvoice()
+    {
+        return Storage::disk('public')->download('invoices/'.$this->id. '.pdf');
+    }
 
     public function products()
     {

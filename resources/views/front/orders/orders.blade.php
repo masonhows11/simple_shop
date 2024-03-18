@@ -16,7 +16,7 @@
 
             @if($orders->isEmpty())
                 <div class="col mt-4 bg-light-subtle py-4 text-center rounded-2">
-                    {{ __('messages.your_shopping_cart_is_empty') }}
+                    {{ __('messages.not_record_found') }}
                 </div>
             @else
                 <div class="col mt-4 bg-light-subtle py-2 rounded-2 border border-dark overflow-y-auto">

@@ -9,6 +9,7 @@ use App\Http\Controllers\Front\Auth\SocialController;
 use App\Http\Controllers\Front\Auth\ValidateEmailController;
 use App\Http\Controllers\Front\BasketController;
 use App\Http\Controllers\Front\CouponsController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PaymentController;
 use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\HomeController;
@@ -117,6 +118,10 @@ Route::controller(BasketController::class)->prefix('payment')->middleware(['auth
 Route::controller(BasketController::class)->prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
     Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');    //  lv.2
+});
+Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(function () {
+
+    Route::get('/orders/list/{user}',  'pay')->name('orders.index');    //  lv.2
 });
 
 Route::controller(PaymentController::class)->prefix('payment')->group(function () {

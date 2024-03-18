@@ -55,6 +55,8 @@ class PaymentController extends Controller
         try {
 
             $order = $this->makeOrder();
+            $order->generateInvoice();
+            dd('invoice as pdf created');
             $payment = $this->makePayment($order);
 
 

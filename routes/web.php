@@ -126,7 +126,13 @@ Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(fu
     Route::get('/orders','index')->name('orders.index');
 });
 
-Route::get('/invoice/{order}',[InvoiceController::class,'invoice'])->name('invoice');
+Route::controller(InvoiceController::class)->group(function (){
+    
+    Route::get('/invoice/{order}','invoice')->name('invoice');
+    Route::get('/invoice/pay/{order}','pay')->name('invoice.pay');
+});
+
+
 
 Route::controller(PaymentController::class)->prefix('payment')->group(function () {
 

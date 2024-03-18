@@ -42,7 +42,7 @@
                                 <td>{{ $order->created_at }}</td>
                                 <td>
                                     @if($order->status == 0 || $order->status == 2)
-                                        <a href="#" class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>
+                                        <a href="{{ route('invoice.pay',$order) }}" class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>
                                     @endif
                                     <a href="{{ route('invoice',$order) }}" class="btn btn-primary btn-sm">{{ __('messages.download_invoice') }}</a>
                                     {{-- <form action="#" method="post" class="row d-flex justify-content-center">

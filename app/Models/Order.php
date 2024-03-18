@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use niklasravnsborg\LaravelPdf\Pdf;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 
 class Order extends Model
@@ -22,6 +22,7 @@ class Order extends Model
         //        $data = [
         //            'foo' => 'bar'
         //        ];
+        
         //// $this in ['order' => $this] array means this model = order model
         // return $pdf->stream('document.pdf');
 

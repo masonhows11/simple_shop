@@ -44,7 +44,7 @@
                                     @if($order->status == 0 || $order->status == 2)
                                         <a href="#" class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>
                                     @endif
-                                    <a href="#" class="btn btn-primary btn-sm">{{ __('messages.download_invoice') }}</a>
+                                    <a href="{{ route('invoice',$order) }}" class="btn btn-primary btn-sm">{{ __('messages.download_invoice') }}</a>
                                     {{-- <form action="#" method="post" class="row d-flex justify-content-center">
                                          @csrf
                                          <div class="col-auto">

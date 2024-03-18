@@ -15,6 +15,7 @@ class InvoiceController extends Controller
 
     public function invoice(Order $order)
     {
+        dd($order);
         $order->downloadInvoice();
     }
 }

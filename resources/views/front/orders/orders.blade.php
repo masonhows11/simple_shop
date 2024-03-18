@@ -41,14 +41,16 @@
                                 <td>{{ $order->getStatus() }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
-                                    <a href="#"  class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>
-                                    <a href="#"  class="btn btn-primary btn-sm">{{ __('messages.download_invoice') }}</a>
-                                   {{-- <form action="#" method="post" class="row d-flex justify-content-center">
-                                        @csrf
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary btn-sm">{{ __('messages.update') }}</button>
-                                        </div>
-                                    </form>--}}
+                                    @if($order->status == 0 || $order->status == 2)
+                                        <a href="#" class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>
+                                    @endif
+                                    <a href="#" class="btn btn-primary btn-sm">{{ __('messages.download_invoice') }}</a>
+                                    {{-- <form action="#" method="post" class="row d-flex justify-content-center">
+                                         @csrf
+                                         <div class="col-auto">
+                                             <button type="submit" class="btn btn-primary btn-sm">{{ __('messages.update') }}</button>
+                                         </div>
+                                     </form>--}}
 
                                 </td>
                             </tr>

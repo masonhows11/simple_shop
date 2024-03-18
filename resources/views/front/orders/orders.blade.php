@@ -38,7 +38,7 @@
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->code }}</td>
                                 <td>{{ $order->amount }}</td>
-                                <td>{{ $order->status }}</td>
+                                <td>{{ $order->getStatus() }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
                                     <a href="#"  class="btn btn-primary btn-sm">{{ __('messages.pay') }}</a>

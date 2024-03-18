@@ -34,30 +34,10 @@ class Order extends Model
         return $pdf->save(storage_path('app/public/invoices/') . $this->id . '.pdf');
     }
 
-    public function status()
+    public function getStatus()
     {
-
-        return Attribute::make(
-              get : fn(int  $value, string $result) =>
-                switch ($value) {
-                    case 0:
-                        $result = __('messages.orders_wait_for_paid');
-                        break;
-
-                    case 1:
-                        $result = __('messages.paid');
-                        break;
-                        break;
-                    case 2:
-                        $result = __('messages.unpaid');
-                        break;
-                }
-
-
-        )
-
-
-        /*switch ($this->status) {
+        $result = null;
+        switch ($this->status) {
             case 0:
                 $result = __('messages.orders_wait_for_paid');
                 break;
@@ -70,7 +50,7 @@ class Order extends Model
                 $result = __('messages.unpaid');
                 break;
         }
-        return $result;*/
+        return $result;
     }
 
 

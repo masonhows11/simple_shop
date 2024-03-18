@@ -56,10 +56,7 @@ class PaymentController extends Controller
 
             $order = $this->makeOrder();
             $order->generateInvoice();
-            dd('invoice as pdf created');
             $payment = $this->makePayment($order);
-
-
             DB::commit();
 
 

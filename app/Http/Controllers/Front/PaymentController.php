@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Events\OrderRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
@@ -210,11 +211,12 @@ class PaymentController extends Controller
 
     private function completeOrder($order)
     {
+
         //// Decreasing the number of products the user has purchased
         $this->normalizeQuantity($order);
 
         //// call event send email for send order detail email
-        //  event(new OrderRegisteredEvent($order));
+          event(new OrderRegisteredEvent($order));
 
         //// clear all session  basket items
         $this->basket->clear();

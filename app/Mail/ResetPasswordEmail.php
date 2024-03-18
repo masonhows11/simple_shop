@@ -49,7 +49,7 @@ class ResetPasswordEmail extends Mailable
              with: [
         'user' => $this->user->name,
         'link' => $this->generateLink(),
-    ],
+          ],
         );
     }
 

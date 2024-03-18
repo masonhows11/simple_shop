@@ -34,10 +34,7 @@ class OrderDetailEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: " جزئیات سفارش $this->order->id",with: [
-                'order' => $this->order,
-                'user' => $this->user->name,
-            ],
+            subject: " جزئیات سفارش $this->order->id"
         );
     }
 
@@ -47,7 +44,10 @@ class OrderDetailEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.order-detail-email',
+            view: 'emails.order-detail-email',with: [
+                'order' => $this->order,
+                'user' => $this->user->name,
+           ],
         );
     }
 
@@ -59,7 +59,7 @@ class OrderDetailEmail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromStorage('public')->as('invoices/'.$this->order->id)->withMime('application/pdf'),
+          //  Attachment::fromStorage('public')->as('invoices/'.$this->order->id)->withMime('application/pdf'),
         ];
     }
 }

@@ -7,16 +7,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    //
-    public function __construct()
-    {
-        $this->middleware('auht');
-    }
 
 
     public function index()
     {
-       // auth()->user()->orders;
-        dd( auth()->user()->orders);
+        $orders = auth()->user()->orders;
+        return view('front.orders.orders', ['orders' => $orders]);
     }
 }

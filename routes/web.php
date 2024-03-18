@@ -118,10 +118,11 @@ Route::controller(BasketController::class)->prefix('payment')->middleware(['auth
 Route::controller(BasketController::class)->prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
     Route::post('/cart/pay', [PaymentController::class, 'pay'])->name('cart.pay');    //  lv.2
+
 });
 Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(function () {
 
-    Route::get('/orders/list/{user}',  'pay')->name('orders.index');    //  lv.2
+    Route::get('/orders','index')->name('orders.index');
 });
 
 Route::controller(PaymentController::class)->prefix('payment')->group(function () {

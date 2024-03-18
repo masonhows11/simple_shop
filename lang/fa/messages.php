@@ -259,7 +259,6 @@ return [
     'shipment_price' => 'هزینه ارسال',
     'order_status' => 'وضعیت سفارش',
     'order_code' => 'کد سفارش',
-
     'order_pending' => 'در حال بررسی',
     'order_wait_for_confirmed' => 'در انتظار تایید',
     'order_not_confirmed' => 'تایید نشده',
@@ -594,7 +593,7 @@ return [
     'recaptcha_not_valid' => 'من ربات نیستم معتبر نمی باشد',
     'product_out_of_stock_as_u_requested' => 'محصول مورد نظر به تعداد درخواست شما موجود نمی باشد',
     'update' => 'بروز رسانی',
-
+    'download_invoice' => 'دانلود فاکتور',
 
 
 ];

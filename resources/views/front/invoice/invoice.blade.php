@@ -42,7 +42,7 @@
             <td>{{$product->price * $product->pivot->quantity}}</td>
         </tr>
         @endforeach
-        @foreach($cost->getSummary() as $description => $price)
+       {{-- @foreach($cost->getSummary() as $description => $price)
         <tr>
             <td colspan=3>{{$description}}</td>
             <td>{{$price}}</td>
@@ -52,7 +52,7 @@
             <td colspan=3>مجموع</td>
             <td>{{$cost->getTotalCosts()}}</td>
 
-        </tr>
+        </tr>--}}
     </table>
 </div>
 </body>

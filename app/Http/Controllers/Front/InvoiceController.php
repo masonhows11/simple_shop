@@ -19,7 +19,12 @@ class InvoiceController extends Controller
       // check if invoice does not exist
       // create first then download
       // or if exists download it
-      return   $order->downloadInvoice();
+        try {
+            return   $order->downloadInvoice();
+        }catch (\Exception $ex){
+            return redirect()->back()->with(['error' => __('messages.an_error_occurred_in_receiving_the_file')]);
+        }
+
     }
 
     public function pay(Order $order)

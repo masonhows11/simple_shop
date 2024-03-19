@@ -594,6 +594,7 @@ return [
     'product_out_of_stock_as_u_requested' => 'محصول مورد نظر به تعداد درخواست شما موجود نمی باشد',
     'update' => 'بروز رسانی',
     'download_invoice' => 'دانلود فاکتور',
+    'an_error_occurred_in_receiving_the_file'  => 'خطایی در دریافت فایل رخ داده',
 
 
 ];

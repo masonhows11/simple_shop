@@ -13,4 +13,9 @@ class HomeController extends Controller
         $products = Product::all();
         return view('home',['products' => $products]);
     }
+
+    public function notFound()
+    {
+        return view('errors_custom.model_not_found');
+    }
 }

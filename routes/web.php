@@ -34,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+Route::get('/notFound',[HomeController::class,'notFound'])->name('not.found');
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // middleware(['roleAccess:admin']) its important

@@ -595,6 +595,8 @@ return [
     'update' => 'بروز رسانی',
     'download_invoice' => 'دانلود فاکتور',
     'an_error_occurred_in_receiving_the_file'  => 'خطایی در دریافت فایل رخ داده',
+    'upload_file' => 'آپلود فایل',
+    'avatar_file' => 'بارگذاری آواتار',
 
 
 ];

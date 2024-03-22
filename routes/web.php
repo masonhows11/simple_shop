@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\Auth\AdminValidateController;
 use App\Http\Controllers\Front\Auth\ForgotPasswordController;
 use App\Http\Controllers\Front\Auth\LoginController;
 use App\Http\Controllers\Front\Auth\ProfileController;
@@ -37,6 +39,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/notFound',[HomeController::class,'notFound'])->name('not.found');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+
+
+// admin panel routes
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('/login', [AdminLoginController::class, 'loginForm'])->name('admin.login.form');
+    Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login');
+
+    Route::get('/validate', [AdminValidateController::class, 'validateEmailForm'])->name('admin.validate.email.form');
+    Route::post('/validate', [AdminValidateController::class, 'validateEmail'])->name('admin.validate.email');
+
+});
 
 // middleware(['roleAccess:admin']) its important
 // with gate middleware(can:show_panel) its very important

@@ -5,6 +5,11 @@
 @section('main_content')
     <div class="container">
 
+        <div class="row justify-content-center" style="height:80px">
+            <div class="col-lg-4 col-md-4 col-sm-4 mt-5">
+                @include('layouts.alert.alert')
+            </div>
+        </div>
 
         <form action="{{  route('profile.avatar.store') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -21,8 +26,8 @@
                                     @include('layouts.alert.validate_error')
                                 </div>
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" name="is_private" for="exampleCheck1">{{ __('messages.upload_file_is_private') }}</label>
+                                    <input type="checkbox" name="is_private" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label"  for="exampleCheck1">{{ __('messages.upload_file_is_private') }}</label>
                                   </div>
 
                                 <div class="mb-3">

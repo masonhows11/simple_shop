@@ -23,7 +23,7 @@ class Uploader
 
     public function upload()
     {
-
+        $this->putFileInStorage();
     }
 
     private function putFileInStorage(){
@@ -31,7 +31,7 @@ class Uploader
         //// this how to determine store is private or public
         /// for choose method private or public
         $method = $this->request->has('is_private') ? 'storeFileAsPrivate' : 'storeFileAsPublic';
-        $this->manager->$method($this->file->getClinetOriginalName(),$this->file,$this->getType());
+        $this->manager->$method($this->file->getClientOriginalName(),$this->file,$this->getType());
     }
 
 

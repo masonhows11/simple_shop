@@ -9,6 +9,7 @@
 
     <title>@yield('page_title')</title>
     @include('layouts.include.header_styles')
+ 
 
 </head>
 <body>
@@ -20,5 +21,6 @@
 @include('layouts.include.footer_scripts')
 {{--@include('layouts.alert.alert')--}}
 @stack('front_custom_scripts')
+@stack('front_custom_style')
 </body>
 </html>

@@ -11679,6 +11679,11 @@ body {
   font-family: "vazir-fa-med", sans-serif;
 }
 
+@media (max-width: 280px) {
+  .forget-password a {
+    font-size: 0.9rem;
+  }
+}
 .footer-wrapper {
   height: auto;
   margin-top: auto;

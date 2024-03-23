@@ -34,9 +34,9 @@
                                        name="email" value="{{ old('email') }}">
                             </div>
 
-                            {{-- @error('email')
+                             {{--  @error('email')
                              <div class="alert alert-danger">{{ $message }}</div>
-                             @enderror--}}
+                             @enderror  --}}
 
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">رمز عبور</label>
@@ -44,9 +44,9 @@
                                        id="pwd" name="password">
                             </div>
 
-                            {{-- @error('password')
+                             {{--  @error('password')
                              <div class="alert alert-danger">{{ $message }}</div>
-                             @enderror--}}
+                             @enderror  --}}
 
                             <div class="form-check mb-3">
                                 <label class="form-check-label">
@@ -54,15 +54,15 @@
                                 </label>
                             </div>
 
-                            <div class="mb-3">
-                                <a href="{{ route('auth.forgot.password.form') }}"
-                                   class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
+                            <div class="mb-3 forget-password">
+                                <a href="{{ route('auth.forgot.password.form') }}" class="text-decoration-none">{{ __('messages.forget_password')  }}</a>
                             </div>
 
 
-                            <div class="mb-3">
+                            <div class="mb-3 recaptcha_section">
                                 @include('auth_front.recaptcha')
                             </div>
+
                             <div class="mb-3">
                                 @include('layouts.alert.validate_error')
                             </div>
@@ -85,4 +85,7 @@
 @endsection
 @push('front_custom_scripts')
     <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+@endpush
+@push('front_custom_style')
+    
 @endpush

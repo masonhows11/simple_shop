@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\File\Uploader\Uploader;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     //
+    private Uploader $uploader;
+    public function __construct(Uploader $uploader)
+    {
+        $this->uploader = $uploader;
+    }
+
+
     public function profile()
     {
         return view('front_user.profile.profile');
@@ -15,15 +23,17 @@ class ProfileController extends Controller
 
     public function validateFile($request): void
     {
+       //// 'file' => ['required', 'file', 'mimes:jpeg,mp4,zip,rar']
         $request->validate([
             'file' => ['required', 'file', 'mimetypes:image/jpeg,video/mp4,application/zip']
         ]);
-        dd($request->file);
     }
 
 
     public function storeAvatar(Request $request)
     {
         $this->validateFile($request);
+        $this->uploader->upload();
+        return redirect()->back()->with('success',__('messages.upload_file_done'));
     }
 }

@@ -495,6 +495,7 @@ return [
     'new_ticket_added' => 'تیکت جدید ذخیره شده',
     'file' => 'فایل',
     'upload_file_error' => 'خطا در آپلود فایل',
+    'upload_file_done' => 'آپلود فایل با موفقیت انجام شد',
     'download' => 'دانلود فایل',
     'you_do_not_have_access_to_this_section' => 'شما  دسترسی به این قسمت را ندارید',
     'ticket_closed' => 'تیکت بسته شده',

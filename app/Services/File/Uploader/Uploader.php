@@ -23,7 +23,7 @@ class Uploader
 
     public function upload()
     {
-
+        dd($this->getType());
     }
 
     private function putFileInStorage(){
@@ -38,5 +38,7 @@ class Uploader
     private function getType()
     {
         return ['image/jpeg' => 'image','video/mp4' => 'video','application/zip' =>'zip'][$this->file->getClientMimeType()];
+
+        // return ['jpeg' => 'image','mp4' => 'video','zip' =>'zip'][$this->file->getClientMimeType()];
     }
 }

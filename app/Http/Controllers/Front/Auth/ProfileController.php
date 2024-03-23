@@ -10,6 +10,7 @@ class ProfileController extends Controller
 {
     //
     private Uploader $uploader;
+
     public function __construct(Uploader $uploader)
     {
         $this->uploader = $uploader;
@@ -23,7 +24,7 @@ class ProfileController extends Controller
 
     public function validateFile($request): void
     {
-       //// 'file' => ['required', 'file', 'mimes:jpeg,mp4,zip,rar']
+        //// 'file' => ['required', 'file', 'mimes:jpeg,mp4,zip,rar']
         $request->validate([
             'file' => ['required', 'file', 'mimetypes:image/jpeg,video/mp4,application/zip']
         ]);
@@ -34,6 +35,6 @@ class ProfileController extends Controller
     {
         $this->validateFile($request);
         $this->uploader->upload();
-        return redirect()->back()->with('success',__('messages.upload_file_done'));
+        return redirect()->back()->with('success', __('messages.upload_file_done'));
     }
 }

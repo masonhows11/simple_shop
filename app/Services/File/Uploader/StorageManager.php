@@ -10,14 +10,25 @@ use Illuminate\Support\Facades\Storage;
 class StorageManager
 {
 
-    public function storeFileAsPrivate(string $name,UploadedFile $file,string $type)
+    public function storeFileAsPrivate(string $name, UploadedFile $file, string $type)
     {
-        return Storage::disk('private')->putFileAs($type,$file,$name);
+        return Storage::disk('private')->putFileAs($type, $file, $name);
     }
 
-    public function storeFileAsPublic(string $name,UploadedFile $file,string $type)
+    public function storeFileAsPublic(string $name, UploadedFile $file, string $type)
     {
-        return Storage::disk('public')->putFileAs($type,$file,$name);
+        return Storage::disk('public')->putFileAs($type, $file, $name);
     }
+
+    public function getAbsolutePathOf(string $name, string $type, bool $isPrivate)
+    {
+        return $this->disk($isPrivate)->path('');
+    }
+
+    private function disk(bool $isPrivate)
+    {
+        return $isPrivate ? Storage::disk('private') : Storage::disk('public');
+    }
+
 
 }

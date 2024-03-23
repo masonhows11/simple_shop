@@ -23,7 +23,8 @@ class Uploader
 
     public function upload()
     {
-        $this->putFileInStorage();
+        dd($this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate()));
+       // $this->putFileInStorage();
     }
 
     private function putFileInStorage(){
@@ -39,5 +40,10 @@ class Uploader
     {
         //// return type of file
         return ['image/jpeg' => 'image','video/mp4' => 'video','application/x-zip-compressed' =>'archive'][$this->file->getClientMimeType()];
+    }
+
+    public function isPrivate()
+    {
+        return $this->request->has('is_private');
     }
 }

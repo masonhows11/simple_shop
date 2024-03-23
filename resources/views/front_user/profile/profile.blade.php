@@ -31,13 +31,11 @@
                                 <label for="formFile" class="form-label">{{ __('messages.upload_file') }}</label>
                                 <input class="form-control" type="file" id="formFile">
                             </div>
-    
+
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">{{  __('messages.upload_file') }}</button>
                             </div>
                         </div>
-
-                       
 
                     </div>
 

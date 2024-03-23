@@ -44,6 +44,10 @@ return [
     'gateways' => [
         'id_pay' => ['api_key' => '0f68647c-c3ea-4283-b296-f9fc03dfd37d'],
         'zarinpal' => ['api_key' => ''],
+    ],
+
+    'ffmpeg' => [
+        'ffprobe_path'=> env('FFPROBE_PATH'),
     ]
 
 ];

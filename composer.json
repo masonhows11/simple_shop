@@ -13,7 +13,8 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.8",
-        "niklasravnsborg/laravel-pdf": "^4.1"
+        "niklasravnsborg/laravel-pdf": "^4.1",
+        "php-ffmpeg/php-ffmpeg": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.10",

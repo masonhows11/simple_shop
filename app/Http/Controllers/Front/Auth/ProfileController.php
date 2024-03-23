@@ -12,4 +12,10 @@ class ProfileController extends Controller
     {
         return view('front_user.profile.profile');
     }
+
+
+    public function storeAvatar()
+    {
+        # code...
+    }
 }

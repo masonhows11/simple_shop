@@ -114,6 +114,9 @@ Route::get('/email/verification-notification', [ValidateEmailController::class, 
 Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['verified']);
+
+    Route::post('/avatar/store',[ProductsController::class, 'storeAvatar'])->name('profile.avatar.store');
+
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
 
 });

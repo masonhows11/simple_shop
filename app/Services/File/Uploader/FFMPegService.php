@@ -21,7 +21,7 @@ class FFMPegService
 
     public function durationOf(string $path)
     {
-        return $this->ffprobe->format($path)->get('duration');
+        return (int)$this->ffprobe->format($path)->get('duration');
     }
 
 }

@@ -11,20 +11,26 @@ class Uploader
 
     private Request $request;
     private StorageManager $manager;
+    private FFMPegService $ffmpeg;
     private $file;
-    public function __construct(Request $request,StorageManager $manager)
+    public function __construct(Request $request,StorageManager $manager,FFMPegService $FFMPegService)
     {
         $this->request = $request;
         $this->manager = $manager;
         $this->file = $request->file;
+        $this->ffmpeg = $FFMPegService;
     }
 
 
 
     public function upload()
     {
-        dd($this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate()));
-       // $this->putFileInStorage();
+        //dd($this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate()));
+        $this->putFileInStorage();
+        dd($this->ffmpeg->durationOf(
+            $this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate())
+        ));
+
     }
 
     private function putFileInStorage(){

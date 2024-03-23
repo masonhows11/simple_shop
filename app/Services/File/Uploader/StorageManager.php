@@ -22,7 +22,7 @@ class StorageManager
 
     public function getAbsolutePathOf(string $name, string $type, bool $isPrivate)
     {
-        return $this->disk($isPrivate)->path('');
+        return $this->disk($isPrivate)->path($type . DIRECTORY_SEPARATOR . $name);
     }
 
     private function disk(bool $isPrivate)

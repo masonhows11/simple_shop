@@ -7,7 +7,7 @@
 
         <div class="row d-flex  justify-content-center mb-5 mt-2">
 
-            <div class="col-xl-5 col-lg-5 col-md-5 px-4">
+            <div class="col col-lg-5 col-md-6 px-4">
                 <div class="row d-flex flex-column">
 
                     <div class="alert-section mt-2 text-center">
@@ -24,6 +24,7 @@
                     </div>
 
                     <div class="col mt-4 border border-2  rounded-3 py-4 px-4 login-form">
+
                         <form action="{{ route('auth.login') }}" method="post">
                             @csrf
 

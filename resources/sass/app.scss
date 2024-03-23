@@ -186,6 +186,14 @@ body {
     font-family: "vazir-fa-med", sans-serif;
 }
 
+
+
+// footer style
+.footer-wrapper {
+    height: auto;
+    margin-top: auto;
+}
+
 // g-recaptcha style in responsive
 @media (max-width: 280px) {
 
@@ -193,7 +201,7 @@ body {
         width: desired_width;
         border-radius: 4px;
         border-right: 1px solid #d8d8d8;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .forget-password a {
@@ -204,12 +212,4 @@ body {
         transform: scale(0.85);
         -webkit-transform: scale(0.85);
     }
-}
-
-
-
-// footer style
-.footer-wrapper {
-    height: auto;
-    margin-top: auto;
 }

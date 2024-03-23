@@ -13,9 +13,17 @@ class ProfileController extends Controller
         return view('front_user.profile.profile');
     }
 
-
-    public function storeAvatar()
+    public function validateFile($request): void
     {
-        # code...
+        $request->validate([
+            'file' => ['required', 'file', 'mimetypes:image/jpeg,video/mp4,application/zip']
+        ]);
+        dd($request->file);
+    }
+
+
+    public function storeAvatar(Request $request)
+    {
+        $this->validateFile($request);
     }
 }

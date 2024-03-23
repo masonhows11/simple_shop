@@ -6,8 +6,8 @@
     <div class="container">
 
 
-        <form action="{{  route('profile.avatar.store') }}" method="post">
-
+        <form action="{{  route('profile.avatar.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="row d-flex justify-content-center  mt-5">
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
@@ -16,9 +16,14 @@
 
                         <div class="col mt-3  d-flex flex-column ">
                             <div>
+                                
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">{{ __('messages.upload_file') }}</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" name="file" type="file" id="formFile">
+                                </div>
+
+                                <div class="mb-3">
+                                    @include('layouts.alert.validate_error')
                                 </div>
 
                                 <div class="mb-3 form-check">
@@ -29,6 +34,8 @@
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary">{{  __('messages.avatar_file') }}</button>
                                 </div>
+
+                              
                             </div>
                         </div>
 

@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/notFound',[HomeController::class,'notFound'])->name('not.found');
+Route::get('/notFound', [HomeController::class, 'notFound'])->name('not.found');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -50,7 +50,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/validate', [AdminValidateController::class, 'validateEmailForm'])->name('admin.validate.email.form');
     Route::post('/validate', [AdminValidateController::class, 'validateEmail'])->name('admin.validate.email');
-
 });
 
 // middleware(['roleAccess:admin']) its important
@@ -72,7 +71,6 @@ Route::prefix('admin')->name('admin.')->middleware('can:show_panel')->group(func
     Route::post('/role/update/{role}', [\App\Http\Controllers\Admin\AdminRoleController::class, 'update'])->name('roles.update');
 
     Route::get('/role/delete/{role}', [\App\Http\Controllers\Admin\AdminRoleController::class, 'destroy'])->name('roles.delete');
-
 });
 
 // auth routes
@@ -92,7 +90,6 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
     Route::get('redirect/{provider}', [SocialController::class, 'loginSocial'])->name('login.social');
     Route::get('{provider}/callback', [SocialController::class, 'loginSocialCallback'])->name('login.social.callback');
-
 });
 
 /////// for verified user email ///////
@@ -115,23 +112,21 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['verified']);
 
-    Route::post('/avatar/store',[ProductsController::class, 'storeAvatar'])->name('profile.avatar.store');
+    Route::post('/avatar/store', [ProfileController::class, 'storeAvatar'])->name('profile.avatar.store');
 
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
-
 });
 
 Route::controller(CouponsController::class)->middleware(['auth', 'web'])->group(function () {
 
-    Route::post('/coupon/store','store')->name('coupon.store');
-    Route::get('/coupon/delete','delete')->name('coupon.delete');
-
+    Route::post('/coupon/store', 'store')->name('coupon.store');
+    Route::get('/coupon/delete', 'delete')->name('coupon.delete');
 });
 
 Route::controller(BasketController::class)->prefix('payment')->middleware(['auth', 'web'])->group(function () {
 
-    Route::get('/cart/add-to-cart/{product}','add')->name('cart.add-to-cart');
-    Route::get('/cart','cart')->name('cart');
+    Route::get('/cart/add-to-cart/{product}', 'add')->name('cart.add-to-cart');
+    Route::get('/cart', 'cart')->name('cart');
     Route::post('/cart/update/{product}', 'update')->name('cart.update');
     Route::get('/cart/checkout', 'checkOutForm')->name('cart.check-out.form');   // lv.1
     //    Route::post('verify/{gateway}/callback', [PaymentController::class, 'verify'])->name('payment.verify');
@@ -143,22 +138,21 @@ Route::controller(BasketController::class)->prefix('payment')->middleware(['auth
 });
 Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(function () {
 
-    Route::get('/orders','index')->name('orders.index');
+    Route::get('/orders', 'index')->name('orders.index');
 });
 
-Route::controller(InvoiceController::class)->group(function (){
+Route::controller(InvoiceController::class)->group(function () {
 
-    Route::get('/invoice/{order}','invoice')->name('invoice');
-    Route::get('/invoice/pay/{order}','pay')->name('invoice.pay');
+    Route::get('/invoice/{order}', 'invoice')->name('invoice');
+    Route::get('/invoice/pay/{order}', 'pay')->name('invoice.pay');
 });
 
 
 
 Route::controller(PaymentController::class)->prefix('payment')->group(function () {
 
-    Route::post('/verify/{gateway}/callback','verify')->name('payment.verify');
-    Route::get('/failed/result','failedPaymentResult')->name('payment.failed.result');
-
+    Route::post('/verify/{gateway}/callback', 'verify')->name('payment.verify');
+    Route::get('/failed/result', 'failedPaymentResult')->name('payment.failed.result');
 });
 
 

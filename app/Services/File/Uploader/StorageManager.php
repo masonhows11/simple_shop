@@ -20,6 +20,7 @@ class StorageManager
         return Storage::disk('public')->putFileAs($type, $file, $name);
     }
 
+    //// return absolute path of file
     public function getAbsolutePathOf(string $name, string $type, bool $isPrivate)
     {
         return $this->disk($isPrivate)->path($type . DIRECTORY_SEPARATOR . $name);

@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-sm-6 footer-box">
-                <p>با گرافیک شاپ </p>
-                <ul class="ps-0">
+                <p>با آنلاین شاپ </p>
+                <ul class="ps-0 mt-2">
                     <li class="mb-3"><a href="{{ route('not.found') }}">اتاق خبر گرافیک شاپ</a></li>
                     <li class="mb-3"><a href="{{ route('not.found') }}">فرصت های شغلی</a></li>
                     <li class="mb-3"><a href="{{ route('not.found') }}">تماس با گرافیک شاپ</a></li>
@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-2 col-sm-6 footer-box">
                 <p>خدمات مشتریان</p>
-                <ul class="ps-0">
+                <ul class="ps-0 mt-2">
                     <li class="mb-3"><a href="{{ route('not.found') }}">پرسش‌های متداول</a></li>
                     <li class="mb-3"><a href="{{ route('not.found') }}">شرایط استفاده</a></li>
                     <li class="mb-3"><a href="{{ route('not.found') }}">حریم خصوصی</a></li>
@@ -20,15 +20,15 @@
                 </ul>
             </div>
             <div class="col-lg-3 col-sm-6 footer-box">
-                <p>راهنمای خرید از گرافیک شاپ</p>
-                <ul class="ps-0">
+                <p>راهنمای خرید از آنلاین شاپ </p>
+                <ul class="ps-0 mt-2">
                     <li class="mb-3"><a href="{{ route('not.found') }}">نحوه ثبت سفارش</a></li>
                     <li class="mb-3"><a href="{{ route('not.found') }}">شیوه‌های پرداخت</a></li>
                 </ul>
             </div>
             <div class="col-lg-5 col-sm-6 footer-box">
                 <p class="mb-4">همراه ما باشید!</p>
-                <div class="social-list">
+                <div class="social-list mt-2">
                     <a href="#"><i class="fab fa-instagram social-media"></i></a>
                     <a href="#"><i class="fab fa-telegram social-media"></i></a>
                     <a href="#"><i class="fab fa-linkedin social-media"></i></a>
@@ -43,7 +43,7 @@
         </div><!-- end footer box -->
         <div class="row"><!-- start footer details -->
             <div class="col-md-8 col-12 footer-details ps-0">
-                <p>فروشگاه اینترنتی گرافیک شاپ ، بررسی، انتخاب و خرید آنلاین</p>
+                <p>فروشگاه اینترنتی آنلاین شاپ ، بررسی، انتخاب و خرید آنلاین</p>
             </div>
             <div class="col-md-4 col-12 d-flex align-items-center justify-content-end footer-pic pe-0">
                 <img src="{{ asset('front_assets/images/f-1.png') }}" class="footer-detail-pic">
@@ -52,7 +52,7 @@
         </div><!-- end footer details -->
         <div class="row"><!-- start copy right -->
             <div class="col-12 copy-right">
-                <p>استفاده از مطالب فروشگاه اینترنتی گرافیک شاپ فقط برای مقاصد غیرتجاری و
+                <p>استفاده از مطالب فروشگاه اینترنتی آنلاین شاپ فقط برای مقاصد غیرتجاری و
                     با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به یاس دیزاین می‌باشد.
                 </p>
             </div>

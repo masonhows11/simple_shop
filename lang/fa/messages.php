@@ -541,6 +541,9 @@ return [
     'file_path' => 'فایل',
     'file_type' => 'نوع فایل',
     'file_size' => 'حجم فایل',
+    'file_duration' => 'مدت زمان فایل',
+    'file_access' => 'سطح دسترسی فایل',
+    'seconds' => 'ثانیه',
     'email_notice' => 'عنوان ایمیل',
     'KB' => 'KB',
     'this_part_is_being_prepared' => 'این قسمت در حال اماده سازی است',
@@ -600,6 +603,10 @@ return [
     'avatar_file' => 'بارگذاری آواتار',
     'upload_file_is_private' => 'آپلود فایل به صورت خصوصی',
     'the_file_has_already_been_uploaded' => 'فایل قبلا آپلود شده',
+    'is_private' => 'خصوصی',
+    'is_public' => 'عمومی',
+    'MB' => 'مگابایت',
+
 
 
 ];

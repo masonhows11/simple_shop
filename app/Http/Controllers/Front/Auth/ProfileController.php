@@ -34,7 +34,8 @@ class ProfileController extends Controller
 
     public function getFile(File $file)
     {
-
+        //// this download() is function in File model
+        return $file->download();
     }
 
     public function deleteFile(File $file)

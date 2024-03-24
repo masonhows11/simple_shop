@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'size',
@@ -17,8 +18,10 @@ class File extends Model
         'is_private',
         'path'
     ];
+
     //// determine file is media or not
-    public function isMedia(){
+    public function isMedia()
+    {
         return $this->type == 'video';
     }
 
@@ -26,6 +29,15 @@ class File extends Model
     public function absolutePath()
     {
         return
-            resolve(StorageManager::class)->getAbsolutePathOf($this->name,$this->type,$this->is_private);
+            resolve(StorageManager::class)->getAbsolutePathOf($this->name, $this->type, $this->is_private);
+    }
+
+    //// for download file based on path & file name
+    public function download()
+    {
+        //// clear instance from  StorageManager and call downloadFile() function with parameters
+        /// then download file in downloadFile() function
+        return
+            resolve(StorageManager::class)->downloadFile($this->name, $this->type, $this->is_private);
     }
 }

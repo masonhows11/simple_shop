@@ -36,6 +36,12 @@ class StorageManager
         return $type . DIRECTORY_SEPARATOR . $name;
     }
 
+    //// download file based on path & file name
+    public function downloadFile(string $name, string $type, bool $isPrivate)
+    {
+        return $this->disk($isPrivate)->download($this->directoryPrefix($type,$name));
+    }
+
     private function disk(bool $isPrivate)
     {
         return $isPrivate ? Storage::disk('private') : Storage::disk('public');

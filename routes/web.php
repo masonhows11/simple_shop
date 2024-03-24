@@ -114,6 +114,10 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 
     Route::post('/avatar/store', [ProfileController::class, 'storeAvatar'])->name('profile.avatar.store');
 
+    Route::get('/file/download/{file}',[ProfileController::class,'getFile'])->name('file.download');
+
+    Route::get('/file/delete/{file}',[ProfileController::class,'deleteFile'])->name('file.delete');
+
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
 });
 
@@ -143,7 +147,7 @@ Route::controller(OrderController::class)->middleware(['auth', 'web'])->group(fu
 
 Route::controller(InvoiceController::class)->group(function () {
 
-    Route::get('/invoice/{order}', 'invoice')->name('invoice');
+    Route::get('/invoice/{order}', 'invoice')->name('invoice.download');
     Route::get('/invoice/pay/{order}', 'pay')->name('invoice.pay');
 });
 

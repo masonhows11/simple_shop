@@ -32,6 +32,17 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function getFile(File $file)
+    {
+
+    }
+
+    public function deleteFile(File $file)
+    {
+
+    }
+
+
 
     public function storeAvatar(Request $request)
     {

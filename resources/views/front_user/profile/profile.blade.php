@@ -66,7 +66,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($files as $file)
+                @foreach($files as $file)
                     <tr>
                         <td>{{ $file->id }}</td>
                         <td>{{ $file->name }}</td>
@@ -75,13 +75,13 @@
                         <td>{{ $file->time }} {{ __('messages.seconds') }}</td>
                         <td>{{ $file->is_private == 0 ? __('messages.is_public') : __('messages.is_private') }}</td>
                         <td>
-                            <a href="{{ route('file.delete',$file->id) }}" class="btn btn-primary">{{ __('messages.delete_model') }}</a>
-                            <a href="{{ route('file.download',$file->id) }}" class="btn btn-primary">{{ __('messages.download') }}</a>
+                            <a href="{{ route('file.delete',$file->id) }}"
+                               class="btn btn-primary">{{ __('messages.delete_model') }}</a>
+                            <a href="{{ route('file.download',$file->id) }}"
+                               class="btn btn-primary">{{ __('messages.download') }}</a>
                         </td>
                     </tr>
-                @empty
-                    <div>{{ __('messages.not_record_found') }}</div>
-                @endforelse
+                @endforeach
                 </tbody>
             </table>
 

@@ -31,7 +31,7 @@ class Uploader
         //            $this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate())
         //        ));
         $this->putFileInStorage();
-
+        return $this->saveFileInDatabase();
     }
 
     private function saveFileInDatabase()
@@ -47,8 +47,9 @@ class Uploader
         //// get time of file
         $file->time = $this->getTime($file);
         $file->save();
-
         return redirect()->back()->with('success', __('messages.upload_file_done'));
+
+
 
     }
 

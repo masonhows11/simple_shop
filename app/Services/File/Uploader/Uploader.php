@@ -42,14 +42,21 @@ class Uploader
             'size' => $this->file->getSize(),
             'type' => $this->getType(),
             'is_private' => $this->isPrivate(),
-
-
         ]);
+
+        //// get time of file
+        $file->time = $this->getTime($file);
+        $file->save();
+
+        return redirect()->back()->with('success', __('messages.upload_file_done'));
 
     }
 
-    private function getTime(){
-        
+    private function getTime(File $file){
+
+        if(!$file->isMedia()) return null;
+        return $this->ffmpeg->durationOf($file->absolutePath());
+
     }
 
     private function putFileInStorage(){

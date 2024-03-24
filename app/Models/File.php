@@ -40,4 +40,11 @@ class File extends Model
         return
             resolve(StorageManager::class)->downloadFile($this->name, $this->type, $this->is_private);
     }
+
+    public function delete(){
+        //// this delete file from storage
+        return resolve(StorageManager::class)->deleteFile($this->name, $this->type, $this->is_private);
+        //// this delete current record from database
+        parent::delete();
+    }
 }

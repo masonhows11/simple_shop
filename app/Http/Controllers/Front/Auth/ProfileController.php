@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function profile()
     {
         $files = File::all();
-        return view('front_user.profile.profile',['files' => $files]);
+        return view('front_user.profile.profile', ['files' => $files]);
     }
 
     public function validateFile($request): void
@@ -41,8 +41,16 @@ class ProfileController extends Controller
     public function deleteFile(File $file)
     {
 
-    }
+        try {
+            $file->delete();
+            session()->flash('success', __('messages.The_deletion_was_successful'));
+            return redirect()->back();
 
+        } catch (\Exception $ex) {
+            return redirect()->back()->withErrors('error', __('messages.An_error_occurred'));
+        }
+
+    }
 
 
     public function storeAvatar(Request $request)

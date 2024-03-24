@@ -4,6 +4,7 @@
 namespace App\Services\File\Uploader;
 
 
+use App\Models\File;
 use Illuminate\Http\Request;
 
 class Uploader
@@ -26,11 +27,29 @@ class Uploader
     public function upload()
     {
         //dd($this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate()));
+        //        dd($this->ffmpeg->durationOf(
+        //            $this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate())
+        //        ));
         $this->putFileInStorage();
-        dd($this->ffmpeg->durationOf(
-            $this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate())
-        ));
 
+    }
+
+    private function saveFileInDatabase()
+    {
+
+        $file = new File([
+            'name' => $this->file->getClientOriginalName(),
+            'size' => $this->file->getSize(),
+            'type' => $this->getType(),
+            'is_private' => $this->isPrivate(),
+
+
+        ]);
+
+    }
+
+    private function getTime(){
+        
     }
 
     private function putFileInStorage(){

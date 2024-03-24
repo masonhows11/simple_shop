@@ -4,6 +4,7 @@
 namespace App\Services\File\Uploader;
 
 
+use App\Exceptions\FileHasExistsException;
 use App\Models\File;
 use Illuminate\Http\Request;
 
@@ -26,10 +27,9 @@ class Uploader
 
     public function upload()
     {
-        //dd($this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate()));
-        //        dd($this->ffmpeg->durationOf(
-        //            $this->manager->getAbsolutePathOf($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate())
-        //        ));
+
+        //// first check file is exists
+        if($this->isFileExists()) throw new FileHasExistsException(__('messages.the_file_has_already_been_uploaded'));
         $this->putFileInStorage();
         return $this->saveFileInDatabase();
     }
@@ -66,6 +66,10 @@ class Uploader
         /// for choose method private or public
         $method = $this->request->has('is_private') ? 'storeFileAsPrivate' : 'storeFileAsPublic';
         $this->manager->$method($this->file->getClientOriginalName(),$this->file,$this->getType());
+    }
+
+    private function isFileExists(){
+       return $this->manager->isFileExists($this->file->getClientOriginalName(),$this->getType(),$this->isPrivate());
     }
 
 

@@ -33,8 +33,13 @@ class ProfileController extends Controller
 
     public function storeAvatar(Request $request)
     {
-        $this->validateFile($request);
-        $this->uploader->upload();
-        return redirect()->back()->with('success', __('messages.upload_file_done'));
+        try {
+            $this->validateFile($request);
+            $this->uploader->upload();
+            return redirect()->back()->with('success', __('messages.upload_file_done'));
+        } catch (\Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
+
     }
 }

@@ -599,6 +599,7 @@ return [
     'upload_file' => 'آپلود فایل',
     'avatar_file' => 'بارگذاری آواتار',
     'upload_file_is_private' => 'آپلود فایل به صورت خصوصی',
+    'the_file_has_already_been_uploaded' => 'فایل قبلا آپلود شده',
 
 
 ];

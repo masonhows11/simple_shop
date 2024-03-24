@@ -43,7 +43,7 @@ class File extends Model
 
     public function delete(){
         //// this delete file from storage
-        return resolve(StorageManager::class)->deleteFile($this->name, $this->type, $this->is_private);
+        resolve(StorageManager::class)->deleteFile($this->name, $this->type, $this->is_private);
         //// this delete current record from database
         parent::delete();
     }

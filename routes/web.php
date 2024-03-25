@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\Auth\AdminRegisterController;
 use App\Http\Controllers\Admin\Auth\AdminValidateController;
 use App\Http\Controllers\Front\Auth\ForgotPasswordController;
 use App\Http\Controllers\Front\Auth\LoginController;
@@ -47,6 +48,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/login', [AdminLoginController::class, 'loginForm'])->name('admin.login.form');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login');
+
+    Route::get('/register', [AdminRegisterController::class, 'registerForm'])->name('admin.register.form');
+    Route::post('/register', [AdminRegisterController::class, 'register'])->name('admin.register');
 
     Route::get('/validate', [AdminValidateController::class, 'validateEmailForm'])->name('admin.validate.email.form');
     Route::post('/validate', [AdminValidateController::class, 'validateEmail'])->name('admin.validate.email');

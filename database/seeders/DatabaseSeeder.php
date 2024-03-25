@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,62 @@ class DatabaseSeeder extends Seeder
         //             'email_verified_at' => now(),
         //         ]);
         // create users
+
+        // admin 1  has  super_admin role
+        //        $admin1 = Admin::create([
+        //            'name' => 'naeem_soltany',
+        //            'first_name' => 'naeem',
+        //            'last_name' => 'soltany',
+        //            'mobile' => '09917230927',
+        //            'email' => 'mason.hows11@gmail.com',
+        //            //'token'=>  mt_rand(111111,999999),
+        //            //'token_verified_at' => Carbon::now(),
+        //        ]);
+
+        // admin 2 has admin role
+        //        $admin2 = Admin::create([
+        //            'name' => 'joe_james',
+        //            'first_name' => 'joe',
+        //            'last_name' => 'james',
+        //            'mobile' => '09172890423',
+        //            'email' => 'joe.james556@gmail.com',
+        //            //'token'=>  mt_rand(111111,999999),
+        //            //'token_verified_at' => Carbon::now(),
+        //        ]);
+
+        // admin 3 do not have any admin role
+        //        $admin3 = Admin::create([
+        //            'name' => 'sara137',
+        //            'first_name' => 'sara',
+        //            'last_name' => 'redField',
+        //            'email' => 'sara.ebrahimy@gmail.com',
+        //            //'token'=>  mt_rand(111111,999999),
+        //            //'token_verified_at' => Carbon::now(),
+        //        ]);
+
+        $admins = [
+            [
+                'name' => 'naeem_soltany',
+                'first_name' => 'naeem',
+                'last_name' => 'soltany',
+                'mobile' => '09917230927',
+                'email' => 'mason.hows11@gmail.com',
+            ],
+            [
+                'name' => 'joe_james',
+                'first_name' => 'joe',
+                'last_name' => 'james',
+                'mobile' => '09172890423',
+                'email' => 'joe.james556@gmail.com',
+            ],
+            [
+                'name' => 'sara137',
+                'first_name' => 'sara',
+                'last_name' => 'redField',
+                'email' => 'sara.ebrahimy@gmail.com',
+            ]
+        ];
+
         $users = [
             [
                 'name' => 'naeem_sol',
@@ -125,6 +182,10 @@ class DatabaseSeeder extends Seeder
             User::create($user);
         }
 
-         \App\Models\Product::factory(10)->create();
+        foreach ($admins as $admin) {
+            Admin::create($admin);
+        }
+
+        \App\Models\Product::factory(10)->create();
     }
 }

@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 //use App\Models\Admin;
+use App\Models\Admin;
 use App\Models\User;
 //use App\Notifications\AdminAuthNotification;
 //use App\Notifications\AdminLoginNotification;
 //use App\Services\GenerateToken;
+use App\Notifications\AdminLoginNotification;
+use App\Services\GenerateToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -15,6 +18,7 @@ use Illuminate\Support\Facades\Notification;
 class AdminLoginController extends Controller
 {
     //
+
     public function loginForm()
     {
         return view('admin_auth.login');

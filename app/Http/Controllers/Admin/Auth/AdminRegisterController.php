@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 //use App\Notifications\AdminAuthNotification;
 //use App\Rules\MobileRule;
 //use App\Services\GenerateToken;
+use App\Rules\MobileRule;
 use Illuminate\Http\Request;
 
 class AdminRegisterController extends Controller

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminRoleController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminRegisterController;
 use App\Http\Controllers\Admin\Auth\AdminValidateController;
@@ -62,19 +64,19 @@ Route::prefix('admin')->name('admin.')->middleware('can:show_panel')->group(func
 
     Route::get('index', [AdminController::class, 'index'])->name('index');
 
-    Route::get('/users/index', [\App\Http\Controllers\Admin\AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/users/index', [AdminUserController::class, 'index'])->name('users.index');
 
-    Route::get('/user/edit/{user}', [\App\Http\Controllers\Admin\AdminUserController::class, 'edit'])->name('user.edit');
-    Route::post('/user/update', [\App\Http\Controllers\Admin\AdminUserController::class, 'update'])->name('user.update');
+    Route::get('/user/edit/{user}', [AdminUserController::class, 'edit'])->name('user.edit');
+    Route::post('/user/update', [AdminUserController::class, 'update'])->name('user.update');
 
 
-    Route::get('/roles/index', [\App\Http\Controllers\Admin\AdminRoleController::class, 'index'])->name('roles.index');
-    Route::post('/role/store', [\App\Http\Controllers\Admin\AdminRoleController::class, 'store'])->name('roles.store');
+    Route::get('/roles/index', [AdminRoleController::class, 'index'])->name('roles.index');
+    Route::post('/role/store', [AdminRoleController::class, 'store'])->name('roles.store');
 
-    Route::get('/role/edit/{role}', [\App\Http\Controllers\Admin\AdminRoleController::class, 'edit'])->name('roles.edit');
-    Route::post('/role/update/{role}', [\App\Http\Controllers\Admin\AdminRoleController::class, 'update'])->name('roles.update');
+    Route::get('/role/edit/{role}', [AdminRoleController::class, 'edit'])->name('roles.edit');
+    Route::post('/role/update/{role}', [AdminRoleController::class, 'update'])->name('roles.update');
 
-    Route::get('/role/delete/{role}', [\App\Http\Controllers\Admin\AdminRoleController::class, 'destroy'])->name('roles.delete');
+    Route::get('/role/delete/{role}', [AdminRoleController::class, 'destroy'])->name('roles.delete');
 });
 
 // auth routes

@@ -21,10 +21,10 @@ class AdminRegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'mobile' => ['required', 'unique:admins', new MobileRule()],
+            //'mobile' => ['required', 'unique:admins', new MobileRule()],
             'name' => ['required', 'unique:admins', 'min:1', 'max:50'],
-            'first_name' => ['required', 'min:1', 'max:50'],
-            'last_name' => ['required', 'min:1', 'max:50'],
+            //'first_name' => ['required', 'min:1', 'max:50'],
+            //'last_name' => ['required', 'min:1', 'max:50'],
             'email' => ['required', 'unique:admins', 'email']
         ], $messages = [
             'mobile.required' => 'شماره موبایل خود را وارد کنید.',

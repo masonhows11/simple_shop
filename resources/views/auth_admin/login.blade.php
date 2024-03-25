@@ -25,17 +25,12 @@
                         </div>
                         <div class="mb-10">
                             <label class="form-label fs-6 fw-bolder text-dark" for="email">ایمیل</label>
-                            <input class="form-control form-control-lg form-control-solid"
+                            <input class="form-control @error('email') is-invalid @enderror"
                                    id="email"
-                                   type="text"
+                                   type="email"
                                    dir="ltr"
                                    style="direction: ltr"
                                    name="email"/>
-                            @error('email')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                            @enderror
                         </div>
                         <div class="mt-2">
                             @include('auth_admin.validate_error')

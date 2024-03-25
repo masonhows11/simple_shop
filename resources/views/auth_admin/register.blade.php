@@ -33,7 +33,7 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror--}}
 
-                        <div class="mx-3 mt-3">
+                     {{--   <div class="mx-3 mt-3">
                             <label for="first_name" class="form-label">نام</label>
                             <input type="text"
                                    class="form-control @error('first_name') is-invalid @enderror"
@@ -41,12 +41,12 @@
                                    placeholder="نام خود را وارد کنید..."
                                    name="first_name"
                                    value="{{ old('first_name') }}">
-                        </div>
+                        </div>--}}
                         {{--  @error('first_name')
                           <div class="alert alert-danger">{{ $message }}</div>
                           @enderror--}}
 
-                        <div class="mx-3 mt-3">
+                       {{-- <div class="mx-3 mt-3">
                             <label for="last_name" class="form-label">نام خانوادگی</label>
                             <input type="text"
                                    class="form-control @error('last_name') is-invalid @enderror"
@@ -54,12 +54,12 @@
                                    placeholder="نام خانوادگی خود را وارد کنید..."
                                    name="last_name"
                                    value="{{ old('last_name') }}">
-                        </div>
+                        </div>--}}
                         {{-- @error('last_name')
                          <div class="alert alert-danger">{{ $message }}</div>
                          @enderror--}}
 
-                        <div class="mx-3 mt-3">
+                       {{-- <div class="mx-3 mt-3">
                             <label for="mobile" class="form-label">موبایل</label>
                             <input type="text"
                                    class="form-control @error('mobile') is-invalid @enderror"
@@ -67,7 +67,7 @@
                                    placeholder="شماره موبایل خود را وارد کنید..."
                                    name="mobile"
                                    value="{{ old('mobile') }}">
-                        </div>
+                        </div>--}}
                         {{--  @error('mobile')
                           <div class="alert alert-danger">{{ $message }}</div>
                           @enderror--}}

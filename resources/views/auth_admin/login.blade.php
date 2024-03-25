@@ -6,7 +6,7 @@
     <div class="container vh-100">
 
 
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex mt-5 justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5 my-2 login-title">
                 <p class="text-center h3 "> {{ __('messages.admin_login') }}</p>
                 <h3 class="text-center my-5 admin-logo-login">{{ env('app_name') }}</h3>
@@ -36,8 +36,8 @@
                             @include('auth_admin.validate_error')
                         </div>
                         <div class="text-center">
-                            <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                                <span class="indicator-label">ادامه</span>
+                            <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-success w-100 mb-5">
+                                ادامه
                             </button>
                         </div>
                     </form>

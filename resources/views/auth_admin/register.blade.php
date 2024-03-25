@@ -9,14 +9,15 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5 my-2 register-title">
                 <p class="text-center h3">  {{ __('messages.admin_register') }}</p>
+                <h3 class="text-center my-5 admin-logo-login">{{ env('app_name') }}</h3>
             </div>
         </div>
 
 
-
-        <div class="row d-flex justify-content-center ">
+        <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5 register-form">
-                <div class="border border-1 rounded-2 border-dark">
+                <div class="bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+
                     <form action="{{ route('admin.register') }}" method="post" novalidate>
                         @csrf
                         <div class="mx-3 mt-3">

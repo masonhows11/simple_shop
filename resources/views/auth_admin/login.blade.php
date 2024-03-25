@@ -1,28 +1,35 @@
-@extends('admin_auth.auth_master')
+@extends('auth_admin.auth_master')
 @section('auth_admin_title')
     {{ __('messages.admin_login') }}
 @endsection
 @section('main_content')
-    <div class="container">
+    <div class="container vh-100">
+
 
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-8 col-md-10 my-2 alert-dive">
-                @include('admin_auth.alert')
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 my-2 login-title">
+                <p class="text-center h3 "> {{ __('messages.admin_login') }}</p>
             </div>
         </div>
+
+{{--        <div class="row d-flex justify-content-center">--}}
+{{--            <div class="col-lg-8 col-md-10 my-2 alert-dive">--}}
+{{--                @include('admin_auth.alert')--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
         <div class="row">
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 {{-- <img alt="Logo" src="#" class="logo-login my-5"/>--}}
                 <h3 class="my-5 admin-logo-login">{{ env('app_name') }}</h3>
-                <div class="w-lg-500px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto admin-login-form">
+                <div class="bg-white rounded shadow-sm p-10 p-lg-15 mx-auto admin-login-form">
 
                     <form action="{{ route('admin.login') }}" method="post" class="form w-100" novalidate="novalidate">
                         @csrf
                         <div class="text-center mb-10">
                             <h1 class="text-dark mb-3">ورود به پنل مدیریت</h1>
                         </div>
-                        <div class="fv-row mb-10">
+                        <div class="mb-10">
                             <label class="form-label fs-6 fw-bolder text-dark" for="email">ایمیل</label>
                             <input class="form-control form-control-lg form-control-solid"
                                    id="email"
@@ -35,6 +42,9 @@
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div>
+                        <div class="mt-2">
+                            @include('auth_admin.validate_error')
                         </div>
                         <div class="text-center">
                             <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">

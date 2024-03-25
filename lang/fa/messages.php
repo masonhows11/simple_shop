@@ -70,6 +70,7 @@ return [
     'confirm_email' => 'تاییدیه ایمیل',
     'email' => 'پست الکترونیک',
     'admin_login' => 'ورود به پنل مدیریت',
+    'admin_register' => 'ثبت نام کاربر مدیر',
     'The_changes_were_made_successfully' => 'تغییرات با موفقیت انجام شد.',
     'New_record_saved_successfully' => 'رکورد جدید با موفقیت ذخیره شد.',
     'The_update_was_completed_successfully' => 'بروز رسانی با موفقیت انجام شد.',

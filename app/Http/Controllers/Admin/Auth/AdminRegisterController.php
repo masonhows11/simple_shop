@@ -25,8 +25,12 @@ class AdminRegisterController extends Controller
             'name' => ['required', 'unique:admins', 'min:1', 'max:50'],
             //'first_name' => ['required', 'min:1', 'max:50'],
             //'last_name' => ['required', 'min:1', 'max:50'],
-            'email' => ['required', 'unique:admins', 'email']
+            'email' => ['required', 'unique:admins', 'email'],
+            'department' =>['required'],
+            'password' => ['required','min:3','max:30'],
+            'password_confirmation' => ['required','min:3','max:30','same:password']
         ], $messages = [
+            'department.required' => 'فیلد بخش الزامی است.',
             'mobile.required' => 'شماره موبایل خود را وارد کنید.',
             'mobile.unique' => 'شماره موبایل وارد شده تکراری است.',
 

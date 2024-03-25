@@ -69,7 +69,7 @@
                           <div class="alert alert-danger">{{ $message }}</div>
                           @enderror--}}
                         <div class="mx-3 mt-3">
-                            <label for="email" class="form-label fs-6 fw-bolder text-dark">ایمیل خود را وارد کنید</label>
+                            <label for="email" class="form-label fs-6 fw-bolder text-dark">ایمیل</label>
                             <input type="email"
                                    class="form-control @error('email') is-invalid @enderror"
                                    id="email"
@@ -78,9 +78,33 @@
                                    name="email"
                                    value="{{ old('email') }}">
                         </div>
-                        {{--   @error('email')
-                           <div class="alert alert-danger">{{ $message }}</div>
-                           @enderror--}}
+
+                        <div class="mx-3 mt-3">
+                            <label for="password" class="form-label fs-6 fw-bolder text-dark">رمز عبور</label>
+                            <input type="password"
+                                   class="form-control @error('password') is-invalid @enderror"
+                                   id="password"
+                                   placeholder="رمز عبور خود را وارد کنید..."
+                                   name="password">
+                        </div>
+
+                        <div class="mx-3 mt-3">
+                            <label for="password_confirmation" class="form-label fs-6 fw-bolder text-dark">تکرار رمز عبور</label>
+                            <input type="password"
+                                   class="form-control @error('password_confirmation') is-invalid @enderror"
+                                   id="password_confirmation"
+                                   placeholder="تکرار رمز عبور خود را وارد کنید..."
+                                   name="password_confirmation">
+                        </div>
+                        <div class="mx-3 mt-3">
+                            <label for="department" class="form-label fs-6 fw-bolder text-dark">بخش</label>
+                            <select class="form-select @error('department') is-invalid @enderror" id="department" aria-label="Default select example">
+                                <option selected>{{ __('messages.choose') }}</option>
+                                <option value="0">فنی</option>
+                                <option value="1">پشتیبانی</option>
+                                <option value="2">مالی</option>
+                            </select>
+                        </div>
 
                         <div class="mx-3 my-3">
                             <button type="submit" class="btn btn-success w-100">ثبت نام</button>

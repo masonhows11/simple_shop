@@ -19,7 +19,8 @@ class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected string $guard = 'admin';
+
+    protected $guard = 'admin';
     protected $table = 'admins';
     /**
      * The attributes that are mass assignable.
@@ -37,7 +38,6 @@ class Admin extends Authenticatable
         'mobile_verified_at',
         'avatar',
         'token',
-        'token_guid',
         'department'
     ];
 

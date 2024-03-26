@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Notifications\AdminLoginNotification;
-use App\Services\GenerateToken;
+// use App\Notifications\AdminLoginNotification;
+// use App\Services\GenerateToken;
 use App\Http\Requests\Admin\AdminRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminRegisterController extends Controller
 {
+
+
+
+    public function __construct()
+    {
+
+    }
     //
     public function registerForm()
     {
@@ -24,7 +31,11 @@ class AdminRegisterController extends Controller
 
     public function register(AdminRegisterRequest $request)
     {
-        return $this->create($request->all(), $request);
+        $admin = $this->create($request->all(), $request);
+       // dd(Auth::guard('admin'));
+        Auth::guard('admin')->login($admin, $request->remember);
+        session()->flash('success', 'ورود موفقیت آمیز بود.');
+        return redirect()->route('admin.index');
     }
 
 
@@ -33,7 +44,7 @@ class AdminRegisterController extends Controller
 
         try {
             // $token = GenerateToken::generateToken();
-            $admin = Admin::create([
+            return $admin = Admin::create([
                 'name' => $data['name'],
                 'department' => $data['department'],
                 'password' => Hash::make($data['password']),
@@ -45,10 +56,6 @@ class AdminRegisterController extends Controller
 
             ]);
 
-            Auth::guard('admin')->login($admin, $request->remember);
-            session()->flash('success', 'ورود موفقیت آمیز بود.');
-            return redirect()->route('admin.index');
-
             //            session(['admin_mobile' => $admin->mobile]);
             //            $admin->notify(new AdminLoginNotification($admin,$token));
             //            $request->session()
@@ -57,7 +64,7 @@ class AdminRegisterController extends Controller
 
         } catch (\Exception $ex) {
 
-            return view('errors_custom.login_error')
+            return view('errors_custom.register_error')
                 ->with(['error' => $ex->getMessage()]);
         }
     }

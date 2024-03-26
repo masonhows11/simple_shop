@@ -134,8 +134,9 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
 // ticket routes
 Route::controller(TicketController::class)->prefix('ticket')->middleware(['auth', 'web'])->group(function () {
 
-    Route::get('/ticket/create', 'create')->name('ticket.delete');
-    Route::post('/ticket/store', 'store')->name('ticket.store');
+    Route::get('/index', 'index')->name('ticket.index');
+    Route::get('/create', 'create')->name('ticket.create');
+    Route::post('/store', 'store')->name('ticket.store');
 
 
 });

@@ -25,6 +25,9 @@
                         <a class="nav-link" href="{{ route('profile') }}">{{__('messages.profile')}}</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ticket.index') }}">{{__('messages.tickets')}}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('orders.index') }}">{{__('messages.orders')}}</a>
                     </li>
                     <li class="nav-item">

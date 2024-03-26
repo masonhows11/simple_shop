@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class TicketController extends Controller
 {
     //
+
+    public function index()
+    {
+        return view('front.ticket.index');
+    }
     public function create()
     {
         return view('front.ticket.create');
@@ -17,6 +22,6 @@ class TicketController extends Controller
 
     public function store(Request $request)
     {
-
+      dd($request);
     }
 }

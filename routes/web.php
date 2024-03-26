@@ -18,6 +18,7 @@ use App\Http\Controllers\Front\InvoiceController;
 use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\PaymentController;
 use App\Http\Controllers\Front\ProductsController;
+use App\Http\Controllers\Front\TicketController;
 use App\Http\Controllers\HomeController;
 use App\Services\Storage\Contracts\StorageInterface;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -130,10 +131,22 @@ Route::prefix('profile')->middleware(['auth', 'web'])->group(function () {
     Route::get('/log-out', [LoginController::class, 'logOut'])->name('log.out');
 });
 
+// ticket routes
+Route::controller(TicketController::class)->prefix('ticket')->middleware(['auth', 'web'])->group(function () {
+
+    Route::get('/ticket/create', 'create')->name('ticket.delete');
+    Route::post('/ticket/store', 'store')->name('ticket.store');
+
+
+});
+
+
+// coupon routes
 Route::controller(CouponsController::class)->middleware(['auth', 'web'])->group(function () {
 
     Route::post('/coupon/store', 'store')->name('coupon.store');
     Route::get('/coupon/delete', 'delete')->name('coupon.delete');
+
 });
 
 Route::controller(BasketController::class)->prefix('payment')->middleware(['auth', 'web'])->group(function () {

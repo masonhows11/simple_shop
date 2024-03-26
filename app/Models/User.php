@@ -16,9 +16,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasPermission, HasRoles,Couponable;
+    use HasApiTokens, HasFactory, Notifiable, HasPermission, HasRoles, Couponable;
 
-    // protected  $guard = 'web';
+    protected $guard = 'web';
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -90,6 +91,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function orders()
     {
-        return $this->hasMany(Order::class,'user_id');
+        return $this->hasMany(Order::class, 'user_id');
     }
 }

@@ -35,20 +35,28 @@ class AdminLoginController extends Controller
     public function login(AdminLoginRequest $request)
     {
         try {
-            $admin = Admin::where('email', $request->email)->first();
-            Auth::guard('admin')->login($admin, $request->remember);
-            session()->flash('success', 'ورود موفقیت آمیز بود.');
-            return redirect()->route('admin.index');
-//            $token = GenerateToken::generateAdminToken();
-//            $admin = Admin::where('email', $request->email)->first();
-//            $admin->token = $token;
-//            $admin->save();
-//
-//
-//            $admin->notify(new AdminLoginNotification($admin->email,$token));
-//
-//            session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
-//            return redirect()->route('admin.validate.email.form');
+            $credentials = $request->validated();
+
+            if (Auth::guard('admin')->attempt($credentials)) {
+                $request->session()->regenerate();
+                session()->flash('success', __('messages.your_login_was_successful'));
+                return redirect()->route('admin.index');
+            }
+            session()->flash('error',__('messages.your_login_information_is_not_valid'));
+            return redirect()->route('admin.login.form');
+
+
+
+        //            $token = GenerateToken::generateAdminToken();
+        //            $admin = Admin::where('email', $request->email)->first();
+        //            $admin->token = $token;
+        //            $admin->save();
+        //
+        //
+        //            $admin->notify(new AdminLoginNotification($admin->email,$token));
+        //
+        //            session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
+        //            return redirect()->route('admin.validate.email.form');
         } catch (\Exception $ex) {
             return view('errors_custom.login_error', ['error' => $ex->getMessage()]);
         }

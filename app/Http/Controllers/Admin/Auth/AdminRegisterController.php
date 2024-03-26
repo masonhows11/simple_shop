@@ -35,17 +35,19 @@ class AdminRegisterController extends Controller
             // $token = GenerateToken::generateToken();
             $admin = Admin::create([
                 'name' => $data['name'],
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
+                'department' => $data['department'],
                 'password' => Hash::make($data['password']),
                 'email' => $data['email'],
-                'mobile' => $data['mobile'],
+                // 'mobile' => $data['mobile'],
+                // 'first_name' => $data['first_name'],
+                // 'last_name' => $data['last_name'],
                 //'token' => $token,
-                'department' => $data['department']
+
             ]);
 
             Auth::guard('admin')->login($admin, $request->remember);
-
+            session()->flash('success', 'ورود موفقیت آمیز بود.');
+            return redirect()->route('admin.index');
 
             //            session(['admin_mobile' => $admin->mobile]);
             //            $admin->notify(new AdminLoginNotification($admin,$token));

@@ -98,7 +98,7 @@
                         </div>
                         <div class="mx-3 mt-3">
                             <label for="department" class="form-label fs-6 fw-bolder text-dark">بخش</label>
-                            <select class="form-select @error('department') is-invalid @enderror" id="department" aria-label="Default select example">
+                            <select class="form-select  @error('department') is-invalid @enderror" name="department" id="department" aria-label="Default select example">
                                 <option selected>{{ __('messages.choose') }}</option>
                                 <option value="0">فنی</option>
                                 <option value="1">پشتیبانی</option>

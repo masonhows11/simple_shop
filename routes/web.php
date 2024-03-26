@@ -61,7 +61,7 @@ Route::group(['prefix' => 'admin'], function () {
 // middleware(['roleAccess:admin']) its important
 // with gate middleware(can:show_panel) its very important
 // middleware('can:show_panel')
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
 
     Route::get('index', [AdminController::class, 'index'])->name('index');
 

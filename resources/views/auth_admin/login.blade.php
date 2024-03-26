@@ -27,10 +27,20 @@
                             <label class="form-label fs-6 fw-bolder text-dark" for="email">ایمیل</label>
                             <input class="form-control @error('email') is-invalid @enderror"
                                    id="email"
+                                   placeholder="ایمیل خود را وارد کنید..."
                                    type="email"
                                    dir="ltr"
-                                   style="direction: ltr"
+                                   style="direction:rtl;text-align:right"
                                    name="email"/>
+                        </div>
+
+                        <div class="mb-10">
+                            <label for="password" class="form-label fs-6 fw-bolder text-dark">رمز عبور</label>
+                            <input type="password"
+                                   class="form-control @error('password') is-invalid @enderror"
+                                   id="password"
+                                   placeholder="رمز عبور خود را وارد کنید..."
+                                   name="password">
                         </div>
                         <div class="mt-2">
                             @include('auth_admin.validate_error')

@@ -58,13 +58,13 @@ class DatabaseSeeder extends Seeder
         //        ]);
 
         $admins = [
-            [
-                'name' => 'naeem_soltany',
-                'first_name' => 'naeem',
-                'last_name' => 'soltany',
-                'mobile' => '09917230927',
-                'email' => 'mason.hows11@gmail.com',
-            ],
+//            [
+//                'name' => 'naeem_soltany',
+//                'first_name' => 'naeem',
+//                'last_name' => 'soltany',
+//                'mobile' => '09917230927',
+//                'email' => 'mason.hows11@gmail.com',
+//            ],
             [
                 'name' => 'joe_james',
                 'first_name' => 'joe',

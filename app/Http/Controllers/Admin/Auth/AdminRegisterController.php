@@ -7,6 +7,8 @@ use App\Models\Admin;
 use App\Notifications\AdminLoginNotification;
 use App\Services\GenerateToken;
 use App\Http\Requests\Admin\AdminRegisterRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 // use Illuminate\Http\Request;
 
@@ -21,16 +23,22 @@ class AdminRegisterController extends Controller
 
     public function register(AdminRegisterRequest $request)
     {
+        return $this->create($request->all(),$request);
+    }
 
+
+    private function create(array $data,Request $request)
+    {
 
         try {
             $token = GenerateToken::generateToken();
             $admin = Admin::create([
-                'name' => $request->name,
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'email' => $request->email,
-                'mobile' => $request->mobile,
+                'name' => $data['name'],
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'password' => Hash::make($data['password']),
+                'email' => $data['email'],
+                'mobile' => $data['mobile'],
                 'token' => $token,
             ]);
 

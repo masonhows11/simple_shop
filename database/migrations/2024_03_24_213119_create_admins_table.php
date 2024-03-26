@@ -19,13 +19,12 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique()->nullable();
             $table->string('token')->nullable();
-            $table->text('token_guid')->nullable();
             $table->boolean('activate')->default(false);
             $table->string('avatar',500)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->tinyInteger('department')->comment('0 : support , 1 : tech : 2 : financial');
+            $table->tinyInteger('department')->nullable()->comment('0 : support , 1 : tech : 2 : financial');
             $table->rememberToken();
             $table->timestamps();
         });

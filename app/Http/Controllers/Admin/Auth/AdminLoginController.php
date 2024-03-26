@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 
 //use App\Models\Admin;
+use App\Http\Requests\Admin\AdminLoginRequest;
 use App\Models\Admin;
 use App\Models\User;
 
@@ -31,16 +32,8 @@ class AdminLoginController extends Controller
         return view('auth_admin.login');
     }
 
-    public function login(Request $request)
+    public function login(AdminLoginRequest $request)
     {
-
-        $request->validate([
-            'email' => ['required', 'exists:admins,email'],
-        ], $messages = [
-            'email.required' => 'ایمیل خود را وارد کنید',
-            'email.exists' => 'کاربری با ایمیل وارد شده وجود ندارد',
-        ]);
-
         try {
             $admin = Admin::where('email', $request->email)->first();
             Auth::guard('admin')->login($admin, $request->remember);

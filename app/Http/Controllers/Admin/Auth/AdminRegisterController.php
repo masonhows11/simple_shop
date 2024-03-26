@@ -9,6 +9,7 @@ use App\Models\Admin;
 use App\Http\Requests\Admin\AdminRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 
 // use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ class AdminRegisterController extends Controller
                 'department' => $data['department'],
                 'password' => Hash::make($data['password']),
                 'email' => $data['email'],
+                'email_verified_at' => Date::now(),
                 // 'mobile' => $data['mobile'],
                 // 'first_name' => $data['first_name'],
                 // 'last_name' => $data['last_name'],

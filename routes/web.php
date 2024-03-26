@@ -65,6 +65,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
 
     Route::get('index', [AdminController::class, 'index'])->name('index');
 
+    Route::get('logout', [AdminLoginController::class, 'logOut'])->name('logout');
+
     Route::get('/users/index', [AdminUserController::class, 'index'])->name('users.index');
 
     Route::get('/user/edit/{user}', [AdminUserController::class, 'edit'])->name('user.edit');

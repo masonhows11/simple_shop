@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+
 //use App\Models\Admin;
 use App\Models\Admin;
 use App\Models\User;
+
 //use App\Notifications\AdminAuthNotification;
 //use App\Notifications\AdminLoginNotification;
 //use App\Services\GenerateToken;
@@ -21,6 +23,7 @@ class AdminLoginController extends Controller
     {
 
     }
+
     //
 
     public function loginForm()
@@ -30,6 +33,7 @@ class AdminLoginController extends Controller
 
     public function login(Request $request)
     {
+
         $request->validate([
             'email' => ['required', 'exists:admins,email'],
         ], $messages = [
@@ -38,18 +42,22 @@ class AdminLoginController extends Controller
         ]);
 
         try {
-            $token = GenerateToken::generateAdminToken();
             $admin = Admin::where('email', $request->email)->first();
-            $admin->token = $token;
-            $admin->save();
-
-
-            $admin->notify(new AdminLoginNotification($admin->email,$token));
-
-            session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
-            return redirect()->route('admin.validate.email.form');
+            Auth::guard('admin')->login($admin, $request->remember);
+            session()->flash('success', 'ورود موفقیت آمیز بود.');
+            return redirect()->route('admin.index');
+//            $token = GenerateToken::generateAdminToken();
+//            $admin = Admin::where('email', $request->email)->first();
+//            $admin->token = $token;
+//            $admin->save();
+//
+//
+//            $admin->notify(new AdminLoginNotification($admin->email,$token));
+//
+//            session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
+//            return redirect()->route('admin.validate.email.form');
         } catch (\Exception $ex) {
-            return view('errors_custom.login_error',['error'=>$ex->getMessage()]);
+            return view('errors_custom.login_error', ['error' => $ex->getMessage()]);
         }
 
     }

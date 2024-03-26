@@ -42,12 +42,17 @@
                                    placeholder="رمز عبور خود را وارد کنید..."
                                    name="password">
                         </div>
+                        <div class="mb-10">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="remember"> من را به خاطر بسپار !
+                            </label>
+                        </div>
                         <div class="mt-2">
                             @include('auth_admin.validate_error')
                         </div>
                         <div class="text-center">
                             <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-success w-100 mb-5">
-                                ادامه
+                               ورود
                             </button>
                         </div>
                     </form>

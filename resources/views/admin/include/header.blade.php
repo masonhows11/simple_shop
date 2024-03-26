@@ -225,12 +225,12 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <div class="fw-bolder d-flex align-items-center fs-5">
-                                           {{-- {{ \Illuminate\Support\Facades\Auth::guard('admin')->user()->name }}--}}
+                                           {{ \Illuminate\Support\Facades\Auth::guard('admin')->user()->name }}
                                             <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
                                         </div>
                                         <a href="#"
                                            class="fw-bold text-muted text-hover-primary fs-7">
-                                         {{-- {{ \Illuminate\Support\Facades\Auth::guard('admin')->user()->email }}--}}</a>
+                                         {{ \Illuminate\Support\Facades\Auth::guard('admin')->user()->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -291,7 +291,7 @@
                                 <a href="#" class="menu-link px-5">اکانت تنظیمات</a>
                             </div>
                             <div class="menu-item px-5">
-                                <a href="{{--{{ route('admin.logout') }}--}}" class="menu-link px-5">خروج</a>
+                                <a href="{{ route('admin.logout') }}" class="menu-link px-5">خروج</a>
                             </div>
 
                         </div>

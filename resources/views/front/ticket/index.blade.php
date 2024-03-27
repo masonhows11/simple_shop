@@ -29,6 +29,7 @@
                     <th>{{ __('messages.department_ticket') }}</th>
                     <th>{{ __('messages.status') }}</th>
                     <th>{{ __('messages.ticket_attachment') }}</th>
+                    <th>{{ __('messages.operation') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +42,9 @@
                         <td>{{ $ticket->department }}</td>
                         <td>{{ $ticket->status }}</td>
                         <td>{{ $ticket->file_path }}</td>
-                        <td></td>
+                        <td>
+                            <a href="#" class="btn btn-primary">{{ __('messages.show_ticket') }}</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

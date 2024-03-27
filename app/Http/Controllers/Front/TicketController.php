@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Front\CreateTicketRequest;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -15,13 +16,13 @@ class TicketController extends Controller
         return view('front.ticket.index');
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('front.ticket.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateTicketRequest $request)
     {
-        dd($request);
+
     }
 }

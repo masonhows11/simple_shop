@@ -11,18 +11,29 @@ class CreateTicketRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            //
+            //'mobile' => ['required', 'unique:admins', new MobileRule()],
+            'title' => ['required', 'min:5', 'max:50'],
+            'message' => ['required','min:5', 'max:500'],
+            'priority' => ['required'],
+            'department' => ['required'],
+            'file' =>['nullable','']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'department.required' => 'فیلد بخش الزامی است.',
+            'department.priority' => 'فیلد بخش الزامی است.',
         ];
     }
 }

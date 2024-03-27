@@ -25,7 +25,7 @@ class CreateTicketRequest extends FormRequest
             'message' => ['required','min:5', 'max:500'],
             'priority' => ['required'],
             'department' => ['required'],
-            'file' =>['nullable','']
+            'file' =>['nullable','mimes:jpg,pdf,png,zip']
         ];
     }
 

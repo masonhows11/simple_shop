@@ -18,30 +18,13 @@
                 </li>
 
                 @auth
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{ \Illuminate\Support\Facades\Auth::user()->name }}
-                        </a>
-                        <ul class="dropdown-menu bg-dark-subtle bg-body-tertiary">
-                            <li><a class="dropdown-item mt-2" href="{{ route('profile') }}">{{ __('messages.profile') }}</a>
-                            </li>
-                            <li><a class="dropdown-item mt-2"
-                                    href="{{ route('ticket.index') }}">{{ __('messages.tickets') }}</a></li>
-                            <li><a class="dropdown-item mt-2"
-                                    href="{{ route('orders.index') }}">{{ __('messages.orders') }}</a></li>
-                        </ul>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('cart') }}">
                             {{ __('messages.basket') }} <span
                                 class="badge text-bg-primary">{{ $basket->itemCount() }}</span>
                         </a>
                     </li>
-
-                    {{--  <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile') }}">{{ __('messages.profile') }}</a>
                     </li>
                     <li class="nav-item">
@@ -53,7 +36,7 @@
                     <li class="nav-item">
                         <a class="nav-link"
                             href="{{ route('profile') }}">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
-                    </li>  --}}
+                    </li>
 
                     {{--  @role('admin')
                     <li class="nav-item">

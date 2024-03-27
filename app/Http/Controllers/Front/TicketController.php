@@ -13,7 +13,9 @@ class TicketController extends Controller
 
     public function index()
     {
-        return view('front.ticket.index');
+        $tickets = auth()->user()->tickets()->get();
+       // dd($tickets);
+        return view('front.ticket.index',['tickets' => $tickets]);
     }
 
     public function create()
@@ -23,6 +25,20 @@ class TicketController extends Controller
 
     public function store(CreateTicketRequest $request)
     {
-
+        //// create() this is create() method
+        //// like this Ticket::create([]);
+        auth()->user()->tickets()->create(
+            $request->all() + ['file_path' => $this->uploadFile($request)]
+        );
+        session()->flash('success',__('messages.new_successfully_sent'));
+        return redirect()->route('ticket.index');
     }
+
+
+    private function uploadFile($request)
+    {
+        return $request->hasFile('file') ? $request->file->store('public') : null;
+    }
+
+
 }

@@ -32,15 +32,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="text-center">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @foreach($tickets as $ticket)
+                    <tr class="text-center">
+                        <td>{{ $ticket->id }}</td>
+                        <td>{{ $ticket->title }}</td>
+                        <td>{{ $ticket->message }}</td>
+                        <td>{{ $ticket->priority }}</td>
+                        <td>{{ $ticket->department }}</td>
+                        <td>{{ $ticket->status }}</td>
+                        <td>{{ $ticket->file_path }}</td>
+                        <td></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 

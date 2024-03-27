@@ -497,6 +497,7 @@ return [
     'subject' => 'موضوع',
     'new_ticket' => 'تیکت جدید',
     'new_ticket_added' => 'تیکت جدید ذخیره شده',
+    'new_successfully_sent' => 'تیکت جدید با موفقیت ارسال شد',
     'file' => 'فایل',
     'upload_file_error' => 'خطا در آپلود فایل',
     'upload_file_done' => 'آپلود فایل با موفقیت انجام شد',

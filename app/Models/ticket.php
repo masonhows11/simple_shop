@@ -9,6 +9,10 @@ class ticket extends Model
 {
     use HasFactory;
     protected $table ='tickets';
+
+    protected $attributes = [
+        'status' => 0,
+    ];
     protected $fillable = [
         'title',
         'user_id',

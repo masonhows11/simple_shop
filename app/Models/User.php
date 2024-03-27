@@ -9,6 +9,7 @@ use App\Services\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Services\Permission\Traits\HasPermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
@@ -93,4 +94,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class, 'user_id');
     }
+
+
+    public function tickets()
+    {
+        return $this->hasMany(ticket::class);
+    }
+
+
 }

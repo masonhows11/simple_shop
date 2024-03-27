@@ -14,7 +14,7 @@
 
         <div class="row d-flex justify-content-center">
 
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5 py-2 rounded shadow-sm p-10 ticket-form">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 py-2 rounded shadow-lg p-10 ticket-form">
                 <div class="bg-white  mx-auto">
 
                     <form action="{{ route('ticket.store') }}" method="post" enctype="multipart/form-data" novalidate>

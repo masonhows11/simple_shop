@@ -18,7 +18,7 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5 register-form">
                 <div class="bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
 
-                    <form action="{{ route('admin.register') }}" method="post" novalidate>
+                    <form action="{{ route('ticket.store') }}" method="post" novalidate>
                         @csrf
                         <div class="mx-3 mt-3">
                             <label for="name" class="form-label fs-6 fw-bolder text-dark">نام کاربری</label>

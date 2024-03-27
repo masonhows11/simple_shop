@@ -12,8 +12,28 @@
             </div>
         </div>
 
-        <div class="row  ">
-
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ __('messages.title_ticket') }}</th>
+                    <th>{{ __('messages.message_ticket') }}</th>
+                    <th>{{ __('messages.priority_ticket') }}</th>
+                    <th>{{ __('messages.department_ticket') }}</th>
+                    <th>{{ __('messages.status') }}</th>
+                    <th>{{ __('messages.ticket_attachment') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
 
         </div>
     </div>

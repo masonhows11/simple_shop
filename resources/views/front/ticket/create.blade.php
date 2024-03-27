@@ -14,13 +14,13 @@
 
         <div class="row d-flex justify-content-center">
 
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5 register-form">
-                <div class="bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 py-2 rounded shadow-sm p-10 ticket-form">
+                <div class="bg-white  mx-auto">
 
-                    <form action="{{ route('ticket.store') }}" method="post" novalidate>
+                    <form action="{{ route('ticket.store') }}" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
-                        <div class="mx-3 mt-3">
-                            <label for="title" class="form-label fs-6 fw-bolder text-dark">{{ __('messages.title_ticket') }}</label>
+                        <div class="mx-3 mt-4">
+                            <label for="title" class="form-label  text-dark">{{ __('messages.title_ticket') }}</label>
                             <input type="text"
                                    class="form-control @error('title') is-invalid @enderror"
                                    id="title"
@@ -30,7 +30,7 @@
 
 
                         <div class="mx-3 mt-3">
-                            <label for="priority" class="form-label fs-6 fw-bolder text-dark">{{ __('messages.priority_ticket') }}</label>
+                            <label for="priority" class="form-label  text-dark">{{ __('messages.priority_ticket') }}</label>
                             <select class="form-select  @error('priority') is-invalid @enderror" name="priority" id="priority" aria-label="Default select example">
                                 <option selected>{{ __('messages.choose') }}</option>
                                 <option value="0">کم</option>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="mx-3 mt-3">
-                            <label for="department" class="form-label fs-6 fw-bolder text-dark">{{ __('messages.department_ticket') }}</label>
+                            <label for="department" class="form-label  text-dark">{{ __('messages.department_ticket') }}</label>
                             <select class="form-select  @error('department') is-invalid @enderror" name="department" id="department" aria-label="Default select example">
                                 <option selected>{{ __('messages.choose') }}</option>
                                 <option value="0">فنی</option>
@@ -49,15 +49,18 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mx-3 mt-3">
                             <label for="message" class="form-label">{{ __('messages.message_ticket') }}</label>
                             <textarea class="form-control" name="message" id="message" rows="3"></textarea>
                         </div>
 
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                        <div class="mx-3 mt-3">
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">{{ __('messages.upload_file') }}</button>
+                            </div>
                         </div>
+
 
                         <div class="mx-3 my-3">
                             <button type="submit" class="btn btn-success w-100">{{ __('messages.save') }}</button>
@@ -66,7 +69,9 @@
                         <div class="my-2">
                             @include('auth_admin.validate_error')
                         </div>
+
                     </form>
+
                 </div>
             </div>
 

@@ -14,14 +14,14 @@ class TicketController extends Controller
     {
         return view('front.ticket.index');
     }
-    public function create()
+
+    public function create(Request $request)
     {
         return view('front.ticket.create');
     }
 
-
     public function store(Request $request)
     {
-      dd($request);
+        dd($request);
     }
 }

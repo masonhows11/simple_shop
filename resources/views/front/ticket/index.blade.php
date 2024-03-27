@@ -11,11 +11,17 @@
                 @include('layouts.alert.alert')
             </div>
         </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <a href="{{ route('ticket.create') }}" class="btn btn-primary">{{ __('messages.new_ticket') }}</a>
 
-        <div class="row">
+            </div>
+        </div>
+
+        <div class="row mt-4">
             <table class="table table-striped">
                 <thead>
-                <tr>
+                <tr class="text-center">
                     <th>#</th>
                     <th>{{ __('messages.title_ticket') }}</th>
                     <th>{{ __('messages.message_ticket') }}</th>
@@ -26,7 +32,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr class="text-center">
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

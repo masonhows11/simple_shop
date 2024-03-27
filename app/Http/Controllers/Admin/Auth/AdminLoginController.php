@@ -37,7 +37,7 @@ class AdminLoginController extends Controller
         try {
             $credentials = $request->validated();
 
-            if (Auth::guard('admin')->attempt($credentials)) {
+            if (Auth::guard('admin')->attempt($credentials,$request->has('remember'))) {
                 $request->session()->regenerate();
                 session()->flash('success', __('messages.your_login_was_successful'));
                 return redirect()->route('admin.index');

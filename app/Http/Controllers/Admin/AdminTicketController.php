@@ -11,6 +11,8 @@ class AdminTicketController extends Controller
 
     public function index()
     {
+        $tickets = auth()->user()->tickets;
+        return view('admin.tickets.index', ['tickets' => $tickets]);
 
     }
 

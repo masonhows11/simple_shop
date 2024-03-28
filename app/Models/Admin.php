@@ -61,4 +61,11 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //// make relation key between admin tbl  & ticket tb;
+    //// is department column
+    public function tickets()
+    {
+        return $this->hasMany(ticket::class,'department','department');
+    }
 }

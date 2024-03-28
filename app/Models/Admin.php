@@ -68,4 +68,8 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(ticket::class,'department','department');
     }
+
+    public function getDepartmentAttribute($value){
+        return ['پشتیبانی','فنی','مالی'][$value];
+    }
 }

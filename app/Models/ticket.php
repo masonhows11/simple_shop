@@ -27,4 +27,16 @@ class ticket extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getPriorityAttribute($value){
+        return ['پایین','متوسط','زیاد'][$value];
+    }
+
+    public function getStatusAttribute($value){
+        return ['باز','پاسخ داده شده','بسته'][$value];
+    }
+
+    public function getDepartmentAttribute($value){
+        return ['پشتیبانی','فنی','مالی'][$value];
+    }
 }

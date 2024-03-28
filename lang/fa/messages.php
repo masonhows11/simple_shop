@@ -18,7 +18,8 @@ return [
     'demo_link' => 'لینک دمو',
     'created_at' => 'تاریخ ایجاد',
     'admin_panel' => 'پنل مدیریت',
-
+    'admin_user' => 'کاربر مدیر',
+    'admin_department' => 'کاربر بخش',
     'cancel' => 'انصراف',
     'first_name' => 'نام',
     'last_name' => 'نام خانوادگی',

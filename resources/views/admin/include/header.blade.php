@@ -225,8 +225,14 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <div class="fw-bolder d-flex align-items-center fs-5">
+                                            <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 me-2">{{ __('messages.admin_user') }}</span>
                                            {{ \Illuminate\Support\Facades\Auth::guard('admin')->user()->name }}
-                                            <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+
+                                        </div>
+                                        <div class="fw-bolder d-flex align-items-center fs-5">
+                                            <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 me-2">{{ __('messages.admin_department') }}</span>
+                                            {{ \Illuminate\Support\Facades\Auth::guard('admin')->user()->department }}
+
                                         </div>
                                         <a href="#"
                                            class="fw-bold text-muted text-hover-primary fs-7">

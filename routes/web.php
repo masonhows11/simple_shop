@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminRoleController;
+use App\Http\Controllers\Admin\AdminTicketController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Auth\AdminRegisterController;
@@ -59,29 +60,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/validate', [AdminValidateController::class, 'validateEmail'])->name('admin.validate.email');
 });
 
-// middleware(['roleAccess:admin']) its important
-// with gate middleware(can:show_panel) its very important
-// middleware('can:show_panel')
-Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
 
-    Route::get('index', [AdminController::class, 'index'])->name('index');
-
-    Route::get('logout', [AdminLoginController::class, 'logOut'])->name('logout');
-
-    Route::get('/users/index', [AdminUserController::class, 'index'])->name('users.index');
-
-    Route::get('/user/edit/{user}', [AdminUserController::class, 'edit'])->name('user.edit');
-    Route::post('/user/update', [AdminUserController::class, 'update'])->name('user.update');
-
-
-    Route::get('/roles/index', [AdminRoleController::class, 'index'])->name('roles.index');
-    Route::post('/role/store', [AdminRoleController::class, 'store'])->name('roles.store');
-
-    Route::get('/role/edit/{role}', [AdminRoleController::class, 'edit'])->name('roles.edit');
-    Route::post('/role/update/{role}', [AdminRoleController::class, 'update'])->name('roles.update');
-
-    Route::get('/role/delete/{role}', [AdminRoleController::class, 'destroy'])->name('roles.delete');
-});
 
 // auth routes
 Route::prefix('auth')->name('auth.')->group(function () {
@@ -138,8 +117,8 @@ Route::controller(TicketController::class)->prefix('ticket')->middleware(['auth'
     Route::get('/create', 'create')->name('ticket.create');
     Route::post('/store', 'store')->name('ticket.store');
 
-
 });
+
 
 
 // coupon routes
@@ -189,3 +168,44 @@ Route::get('basket/clear', function () {
     // this clear session with bind method in appServiceProvider
     resolve(StorageInterface::class)->clearAll();
 })->name('clear.basket');
+
+
+//// admin routes
+
+// tickets
+Route::controller(AdminTicketController::class)->prefix('admin')->middleware('auth:admin')->group(function () {
+
+    Route::get('/ticket/index','index')->name('admin.ticket.index');
+
+    Route::get('/new/tickets', 'newTickets')->name('admin.tickets.new');
+
+    Route::get('/open/tickets', 'openTickets')->name('admin.tickets.open');
+
+    Route::get('/closed/tickets', 'closedTickets')->name('admin.tickets.closed');
+
+});
+
+
+// middleware(['roleAccess:admin']) its important
+// with gate middleware(can:show_panel) its very important
+// middleware('can:show_panel')
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
+
+    Route::get('index', [AdminController::class, 'index'])->name('index');
+
+    Route::get('logout', [AdminLoginController::class, 'logOut'])->name('logout');
+
+    Route::get('/users/index', [AdminUserController::class, 'index'])->name('users.index');
+
+    Route::get('/user/edit/{user}', [AdminUserController::class, 'edit'])->name('user.edit');
+    Route::post('/user/update', [AdminUserController::class, 'update'])->name('user.update');
+
+
+    Route::get('/roles/index', [AdminRoleController::class, 'index'])->name('roles.index');
+    Route::post('/role/store', [AdminRoleController::class, 'store'])->name('roles.store');
+
+    Route::get('/role/edit/{role}', [AdminRoleController::class, 'edit'])->name('roles.edit');
+    Route::post('/role/update/{role}', [AdminRoleController::class, 'update'])->name('roles.update');
+
+    Route::get('/role/delete/{role}', [AdminRoleController::class, 'destroy'])->name('roles.delete');
+});

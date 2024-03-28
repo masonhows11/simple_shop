@@ -416,7 +416,7 @@
                 {{-- end comment --}}
 
                 {{-- start tickets --}}
-                {{--  <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -435,9 +435,9 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
+                        {{--<div class="menu-item">
                             <a class="menu-link {{ $route === 'admin.category.tickets' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.category.tickets') }}--}}{{--">
+                               href="{{ route('admin.category.tickets') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -446,7 +446,7 @@
                         </div>
                         <div class="menu-item">
                             <a class="menu-link {{ $route === 'admin.priority.tickets' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.priority.tickets') }}--}}{{--">
+                               href="{{ route('admin.priority.tickets') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -455,16 +455,16 @@
                         </div>
                         <div class="menu-item">
                             <a class="menu-link {{ $route === 'admin.admin.tickets.index' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.admin.tickets.index') }}--}}{{--">
+                               href="{{ route('admin.admin.tickets.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">{{ __('messages.admin_tickets') }}</span>
                             </a>
-                        </div>
+                        </div>--}}
                         <div class="menu-item">
-                            <a class="menu-link {{ $route === 'admin.all.tickets' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.all.tickets') }}--}}{{--">
+                            <a class="menu-link {{ $route === 'admin.ticket.index' ? 'active' : '' }}"
+                               href="{{ route('admin.ticket.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -472,8 +472,8 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link {{ $route === 'admin.new.tickets' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.new.tickets') }}--}}{{--">
+                            <a class="menu-link {{ $route === 'admin.tickets.new' ? 'active' : '' }}"
+                               href="{{ route('admin.tickets.new') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -481,8 +481,8 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link {{ $route === 'admin.open.tickets' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.open.tickets') }}--}}{{--">
+                            <a class="menu-link {{ $route === 'admin.tickets.open' ? 'active' : '' }}"
+                               href="{{ route('admin.tickets.open') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -490,8 +490,8 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link {{ $route === 'admin.close.tickets' ? 'active' : '' }}"
-                               href="--}}{{--{{ route('admin.close.tickets') }}--}}{{--">
+                            <a class="menu-link {{ $route === 'admin.tickets.closed' ? 'active' : '' }}"
+                               href="{{ route('admin.tickets.closed') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -499,7 +499,7 @@
                             </a>
                         </div>
                     </div>
-                </div>--}}
+                </div>
                 {{-- end tickets --}}
 
 

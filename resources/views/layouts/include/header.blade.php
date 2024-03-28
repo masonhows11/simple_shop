@@ -1,12 +1,15 @@
 {{-- for inject  class into blade & use it --}}
 @inject('basket', 'App\Services\Basket\Basket')
-<nav class="navbar navbar-expand-lg bg-dark-subtle bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
+
         <a class="navbar-brand" href="{{ route('home') }}">{{ __('messages.site_name') }}</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -18,10 +21,10 @@
                 </li>
 
                 @auth
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('cart') }}">
-                            {{ __('messages.basket') }} <span
-                                class="badge text-bg-primary">{{ $basket->itemCount() }}</span>
+                            {{ __('messages.basket') }} <span class="">{{ $basket->itemCount() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -69,3 +72,6 @@
         </div>
     </div>
 </nav>
+
+
+

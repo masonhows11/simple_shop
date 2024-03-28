@@ -183,6 +183,8 @@ Route::controller(AdminTicketController::class)->prefix('admin')->middleware('au
 
     Route::get('/closed/tickets', 'closedTickets')->name('admin.tickets.closed');
 
+    Route::get('/show/ticket/{ticket}','show')->name('admin.ticket.show');
+
 });
 
 

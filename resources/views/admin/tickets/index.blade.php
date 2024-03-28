@@ -5,8 +5,8 @@
 @section('dash_main_content')
     <div class="container bg-white">
 
-        <div class="row">
-            <table class="table table-striped">
+        <div class="row overflow-auto">
+            <table class="table table-striped ">
                 <thead>
                 <tr class="text-center">
                     <th>#</th>
@@ -33,7 +33,7 @@
                         <td>{{ customJalaliDate($ticket->created_at) }}</td>
                         <td>
                             <a href="#" class="btn btn-primary">{{ __('messages.download') }}</a>
-                            <a href="" class="btn btn-primary" title="">{{ __('messages.response_ticket') }}</a>
+                            <a href="{{ route('admin.ticket.show',$ticket->id) }}" class="btn btn-primary" title="">{{ __('messages.response_ticket') }}</a>
                         </td>
                     </tr>
                 @endforeach

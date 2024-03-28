@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="row mt-4">
+        <div class="row mt-4 overflow-auto">
             <table class="table table-striped">
                 <thead>
                 <tr class="text-center">
@@ -28,7 +28,6 @@
                     <th>{{ __('messages.priority_ticket') }}</th>
                     <th>{{ __('messages.department_ticket') }}</th>
                     <th>{{ __('messages.status') }}</th>
-                    <th>{{ __('messages.ticket_attachment') }}</th>
                     <th>{{ __('messages.operation') }}</th>
                 </tr>
                 </thead>
@@ -41,8 +40,8 @@
                         <td>{{ $ticket->priority }}</td>
                         <td>{{ $ticket->department }}</td>
                         <td>{{ $ticket->status }}</td>
-                        <td>{{ $ticket->file_path }}</td>
                         <td>
+                            <a href="#" class="btn btn-primary">{{ __('messages.download') }}</a>
                             <a href="#" class="btn btn-primary">{{ __('messages.show_ticket') }}</a>
                         </td>
                     </tr>

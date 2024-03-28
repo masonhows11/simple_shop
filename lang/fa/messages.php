@@ -471,7 +471,7 @@ return [
     'title_ticket' => 'عنوان تیکت',
     'category_ticket' => 'دسته تیکت',
     'priority_ticket' => 'اولیت تیکت',
-    'ticket_from' => 'ارجاع شده',
+    'ticket_from' => 'از کاربر',
     'ticket_resource' => 'تیکت مرجع',
     'all_tickets' => 'همه ی تیکت ها',
     'tickets_management' => 'مدیریت تیکت ها',

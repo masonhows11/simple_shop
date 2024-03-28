@@ -198,6 +198,8 @@ Route::controller(AdminReplyController::class)->prefix('admin')->middleware('aut
 
     Route::post('/reply/ticket/{ticket}','response')->name('admin.ticket.reply');
 
+    Route::get('/close/ticket/{ticket}','close')->name('admin.ticket.close');
+
 });
 
 

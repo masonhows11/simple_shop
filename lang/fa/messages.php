@@ -494,7 +494,7 @@ return [
     'ticket' => 'تیکت',
     'response_from' => 'پاسخ از',
     'ticket_open' => 'تیکت باز',
-    'ticket_close' => 'تیکت بسته',
+    'ticket_close' => 'تیکت بسته است',
     'user' => 'کاربر',
     'subject' => 'موضوع',
     'new_ticket' => 'تیکت جدید',

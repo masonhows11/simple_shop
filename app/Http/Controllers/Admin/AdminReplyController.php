@@ -25,4 +25,11 @@ class AdminReplyController extends Controller
 
         return redirect()->back();
     }
+
+    public function close(ticket $ticket)
+    {
+       $ticket->close();
+       session()->flash('success',__('messages.The_update_was_completed_successfully'));
+       return redirect()->back();
+    }
 }

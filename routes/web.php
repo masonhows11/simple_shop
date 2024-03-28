@@ -187,6 +187,10 @@ Route::controller(AdminTicketController::class)->prefix('admin')->middleware('au
 
     Route::get('/show/ticket/{ticket}','show')->name('admin.ticket.show');
 
+    Route::get('/download/attachment/ticket/{ticket}','download')->name('admin.download.ticket');
+
+
+
 });
 
 

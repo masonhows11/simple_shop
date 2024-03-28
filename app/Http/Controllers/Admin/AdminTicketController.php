@@ -22,6 +22,10 @@ class AdminTicketController extends Controller
         return view('admin.tickets.show',['ticket'=>$ticket]);
     }
 
+    public function download(ticket $ticket)
+    {
+        dd($ticket);
+    }
     public function newTickets()
     {
 

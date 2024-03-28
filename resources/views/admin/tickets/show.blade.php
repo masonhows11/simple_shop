@@ -7,12 +7,15 @@
 
         <div class="row d-flex flex-column my-4 bg-white">
 
-            <div class="col-lg-4 my-2">
+            <div class="col my-2">
                 <a href="{{ route('admin.ticket.index') }}" class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
             </div>
-            <div class="col-lg-4 col-md-4 col  my-2">
-                <div class="alert my-4">
+            <div class="col   my-2">
+                <div class="alert alert-white shadow-sm my-4">
                     <h3>{{ __('messages.ticket') }} : {{ $ticket->title }}  </h3>
+                </div>
+                <div>
+                    <a href="{{ route('admin.download.ticket',$ticket->id) }}" class="btn btn-sm btn-primary">{{ __('messages.download') }}</a>
                 </div>
             </div>
 
@@ -30,7 +33,7 @@
             </div>
 
             <div class="col  mt-4 mb-4">
-                <div class="row d-flex flex-column border border-2  mx-2 my-2">
+                {{--<div class="row d-flex flex-column border border-2  mx-2 my-2">
                     @foreach( $ticket->child as $item )
                         <div class="col my-4">
                             <div class="card border border-1 border-secondary me-4">
@@ -47,7 +50,7 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
+                </div>--}}
             </div>
 
         </div>

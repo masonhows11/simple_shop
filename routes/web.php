@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminReplyController;
 use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminTicketController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -190,8 +191,13 @@ Route::controller(AdminTicketController::class)->prefix('admin')->middleware('au
     Route::get('/download/attachment/ticket/{ticket}','download')->name('admin.download.ticket');
 
 
+});
+Route::controller(AdminReplyController::class)->prefix('admin')->middleware('auth:admin')->group(function () {
+
+    Route::post('/reply/ticket/{ticket}','response')->name('admin.ticket.reply');
 
 });
+
 
 
 // middleware(['roleAccess:admin']) its important

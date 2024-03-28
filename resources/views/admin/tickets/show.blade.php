@@ -8,8 +8,7 @@
         <div class="row d-flex flex-column my-4 bg-white">
 
             <div class="col my-2">
-                <a href="{{ route('admin.ticket.index') }}"
-                   class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
+                <a href="{{ route('admin.ticket.index') }}" class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
             </div>
             <div class="col   my-2">
                 <div class="alert alert-white shadow-sm my-4">
@@ -44,7 +43,7 @@
             </div>
 
             <div class="col  mt-4 mb-4">
-               <div class="row d-flex flex-column border border-2  mx-2 my-2">
+               <div class="row d-flex flex-column   mx-2 my-2">
                     @foreach( $ticket->replies as $reply )
                         <div class="col my-4">
                             <div class="card border border-1 border-secondary me-4">
@@ -69,20 +68,16 @@
         </div>
 
         <div class="row  my-4 bg-white">
-
-            <div class="bg-secondary  h-50">
-                <p class="p-4 my-auto">  {{ __('messages.response_ticket') }}</p>
-            </div>
             <div>
-                <form action="{{--{{ route('admin.answer.ticket',$ticket->id) }}--}}" method="post">
+                <form action="{{ route('admin.ticket.reply',$ticket->id) }}" method="post">
                     @csrf
 
                     <div class="row product-stock-list mt-5 py-5 bg-white">
 
                         <div class="col">
                             <div class="mt-3">
-                                <label for=description" class="form-label">{{ __('messages.description') }}</label>
-                                <textarea class="form-control" rows="6" id="description" name="description"></textarea>
+                                <label for=message" class="form-label">{{ __('messages.message_ticket') }}</label>
+                                <textarea class="form-control" rows="6" id="message" name="message"></textarea>
                             </div>
                             @error('description')
                             <div class="alert alert-danger mt-3">

@@ -44,8 +44,8 @@
                             <label for="department" class="form-label  text-dark">{{ __('messages.department_ticket') }}</label>
                             <select class="form-select  @error('department') is-invalid @enderror" name="department" id="department" aria-label="Default select example">
                                 <option value="">{{ __('messages.choose') }}</option>
-                                <option value="0">فنی</option>
-                                <option value="1">پشتیبانی</option>
+                                <option value="0">پشتیبانی</option>
+                                <option value="1">فنی</option>
                                 <option value="2">مالی</option>
                             </select>
                         </div>

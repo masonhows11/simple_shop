@@ -22,4 +22,9 @@ class ticket extends Model
         'file_path',
         'department'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

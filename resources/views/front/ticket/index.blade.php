@@ -42,7 +42,7 @@
                         <td>{{ $ticket->status }}</td>
                         <td>
                             <a href="#" class="btn btn-primary">{{ __('messages.download') }}</a>
-                            <a href="#" class="btn btn-primary">{{ __('messages.show_ticket') }}</a>
+                            <a href="{{ route('ticket.show',$ticket->id) }}" class="btn btn-primary">{{ __('messages.show_ticket') }}</a>
                         </td>
                     </tr>
                 @endforeach

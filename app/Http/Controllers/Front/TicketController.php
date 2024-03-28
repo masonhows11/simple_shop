@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Front\CreateTicketRequest;
+use App\Models\ticket;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -40,5 +41,10 @@ class TicketController extends Controller
         return $request->hasFile('file') ? $request->file->store('public') : null;
     }
 
+
+    public function show(ticket $ticket)
+    {
+        dd($ticket);
+    }
 
 }

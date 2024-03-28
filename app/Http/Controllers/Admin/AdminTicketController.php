@@ -19,8 +19,7 @@ class AdminTicketController extends Controller
 
     public function show(ticket $ticket)
     {
-        dd($ticket);
-        return view('admin.tickets.show');
+        return view('admin.tickets.show',['ticket'=>$ticket]);
     }
 
     public function newTickets()

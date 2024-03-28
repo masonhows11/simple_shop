@@ -116,6 +116,8 @@ Route::controller(TicketController::class)->prefix('ticket')->middleware(['auth'
     Route::get('/index', 'index')->name('ticket.index');
     Route::get('/create', 'create')->name('ticket.create');
     Route::post('/store', 'store')->name('ticket.store');
+    Route::get('/show/{ticket}', 'show')->name('ticket.show');
+
 
 });
 

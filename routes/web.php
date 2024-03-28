@@ -119,6 +119,8 @@ Route::controller(TicketController::class)->prefix('ticket')->middleware(['auth'
     Route::post('/store', 'store')->name('ticket.store');
     Route::get('/show/{ticket}', 'show')->name('ticket.show');
 
+    Route::post('/reply/{ticket}','response')->name('ticket.reply');
+
 
 });
 

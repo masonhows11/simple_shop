@@ -44,7 +44,23 @@ class TicketController extends Controller
 
     public function show(ticket $ticket)
     {
-        dd($ticket);
+        return view('front.ticket.show',['ticket'=>$ticket]);
     }
 
+
+    public function response(ticket $ticket, Request $request)
+    {
+        // dd(auth()->user());
+       // dd($ticket,$request);
+        $request->validate([
+            'message' => ['string','min:5','max:1000']
+        ]);
+
+        auth()->user()->replies()->create([
+            'message' => $request->message,
+            'ticket_id' => $ticket->id,
+        ]);
+
+        return redirect()->back();
+    }
 }

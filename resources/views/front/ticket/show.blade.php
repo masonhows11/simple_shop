@@ -1,26 +1,33 @@
-@extends('admin.include.master_dash')
-@section('dash_page_title')
+@extends('layouts.include.master_front')
+@section('page_title')
     {{ __('messages.show_ticket') }}
 @endsection
-@section('dash_main_content')
-    <div class="container bg-white">
+@section('main_content')
 
-        <div class="row d-flex flex-column my-4 bg-white">
+    <div class="container">
+
+        <div class="row justify-content-center" style="height: 125px">
+            <div class="col-md-6 mt-2">
+                @include('layouts.alert.alert')
+            </div>
+        </div>
+
+        <div class="row d-flex flex-column border my-4 bg-white">
 
             <div class="col my-2">
-                <a href="{{ route('admin.ticket.index') }}" class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
+                <a href="{{ route('ticket.index') }}" class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
             </div>
             <div class="col   my-2">
-                <div class="alert alert-white shadow-sm my-4">
+                <div class="alert alert-light shadow-sm my-4">
                     <h3>{{ __('messages.ticket') }} : {{ $ticket->title }}  </h3>
                 </div>
-
             </div>
 
 
             <div class="col  mt-2 mb-2 ">
-                <div class="card border border-primary">
-                    <div class="card-header bg-primary">
+
+                <div class="card">
+                    <div class="card-header">
                         <p class="my-auto"> {{ __('messages.user') }}: {{ $ticket->user->first_name ?? '-'  }} {{ $ticket->user->last_name ?? '-' }}</p>
                     </div>
                     <div class="card-body">
@@ -35,7 +42,7 @@
                             </div>
                         @endif
                         <div class="mt-2">
-                           {{ __('messages.created_at') }} : {{ convertEngToPersian(jdate($ticket->created_at)->ago())  }}
+                            {{ __('messages.created_at') }} : {{ convertEngToPersian(jdate($ticket->created_at)->ago())  }}
                         </div>
 
                     </div>
@@ -43,11 +50,11 @@
             </div>
 
             <div class="col  mt-4 mb-4">
-               <div class="row d-flex flex-column   mx-2 my-2">
+                <div class="row d-flex flex-column   mx-2 my-2">
                     @foreach( $ticket->replies as $reply )
                         <div class="col my-4">
-                            <div class="card border border-1 border-secondary me-4">
-                                <div class="card-header bg-secondary">
+                            <div class="card me-4">
+                                <div class="card-header bg-light">
                                     <div>
                                         <p class="card-title">{{ $reply->repliable->name }}</p>
                                         <p class=""> تاریح : {{ convertEngToPersian(jdate($reply->created_at)->ago())  }}</p>
@@ -66,7 +73,7 @@
 
         <div class="row  my-4 bg-white">
             <div>
-                <form action="{{ route('admin.ticket.reply',$ticket->id) }}" method="post">
+                <form action="{{ route('ticket.reply',$ticket->id) }}" method="post">
                     @csrf
 
                     <div class="row product-stock-list mt-5 py-5 bg-white">
@@ -97,5 +104,7 @@
         </div>
 
     </div>
+
 @endsection
+
 

@@ -14,6 +14,11 @@ class AdminReplyController extends Controller
             'message' => ['string','min:5','max:1000']
         ]);
 
-        dd($ticket, $request);
+        auth()->user()->replies()->create([
+            'message' => $request->message,
+            'ticket_id' => $ticket->id,
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -51,4 +51,9 @@ class ticket extends Model
     {
         return $this->hasFile() ? Storage::url($this->file_path) : null;
     }
+
+    public function replies()
+    {
+        
+    }
 }

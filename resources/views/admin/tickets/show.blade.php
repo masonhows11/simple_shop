@@ -44,8 +44,8 @@
             </div>
 
             <div class="col  mt-4 mb-4">
-                {{--<div class="row d-flex flex-column border border-2  mx-2 my-2">
-                    @foreach( $ticket->child as $item )
+               <div class="row d-flex flex-column border border-2  mx-2 my-2">
+                    @foreach( $ticket->replies as $reply )
                         <div class="col my-4">
                             <div class="card border border-1 border-secondary me-4">
                                 <div class="card-header bg-secondary">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     @endforeach
-                </div>--}}
+                </div>
             </div>
 
         </div>

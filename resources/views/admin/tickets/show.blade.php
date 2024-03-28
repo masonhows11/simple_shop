@@ -36,7 +36,7 @@
                             </div>
                         @endif
                         <div class="mt-2">
-                           {{ __('messages.created_at') }} : {{ jdate($ticket->created_at)->ago() }}
+                           {{ __('messages.created_at') }} : {{ convertEngToPersian(jdate($ticket->created_at)->ago())  }}
                         </div>
 
                     </div>
@@ -50,13 +50,15 @@
                             <div class="card border border-1 border-secondary me-4">
                                 <div class="card-header bg-secondary">
                                     <div>
-                                        <p class="card-title">{{ $item->user->first_name . ' ' . $item->user->last_name }}</p>
-                                        <p class="">تاریح : {{ jdate($item->created_at) }}</p>
+                                        <p class="card-title">{{ $reply->repliable->name }}</p>
+                                        <p class=""> تاریح : {{ jdate($reply->created_at) }}</p>
+{{--
                                         <p class=""> ادمین : {{ $item->admin != null ? $item->admin->admin->first_name .' ' . $item->admin->admin->last_name : __('messages.unknown')  }} </p>
+--}}
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text my-2">{{ __('messages.description') }} : {{ $item->description }}</p>
+                                    <p class="card-text my-2">{{ __('messages.description') }} : {{ $reply->message }}</p>
                                 </div>
                             </div>
                         </div>

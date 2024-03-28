@@ -72,4 +72,11 @@ class Admin extends Authenticatable
     public function getDepartmentAttribute($value){
         return ['پشتیبانی','فنی','مالی'][$value];
     }
+
+    public function replies()
+    {
+        return $this->morphMany(Reply::class,'repliable');
+    }
+
+
 }

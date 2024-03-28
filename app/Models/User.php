@@ -101,5 +101,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(ticket::class);
     }
 
+    public function replies()
+    {
+        return $this->morphMany(Reply::class,'repliable');
+    }
 
 }

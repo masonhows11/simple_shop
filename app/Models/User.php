@@ -106,6 +106,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphMany(Reply::class,'repliable');
     }
 
+    //// this mean if admin reply the ticket ,
+    //// that user replied the ticket is admin
+    //// not a normal user
     public function isAdmin()
     {
         return $this instanceof Admin;

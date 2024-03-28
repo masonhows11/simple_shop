@@ -11,10 +11,10 @@
                 <a href="{{ route('admin.ticket.index') }}" class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
             </div>
             <div class="col   my-2">
-                <div class="alert alert-white shadow-sm my-4">
-                    <h3>{{ __('messages.ticket') }} : {{ $ticket->title }}  </h3>
+                <div class="alert d-flex justify-content-between alert-white shadow-sm my-4">
+                    <h3 class="my-auto">{{ __('messages.ticket') }} : {{ $ticket->title }}  </h3>
+                    <a href="" class="btn btn-sm btn-danger">{{ __('messages.close_ticket') }}</a>
                 </div>
-
             </div>
 
 

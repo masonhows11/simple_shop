@@ -478,6 +478,7 @@ return [
     'new_tickets' => 'تیکت های  جدید',
     'open_tickets' => 'تیکت های باز',
     'close_tickets' => 'تیکت های بسته',
+    'close_ticket' => 'بستن تیکت',
     'show_ticket' => 'مشاهده تیکت',
     'category_tickets' => 'دسته بندی تیکت ها',
     'priority_tickets' => 'اولویت تیکت ها',

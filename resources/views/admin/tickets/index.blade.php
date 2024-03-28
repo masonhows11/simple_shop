@@ -32,8 +32,14 @@
                         <td>{{ $ticket->status }}</td>
                         <td>{{ customJalaliDate($ticket->created_at) }}</td>
                         <td>
-                            <a href="{{ route('admin.download.ticket',$ticket->id) }}" class="btn btn-primary">{{ __('messages.download') }}</a>
-                            <a href="{{ route('admin.ticket.show',$ticket->id) }}" class="btn btn-primary" title="">{{ __('messages.response_ticket') }}</a>
+                            @if($ticket->hasFile())
+                                <a href="{{ $ticket->get_file_path() }}"
+                                   class="btn btn-primary">{{ __('messages.download') }}</a>
+                               {{-- <a href="{{ route('admin.download.ticket',$ticket->id) }}"
+                                   class="btn btn-primary">{{ __('messages.download') }}</a>--}}
+                            @endif
+                            <a href="{{ route('admin.ticket.show',$ticket->id) }}" class="btn btn-primary"
+                               title="">{{ __('messages.response_ticket') }}</a>
                         </td>
                     </tr>
                 @endforeach

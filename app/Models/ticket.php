@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class ticket extends Model
 {
@@ -38,5 +39,16 @@ class ticket extends Model
 
     public function getDepartmentAttribute($value){
         return ['پشتیبانی','فنی','مالی'][$value];
+    }
+
+    public function hasFile()
+    {
+        return !is_null($this->file_path);
+    }
+
+
+    public function get_file_path()
+    {
+        return $this->hasFile() ? Storage::url($this->file_path) : null;
     }
 }

@@ -8,15 +8,14 @@
         <div class="row d-flex flex-column my-4 bg-white">
 
             <div class="col my-2">
-                <a href="{{ route('admin.ticket.index') }}" class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
+                <a href="{{ route('admin.ticket.index') }}"
+                   class="btn btn-sm btn-primary">{{ __('messages.all_tickets') }}</a>
             </div>
             <div class="col   my-2">
                 <div class="alert alert-white shadow-sm my-4">
                     <h3>{{ __('messages.ticket') }} : {{ $ticket->title }}  </h3>
                 </div>
-                <div>
-                    <a href="{{ route('admin.download.ticket',$ticket->id) }}" class="btn btn-sm btn-primary">{{ __('messages.download') }}</a>
-                </div>
+
             </div>
 
 
@@ -28,6 +27,18 @@
                     <div class="card-body">
                         <h5 class="card-title my-2">{{ __('messages.title_ticket') }} : {{ $ticket->title }}</h5>
                         <p class="card-text my-2">{{ __('messages.message_ticket') }} : {{ $ticket->message }}</p>
+                    </div>
+                    <div class="card-footer">
+                        @if($ticket->hasFile())
+                            <div>
+                                <a href="{{ $ticket->get_file_path() }}" class="btn btn-sm btn-primary">{{ __('messages.download') }}</a>
+
+                            </div>
+                        @endif
+                        <div class="mt-2">
+                           {{ __('messages.created_at') }} : {{ jdate($ticket->created_at)->ago() }}
+                        </div>
+
                     </div>
                 </div>
             </div>

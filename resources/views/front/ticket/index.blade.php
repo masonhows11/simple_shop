@@ -41,7 +41,9 @@
                         <td>{{ $ticket->department }}</td>
                         <td>{{ $ticket->status }}</td>
                         <td>
+                            @if($ticket->hasFile())
                             <a href="#" class="btn btn-primary">{{ __('messages.download') }}</a>
+                            @endif
                             <a href="{{ route('ticket.show',$ticket->id) }}" class="btn btn-primary">{{ __('messages.show_ticket') }}</a>
                         </td>
                     </tr>

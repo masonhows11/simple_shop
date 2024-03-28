@@ -29,7 +29,7 @@
                         <td>{{ $ticket->user->name }}</td>
                         <td>{{ $ticket->priority }}</td>
                         <td>{{ $ticket->department }}</td>
-                        <td>{{ $ticket->status }}</td>
+                        <td>{{ $ticket->statusName }}</td>
                         <td>{{ customJalaliDate($ticket->created_at) }}</td>
                         <td>
                             @if($ticket->hasFile())

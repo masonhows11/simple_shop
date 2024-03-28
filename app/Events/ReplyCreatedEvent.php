@@ -23,7 +23,7 @@ class ReplyCreatedEvent
      * @param Reply $reply
      * @param User $user
      */
-    public function __construct(Reply $reply,User $user)
+    public function __construct(Reply $reply,$user)
     {
         //
         $this->reply = $reply;

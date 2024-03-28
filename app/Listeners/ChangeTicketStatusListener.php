@@ -23,5 +23,10 @@ class ChangeTicketStatusListener
     public function handle(ReplyCreatedEvent $event): void
     {
         //
+        if($event->reply->ticket->isCreated() && $event->user->isAdmin()){
+            $event->reply->ticket->replied();
+        }
+
+
     }
 }

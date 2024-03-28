@@ -39,7 +39,7 @@
                         <td>{{ $ticket->message }}</td>
                         <td>{{ $ticket->priority }}</td>
                         <td>{{ $ticket->department }}</td>
-                        <td>{{ $ticket->status }}</td>
+                        <td>{{ $ticket->statusName }}</td>
                         <td>
                             @if($ticket->hasFile())
                             <a href="#" class="btn btn-primary">{{ __('messages.download') }}</a>

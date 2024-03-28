@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class ticket extends Model
 {
     use HasFactory;
-    protected $table ='tickets';
+
+    protected $table = 'tickets';
 
     protected $attributes = [
         'status' => 0,
@@ -29,16 +30,19 @@ class ticket extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getPriorityAttribute($value){
-        return ['پایین','متوسط','زیاد'][$value];
+    public function getPriorityAttribute($value)
+    {
+        return ['پایین', 'متوسط', 'زیاد'][$value];
     }
 
-    public function getStatusAttribute($value){
-        return ['باز','پاسخ داده شده','بسته'][$value];
+    public function getStatusNameAttribute()
+    {
+        return ['باز', 'پاسخ داده شده', 'بسته'][$this->status];
     }
 
-    public function getDepartmentAttribute($value){
-        return ['پشتیبانی','فنی','مالی'][$value];
+    public function getDepartmentAttribute($value)
+    {
+        return ['پشتیبانی', 'فنی', 'مالی'][$value];
     }
 
     public function hasFile()
@@ -55,5 +59,17 @@ class ticket extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function isCreated()
+    {
+        return $this->status === 0;
+    }
+
+    public function replied()
+    {
+
+        $this->status = 1;
+        $this->save();
     }
 }

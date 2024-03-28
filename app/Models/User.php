@@ -106,4 +106,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphMany(Reply::class,'repliable');
     }
 
+    public function isAdmin()
+    {
+        return $this instanceof Admin;
+    }
+
 }

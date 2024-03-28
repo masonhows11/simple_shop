@@ -23,8 +23,8 @@ use App\Http\Controllers\Front\ProductsController;
 use App\Http\Controllers\Front\TicketController;
 use App\Http\Controllers\HomeController;
 use App\Services\Storage\Contracts\StorageInterface;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
+// use Illuminate\Foundation\Auth\EmailVerificationRequest;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

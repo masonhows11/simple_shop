@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\OrderRegisteredEvent;
+use App\Events\ReplyCreatedEvent;
 use App\Events\UserRegisteredEvent;
+use App\Listeners\ChangeTicketStatusListener;
 use App\Listeners\SendOrderDetailListener;
 use App\Listeners\SendVerificationEmailListener;
 use Illuminate\Auth\Events\Registered;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         //        Registered::class => [
         //            SendEmailVerificationNotification::class,
         //        ],
+        ReplyCreatedEvent::class => [
+          ChangeTicketStatusListener::class
+        ],
         OrderRegisteredEvent::class => [
             SendOrderDetailListener::class,
         ],

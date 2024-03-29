@@ -29,6 +29,8 @@ $app = new Illuminate\Foundation\Application(
 */
 
 ////// test app()->bind service container //////
+//// with bind()  the service container
+//// we make multi object from class
 
 // app()->bind('test', function () {
 //    return 'hello test app bind method';
@@ -39,6 +41,8 @@ $app = new Illuminate\Foundation\Application(
 
 
 ////// test app()->bind service container //////
+//// with bind()  the service container
+//// we make multi object from class
 
 // app()->bind('num', function () {
 //     return rand(10, 50);

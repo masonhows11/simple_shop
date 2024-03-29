@@ -28,15 +28,47 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
-app()->bind('test', function () {
+////// test app()->bind service container //////
 
-    return 'hello test app bind method';
-});
-
+// app()->bind('test', function () {
+//    return 'hello test app bind method';
+// });
 
 // $test = app()->make('test');
-
 // echo $test;
+
+
+////// test app()->bind service container //////
+
+// app()->bind('num', function () {
+//     return rand(10, 50);
+// });
+
+// $num = app()->make('num');
+// $num1 = app()->make('num');
+// $num2 = app()->make('num');
+
+// echo $num . '<br/>';
+// echo $num1 . '<br/>';
+// echo $num2 . '<br/>';
+
+////// test app()->singelton //////
+//// with singleton()  the service container
+//// make only one object from class
+
+// app()->singleton('num', function () {
+
+//     return rand(10, 50);
+// });
+
+// $num = app()->make('num');
+// $num1 = app()->make('num');
+// $num2 = app()->make('num');
+
+// echo $num . '<br/>';
+// echo $num1 . '<br/>';
+// echo $num2 . '<br/>';
+
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,

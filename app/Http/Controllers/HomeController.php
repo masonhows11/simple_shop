@@ -11,7 +11,11 @@ class HomeController extends Controller
     public function home()
     {
         $products = Product::all();
-        return view('home',['products' => $products]);
+
+        // $test = app()->make('test');
+        // echo $test;
+
+        return view('home', ['products' => $products]);
     }
 
     public function notFound()

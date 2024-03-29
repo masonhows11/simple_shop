@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     //
-    private Uploader $uploader;
+    private  $uploader;
 
     public function __construct(Uploader $uploader)
     {
@@ -21,6 +21,10 @@ class ProfileController extends Controller
     public function profile()
     {
         $files = File::all();
+
+        // $test = app()->make('test');
+        // echo $test;
+
         return view('front_user.profile.profile', ['files' => $files]);
     }
 

@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        // dd('hello app service provider');
     }
 
     /**
@@ -39,8 +40,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PriceInterface::class, function ($app) {
             $basketPrice = new BasketPrice($app->make(Basket::class));
             $shippingPrice = new ShippingPrice($basketPrice);
-            return $discountPrice = new DiscountPrice($shippingPrice,app()->make(DiscountManager::class));
-
+            return $discountPrice = new DiscountPrice($shippingPrice, app()->make(DiscountManager::class));
         });
     }
 }
